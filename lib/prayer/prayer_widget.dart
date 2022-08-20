@@ -1,0 +1,160 @@
+import '../flutter_flow/flutter_flow_icon_button.dart';
+import '../flutter_flow/flutter_flow_theme.dart';
+import '../flutter_flow/flutter_flow_util.dart';
+import '../flutter_flow/flutter_flow_widgets.dart';
+import '../homepage/homepage_widget.dart';
+import '../prayer_get/prayer_get_widget.dart';
+import '../prayer_send1/prayer_send1_widget.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+class PrayerWidget extends StatefulWidget {
+  const PrayerWidget({Key? key}) : super(key: key);
+
+  @override
+  _PrayerWidgetState createState() => _PrayerWidgetState();
+}
+
+class _PrayerWidgetState extends State<PrayerWidget> {
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      key: scaffoldKey,
+      appBar: AppBar(
+        backgroundColor: Color(0xFFFAFAD2),
+        iconTheme: IconThemeData(color: Colors.black),
+        automaticallyImplyLeading: true,
+        leading: FlutterFlowIconButton(
+          borderColor: Colors.transparent,
+          borderRadius: 30,
+          borderWidth: 1,
+          buttonSize: 60,
+          icon: Icon(
+            Icons.arrow_back_rounded,
+            color: FlutterFlowTheme.of(context).primaryText,
+            size: 30,
+          ),
+          onPressed: () async {
+            await Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => HomepageWidget(),
+              ),
+            );
+          },
+        ),
+        title: Text(
+          'Prayer',
+          style: FlutterFlowTheme.of(context).bodyText1,
+        ),
+        actions: [
+          FlutterFlowIconButton(
+            borderColor: Colors.transparent,
+            borderRadius: 30,
+            borderWidth: 1,
+            buttonSize: 60,
+            icon: Icon(
+              Icons.close_outlined,
+              color: FlutterFlowTheme.of(context).primaryText,
+              size: 30,
+            ),
+            onPressed: () async {
+              await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => HomepageWidget(),
+                ),
+              );
+            },
+          ),
+        ],
+        centerTitle: true,
+        elevation: 4,
+      ),
+      backgroundColor: Color(0xFFFAFAD2),
+      body: SafeArea(
+        child: GestureDetector(
+          onTap: () => FocusScope.of(context).unfocus(),
+          child: Stack(
+            children: [
+              Align(
+                alignment: AlignmentDirectional(-0.01, 0.87),
+                child: FFButtonWidget(
+                  onPressed: () async {
+                    await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PrayerGetWidget(),
+                      ),
+                    );
+                  },
+                  text: 'Get',
+                  options: FFButtonOptions(
+                    width: 130,
+                    height: 40,
+                    color: Color(0xFFFAFAD2),
+                    textStyle: FlutterFlowTheme.of(context).subtitle2.override(
+                          fontFamily: 'Poppins',
+                          color: Colors.black,
+                        ),
+                    borderSide: BorderSide(
+                      color: Colors.transparent,
+                      width: 1,
+                    ),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+              ),
+              Align(
+                alignment: AlignmentDirectional(-0.05, -0.7),
+                child: Image.network(
+                  'https://github.com/YYYEJI/LORD_MAP/blob/master/img/letter2.png?raw=true',
+                  height: 170,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              Align(
+                alignment: AlignmentDirectional(0, 0.45),
+                child: Image.network(
+                  'https://github.com/YYYEJI/LORD_MAP/blob/master/img/letter2.png?raw=true',
+                  height: 170,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              Align(
+                alignment: AlignmentDirectional(0, -0.1),
+                child: FFButtonWidget(
+                  onPressed: () async {
+                    await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PrayerSend1Widget(),
+                      ),
+                    );
+                  },
+                  text: 'Send',
+                  options: FFButtonOptions(
+                    width: 130,
+                    height: 40,
+                    color: Color(0xFFFAFAD2),
+                    textStyle: FlutterFlowTheme.of(context).subtitle2.override(
+                          fontFamily: 'Poppins',
+                          color: Colors.black,
+                        ),
+                    borderSide: BorderSide(
+                      color: Colors.transparent,
+                      width: 1,
+                    ),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
