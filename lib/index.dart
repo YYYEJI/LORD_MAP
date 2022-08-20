@@ -1,6 +1,6 @@
 // Export pages
-export 'login/login_widget.dart' show LoginWidget;
 export 'loading/loading_widget.dart' show LoadingWidget;
+export 'login/login_widget.dart' show LoginWidget;
 export 'homepage/homepage_widget.dart' show HomepageWidget;
 export 'move_page/move_page_widget.dart' show MovePageWidget;
 export 'prayer/prayer_widget.dart' show PrayerWidget;
@@ -20,5 +20,7 @@ export 'prayer_room_dorm/prayer_room_dorm_widget.dart'
     show PrayerRoomDormWidget;
 export 'mappage_dorm/mappage_dorm_widget.dart' show MappageDormWidget;
 export 'mappage_lectur/mappage_lectur_widget.dart' show MappageLecturWidget;
-export 'setting/setting_widget.dart' show SettingWidget;
-export 'mapp/mapp_widget.dart' show MappWidget;
+export 'select_church/select_church_widget.dart' show SelectChurchWidget;
+export 'mapp_y_d/mapp_y_d_widget.dart' show MappYDWidget;
+export 'mapp_h_h/mapp_h_h_widget.dart' show MappHHWidget;
+export 'mapp_n_g/mapp_n_g_widget.dart' show MappNGWidget;

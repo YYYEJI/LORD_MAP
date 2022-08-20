@@ -19,6 +19,12 @@ class _PrayerWidgetState extends State<PrayerWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
+  void initState() {
+    super.initState();
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Prayer'});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
@@ -37,6 +43,8 @@ class _PrayerWidgetState extends State<PrayerWidget> {
             size: 30,
           ),
           onPressed: () async {
+            logFirebaseEvent('PRAYER_arrow_back_rounded_ICN_ON_TAP');
+            logFirebaseEvent('IconButton_Navigate-To');
             await Navigator.push(
               context,
               MaterialPageRoute(
@@ -61,6 +69,8 @@ class _PrayerWidgetState extends State<PrayerWidget> {
               size: 30,
             ),
             onPressed: () async {
+              logFirebaseEvent('PRAYER_PAGE_close_outlined_ICN_ON_TAP');
+              logFirebaseEvent('IconButton_Navigate-To');
               await Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -83,6 +93,8 @@ class _PrayerWidgetState extends State<PrayerWidget> {
                 alignment: AlignmentDirectional(-0.01, 0.87),
                 child: FFButtonWidget(
                   onPressed: () async {
+                    logFirebaseEvent('PRAYER_PAGE_GET_BTN_ON_TAP');
+                    logFirebaseEvent('Button_Navigate-To');
                     await Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -127,6 +139,8 @@ class _PrayerWidgetState extends State<PrayerWidget> {
                 alignment: AlignmentDirectional(0, -0.1),
                 child: FFButtonWidget(
                   onPressed: () async {
+                    logFirebaseEvent('PRAYER_PAGE_SEND_BTN_ON_TAP');
+                    logFirebaseEvent('Button_Navigate-To');
                     await Navigator.push(
                       context,
                       MaterialPageRoute(

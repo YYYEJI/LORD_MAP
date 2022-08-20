@@ -19,6 +19,8 @@ class _FindPrayerGroupWidgetState extends State<FindPrayerGroupWidget> {
   @override
   void initState() {
     super.initState();
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'Find_prayer_group'});
     textController = TextEditingController();
   }
 
@@ -45,6 +47,8 @@ class _FindPrayerGroupWidgetState extends State<FindPrayerGroupWidget> {
               size: 30,
             ),
             onPressed: () async {
+              logFirebaseEvent('FIND_PRAYER_GROUP_close_outlined_ICN_ON_');
+              logFirebaseEvent('IconButton_Navigate-To');
               await Navigator.push(
                 context,
                 MaterialPageRoute(

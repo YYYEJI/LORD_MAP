@@ -4,7 +4,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../homepage/homepage_widget.dart';
 import '../login/login_widget.dart';
-import '../mapp/mapp_widget.dart';
+import '../mapp_y_d/mapp_y_d_widget.dart';
 import '../prayer/prayer_widget.dart';
 import '../prayer_get/prayer_get_widget.dart';
 import '../prayer_send1/prayer_send1_widget.dart';
@@ -22,6 +22,12 @@ class MovePageWidget extends StatefulWidget {
 
 class _MovePageWidgetState extends State<MovePageWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    super.initState();
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'MovePage'});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +53,9 @@ class _MovePageWidgetState extends State<MovePageWidget> {
                         alignment: AlignmentDirectional(-0.75, 0.95),
                         child: InkWell(
                           onTap: () async {
+                            logFirebaseEvent(
+                                'MOVE_PAGE_PAGE_Text_2onjcgwv_ON_TAP');
+                            logFirebaseEvent('Text_Navigate-To');
                             await Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -71,6 +80,8 @@ class _MovePageWidgetState extends State<MovePageWidget> {
                           size: 30,
                         ),
                         onPressed: () async {
+                          logFirebaseEvent('MOVE_PAGE_PAGE_menu_ICN_ON_TAP');
+                          logFirebaseEvent('IconButton_Navigate-To');
                           await Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -87,6 +98,8 @@ class _MovePageWidgetState extends State<MovePageWidget> {
                 alignment: AlignmentDirectional(-0.29, -0.36),
                 child: InkWell(
                   onTap: () async {
+                    logFirebaseEvent('MOVE_PAGE_PAGE_Text_d2ybb4eh_ON_TAP');
+                    logFirebaseEvent('Text_Navigate-To');
                     await Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -104,6 +117,8 @@ class _MovePageWidgetState extends State<MovePageWidget> {
                 alignment: AlignmentDirectional(-0.66, -0.14),
                 child: InkWell(
                   onTap: () async {
+                    logFirebaseEvent('MOVE_PAGE_PAGE_Text_djpe8f4f_ON_TAP');
+                    logFirebaseEvent('Text_Navigate-To');
                     await Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -121,6 +136,8 @@ class _MovePageWidgetState extends State<MovePageWidget> {
                 alignment: AlignmentDirectional(-0.66, -0.24),
                 child: InkWell(
                   onTap: () async {
+                    logFirebaseEvent('MOVE_PAGE_PAGE_Text_uhhg1gvu_ON_TAP');
+                    logFirebaseEvent('Text_Navigate-To');
                     await Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -138,6 +155,8 @@ class _MovePageWidgetState extends State<MovePageWidget> {
                 alignment: AlignmentDirectional(-0.69, -0.57),
                 child: InkWell(
                   onTap: () async {
+                    logFirebaseEvent('MOVE_PAGE_PAGE_Text_r16ymivk_ON_TAP');
+                    logFirebaseEvent('Text_Navigate-To');
                     await Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -162,6 +181,8 @@ class _MovePageWidgetState extends State<MovePageWidget> {
                 alignment: AlignmentDirectional(-0.26, -0.47),
                 child: InkWell(
                   onTap: () async {
+                    logFirebaseEvent('MOVE_PAGE_PAGE_Text_9zz0jtfi_ON_TAP');
+                    logFirebaseEvent('Text_Navigate-To');
                     await Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -179,10 +200,12 @@ class _MovePageWidgetState extends State<MovePageWidget> {
                 alignment: AlignmentDirectional(-0.71, -0.69),
                 child: InkWell(
                   onTap: () async {
+                    logFirebaseEvent('MOVE_PAGE_PAGE_Text_x2u4hkn5_ON_TAP');
+                    logFirebaseEvent('Text_Navigate-To');
                     await Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => MappWidget(),
+                        builder: (context) => MappYDWidget(),
                       ),
                     );
                   },
@@ -205,6 +228,8 @@ class _MovePageWidgetState extends State<MovePageWidget> {
                 alignment: AlignmentDirectional(-0.64, -0.04),
                 child: InkWell(
                   onTap: () async {
+                    logFirebaseEvent('MOVE_PAGE_PAGE_Text_h2x9uyo2_ON_TAP');
+                    logFirebaseEvent('Text_Navigate-To');
                     await Navigator.push(
                       context,
                       MaterialPageRoute(

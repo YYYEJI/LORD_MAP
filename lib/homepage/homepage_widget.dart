@@ -1,10 +1,9 @@
 import '../alarm/alarm_widget.dart';
-import '../flutter_flow/flutter_flow_charts.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../mapp/mapp_widget.dart';
+import '../mapp_y_d/mapp_y_d_widget.dart';
 import '../move_page/move_page_widget.dart';
 import '../prayer/prayer_widget.dart';
 import '../select_room/select_room_widget.dart';
@@ -21,6 +20,12 @@ class HomepageWidget extends StatefulWidget {
 
 class _HomepageWidgetState extends State<HomepageWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    super.initState();
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Homepage'});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +45,8 @@ class _HomepageWidgetState extends State<HomepageWidget> {
             size: 30,
           ),
           onPressed: () async {
+            logFirebaseEvent('HOMEPAGE_PAGE_menu_ICN_ON_TAP');
+            logFirebaseEvent('IconButton_Navigate-To');
             await Navigator.push(
               context,
               MaterialPageRoute(
@@ -98,10 +105,13 @@ class _HomepageWidgetState extends State<HomepageWidget> {
                         size: 30,
                       ),
                       onPressed: () async {
+                        logFirebaseEvent(
+                            'HOMEPAGE_PAGE_map_outlined_ICN_ON_TAP');
+                        logFirebaseEvent('IconButton_Navigate-To');
                         await Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => MappWidget(),
+                            builder: (context) => MappYDWidget(),
                           ),
                         );
                       },
@@ -117,6 +127,9 @@ class _HomepageWidgetState extends State<HomepageWidget> {
                         size: 30,
                       ),
                       onPressed: () async {
+                        logFirebaseEvent(
+                            'HOMEPAGE_PAGE_mail_outlined_ICN_ON_TAP');
+                        logFirebaseEvent('IconButton_Navigate-To');
                         await Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -136,6 +149,8 @@ class _HomepageWidgetState extends State<HomepageWidget> {
                         size: 30,
                       ),
                       onPressed: () async {
+                        logFirebaseEvent('HOMEPAGE_PAGE_alarm_ICN_ON_TAP');
+                        logFirebaseEvent('IconButton_Navigate-To');
                         await Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -155,6 +170,8 @@ class _HomepageWidgetState extends State<HomepageWidget> {
                         size: 30,
                       ),
                       onPressed: () async {
+                        logFirebaseEvent('HOMEbookmarks_outlined_ICN_ON_TAP');
+                        logFirebaseEvent('IconButton_Navigate-To');
                         await Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -172,10 +189,12 @@ class _HomepageWidgetState extends State<HomepageWidget> {
                 children: [
                   InkWell(
                     onTap: () async {
+                      logFirebaseEvent('HOMEPAGE_PAGE_Text_6aitk2gr_ON_TAP');
+                      logFirebaseEvent('Text_Navigate-To');
                       await Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => MappWidget(),
+                          builder: (context) => MappYDWidget(),
                         ),
                       );
                     },
@@ -186,6 +205,8 @@ class _HomepageWidgetState extends State<HomepageWidget> {
                   ),
                   InkWell(
                     onTap: () async {
+                      logFirebaseEvent('HOMEPAGE_PAGE_Text_3pcyrov8_ON_TAP');
+                      logFirebaseEvent('Text_Navigate-To');
                       await Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -200,6 +221,8 @@ class _HomepageWidgetState extends State<HomepageWidget> {
                   ),
                   InkWell(
                     onTap: () async {
+                      logFirebaseEvent('HOMEPAGE_PAGE_Text_hdlg80mz_ON_TAP');
+                      logFirebaseEvent('Text_Navigate-To');
                       await Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -214,6 +237,8 @@ class _HomepageWidgetState extends State<HomepageWidget> {
                   ),
                   InkWell(
                     onTap: () async {
+                      logFirebaseEvent('HOMEPAGE_PAGE_Text_sg19gfzd_ON_TAP');
+                      logFirebaseEvent('Text_Navigate-To');
                       await Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -236,6 +261,9 @@ class _HomepageWidgetState extends State<HomepageWidget> {
                   children: [
                     FFButtonWidget(
                       onPressed: () async {
+                        logFirebaseEvent(
+                            'HOMEPAGE_PAGE_START_PRAYER_BTN_ON_TAP');
+                        logFirebaseEvent('Button_Navigate-To');
                         await Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -274,29 +302,6 @@ class _HomepageWidgetState extends State<HomepageWidget> {
                         Text(
                           '이번주 N명을 위해 기도했어요!',
                           style: FlutterFlowTheme.of(context).bodyText1,
-                        ),
-                        Container(
-                          width: 300,
-                          height: 200,
-                          child: FlutterFlowLineChart(
-                            data: [
-                              FFLineChartData(
-                                xData: [],
-                                yData: [],
-                                settings: LineChartBarData(
-                                  color: Color(0xFFD354E3),
-                                  barWidth: 1,
-                                  isCurved: true,
-                                  dotData: FlDotData(show: false),
-                                ),
-                              )
-                            ],
-                            backgroundColor: Colors.white,
-                            showGrid: true,
-                            axisBounds: AxisBounds(),
-                            xAxisLabelInfo: AxisLabelInfo(),
-                            yAxisLabelInfo: AxisLabelInfo(),
-                          ),
                         ),
                       ],
                     ),

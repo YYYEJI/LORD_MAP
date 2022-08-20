@@ -285,6 +285,9 @@ class _PrayerRoomDormWidgetState extends State<PrayerRoomDormWidget>
           .where((anim) => anim.trigger == AnimationTrigger.onPageLoad),
       this,
     );
+
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'PrayerRoomDorm'});
   }
 
   @override
@@ -305,6 +308,8 @@ class _PrayerRoomDormWidgetState extends State<PrayerRoomDormWidget>
             size: 30,
           ),
           onPressed: () async {
+            logFirebaseEvent('PRAYER_ROOM_DORM_arrow_back_rounded_ICN_');
+            logFirebaseEvent('IconButton_Navigate-To');
             await Navigator.push(
               context,
               MaterialPageRoute(
@@ -826,6 +831,9 @@ class _PrayerRoomDormWidgetState extends State<PrayerRoomDormWidget>
                         size: 30,
                       ),
                       onPressed: () async {
+                        logFirebaseEvent(
+                            'PRAYER_ROOM_DORM_mapSigns_ICN_ON_TAP');
+                        logFirebaseEvent('IconButton_Navigate-To');
                         await Navigator.push(
                           context,
                           PageTransition(

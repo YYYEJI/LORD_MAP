@@ -21,6 +21,7 @@ class _PrayerSend1WidgetState extends State<PrayerSend1Widget> {
   @override
   void initState() {
     super.initState();
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'PrayerSend1'});
     textController = TextEditingController();
   }
 
@@ -48,6 +49,8 @@ class _PrayerSend1WidgetState extends State<PrayerSend1Widget> {
               size: 30,
             ),
             onPressed: () async {
+              logFirebaseEvent('PRAYER_SEND1_close_outlined_ICN_ON_TAP');
+              logFirebaseEvent('IconButton_Navigate-To');
               await Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -110,6 +113,8 @@ class _PrayerSend1WidgetState extends State<PrayerSend1Widget> {
                 alignment: AlignmentDirectional(0, 0.86),
                 child: FFButtonWidget(
                   onPressed: () async {
+                    logFirebaseEvent('PRAYER_SEND1_PAGE_SEND_BTN_ON_TAP');
+                    logFirebaseEvent('Button_Navigate-To');
                     await Navigator.push(
                       context,
                       MaterialPageRoute(

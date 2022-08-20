@@ -173,6 +173,9 @@ class _PrayerRoomlecturWidgetState extends State<PrayerRoomlecturWidget>
           .where((anim) => anim.trigger == AnimationTrigger.onPageLoad),
       this,
     );
+
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'PrayerRoomlectur'});
   }
 
   @override
@@ -193,6 +196,8 @@ class _PrayerRoomlecturWidgetState extends State<PrayerRoomlecturWidget>
             size: 30,
           ),
           onPressed: () async {
+            logFirebaseEvent('PRAYER_ROOMLECTUR_arrow_back_rounded_ICN');
+            logFirebaseEvent('IconButton_Navigate-To');
             await Navigator.push(
               context,
               MaterialPageRoute(
@@ -246,6 +251,9 @@ class _PrayerRoomlecturWidgetState extends State<PrayerRoomlecturWidget>
                           ),
                           child: InkWell(
                             onLongPress: () async {
+                              logFirebaseEvent(
+                                  'PRAYER_ROOMLECTUR_Column_qvbqu7bz_ON_LON');
+                              logFirebaseEvent('Column_Launch-U-R-L');
                               await launchURL(
                                   'https://m.booking.naver.com/booking/6/bizes/659093/items/4353506?area=pll&service-target=map-pc');
                             },
@@ -514,6 +522,8 @@ class _PrayerRoomlecturWidgetState extends State<PrayerRoomlecturWidget>
                     size: 30,
                   ),
                   onPressed: () async {
+                    logFirebaseEvent('PRAYER_ROOMLECTUR_mapSigns_ICN_ON_TAP');
+                    logFirebaseEvent('IconButton_Navigate-To');
                     await Navigator.push(
                       context,
                       PageTransition(

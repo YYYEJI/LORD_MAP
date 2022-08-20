@@ -1,22 +1,23 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'church_record.dart';
+part of 'churchin_h_h_record.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<ChurchRecord> _$churchRecordSerializer =
-    new _$ChurchRecordSerializer();
+Serializer<ChurchinHHRecord> _$churchinHHRecordSerializer =
+    new _$ChurchinHHRecordSerializer();
 
-class _$ChurchRecordSerializer implements StructuredSerializer<ChurchRecord> {
+class _$ChurchinHHRecordSerializer
+    implements StructuredSerializer<ChurchinHHRecord> {
   @override
-  final Iterable<Type> types = const [ChurchRecord, _$ChurchRecord];
+  final Iterable<Type> types = const [ChurchinHHRecord, _$ChurchinHHRecord];
   @override
-  final String wireName = 'ChurchRecord';
+  final String wireName = 'ChurchinHHRecord';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, ChurchRecord object,
+  Iterable<Object?> serialize(Serializers serializers, ChurchinHHRecord object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[];
     Object? value;
@@ -25,8 +26,14 @@ class _$ChurchRecordSerializer implements StructuredSerializer<ChurchRecord> {
       result
         ..add('name')
         ..add(serializers.serialize(value,
-            specifiedType:
-                const FullType(BuiltList, const [const FullType(String)])));
+            specifiedType: const FullType(String)));
+    }
+    value = object.location;
+    if (value != null) {
+      result
+        ..add('location')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(LatLng)));
     }
     value = object.ffRef;
     if (value != null) {
@@ -40,10 +47,10 @@ class _$ChurchRecordSerializer implements StructuredSerializer<ChurchRecord> {
   }
 
   @override
-  ChurchRecord deserialize(
+  ChurchinHHRecord deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new ChurchRecordBuilder();
+    final result = new ChurchinHHRecordBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -52,10 +59,12 @@ class _$ChurchRecordSerializer implements StructuredSerializer<ChurchRecord> {
       final Object? value = iterator.current;
       switch (key) {
         case 'name':
-          result.name.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      BuiltList, const [const FullType(String)]))!
-              as BuiltList<Object?>);
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'location':
+          result.location = serializers.deserialize(value,
+              specifiedType: const FullType(LatLng)) as LatLng?;
           break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
@@ -70,64 +79,78 @@ class _$ChurchRecordSerializer implements StructuredSerializer<ChurchRecord> {
   }
 }
 
-class _$ChurchRecord extends ChurchRecord {
+class _$ChurchinHHRecord extends ChurchinHHRecord {
   @override
-  final BuiltList<String>? name;
+  final String? name;
+  @override
+  final LatLng? location;
   @override
   final DocumentReference<Object?>? ffRef;
 
-  factory _$ChurchRecord([void Function(ChurchRecordBuilder)? updates]) =>
-      (new ChurchRecordBuilder()..update(updates))._build();
+  factory _$ChurchinHHRecord(
+          [void Function(ChurchinHHRecordBuilder)? updates]) =>
+      (new ChurchinHHRecordBuilder()..update(updates))._build();
 
-  _$ChurchRecord._({this.name, this.ffRef}) : super._();
+  _$ChurchinHHRecord._({this.name, this.location, this.ffRef}) : super._();
 
   @override
-  ChurchRecord rebuild(void Function(ChurchRecordBuilder) updates) =>
+  ChurchinHHRecord rebuild(void Function(ChurchinHHRecordBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  ChurchRecordBuilder toBuilder() => new ChurchRecordBuilder()..replace(this);
+  ChurchinHHRecordBuilder toBuilder() =>
+      new ChurchinHHRecordBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is ChurchRecord && name == other.name && ffRef == other.ffRef;
+    return other is ChurchinHHRecord &&
+        name == other.name &&
+        location == other.location &&
+        ffRef == other.ffRef;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc(0, name.hashCode), ffRef.hashCode));
+    return $jf(
+        $jc($jc($jc(0, name.hashCode), location.hashCode), ffRef.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'ChurchRecord')
+    return (newBuiltValueToStringHelper(r'ChurchinHHRecord')
           ..add('name', name)
+          ..add('location', location)
           ..add('ffRef', ffRef))
         .toString();
   }
 }
 
-class ChurchRecordBuilder
-    implements Builder<ChurchRecord, ChurchRecordBuilder> {
-  _$ChurchRecord? _$v;
+class ChurchinHHRecordBuilder
+    implements Builder<ChurchinHHRecord, ChurchinHHRecordBuilder> {
+  _$ChurchinHHRecord? _$v;
 
-  ListBuilder<String>? _name;
-  ListBuilder<String> get name => _$this._name ??= new ListBuilder<String>();
-  set name(ListBuilder<String>? name) => _$this._name = name;
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  LatLng? _location;
+  LatLng? get location => _$this._location;
+  set location(LatLng? location) => _$this._location = location;
 
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
 
-  ChurchRecordBuilder() {
-    ChurchRecord._initializeBuilder(this);
+  ChurchinHHRecordBuilder() {
+    ChurchinHHRecord._initializeBuilder(this);
   }
 
-  ChurchRecordBuilder get _$this {
+  ChurchinHHRecordBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _name = $v.name?.toBuilder();
+      _name = $v.name;
+      _location = $v.location;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -135,35 +158,22 @@ class ChurchRecordBuilder
   }
 
   @override
-  void replace(ChurchRecord other) {
+  void replace(ChurchinHHRecord other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$ChurchRecord;
+    _$v = other as _$ChurchinHHRecord;
   }
 
   @override
-  void update(void Function(ChurchRecordBuilder)? updates) {
+  void update(void Function(ChurchinHHRecordBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  ChurchRecord build() => _build();
+  ChurchinHHRecord build() => _build();
 
-  _$ChurchRecord _build() {
-    _$ChurchRecord _$result;
-    try {
-      _$result =
-          _$v ?? new _$ChurchRecord._(name: _name?.build(), ffRef: ffRef);
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'name';
-        _name?.build();
-      } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            r'ChurchRecord', _$failedField, e.toString());
-      }
-      rethrow;
-    }
+  _$ChurchinHHRecord _build() {
+    final _$result = _$v ??
+        new _$ChurchinHHRecord._(name: name, location: location, ffRef: ffRef);
     replace(_$result);
     return _$result;
   }
