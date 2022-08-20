@@ -18,6 +18,12 @@ class _MappageDormWidgetState extends State<MappageDormWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
+  void initState() {
+    super.initState();
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'mappageDorm'});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
@@ -35,6 +41,8 @@ class _MappageDormWidgetState extends State<MappageDormWidget> {
             size: 30,
           ),
           onPressed: () async {
+            logFirebaseEvent('MAPPAGE_DORM_PAGE_clear_ICN_ON_TAP');
+            logFirebaseEvent('IconButton_Navigate-To');
             await Navigator.push(
               context,
               PageTransition(
@@ -74,6 +82,8 @@ class _MappageDormWidgetState extends State<MappageDormWidget> {
               children: [
                 InkWell(
                   onTap: () async {
+                    logFirebaseEvent('MAPPAGE_DORM_PAGE_Image_y4l5ahvg_ON_TAP');
+                    logFirebaseEvent('Image_Expand-Image');
                     await Navigator.push(
                       context,
                       PageTransition(

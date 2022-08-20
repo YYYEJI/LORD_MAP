@@ -22,6 +22,7 @@ class _LoginWidgetState extends State<LoginWidget> {
   @override
   void initState() {
     super.initState();
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'login'});
     textController1 = TextEditingController();
     textController2 = TextEditingController();
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -117,6 +118,9 @@ class _LoginWidgetState extends State<LoginWidget> {
                                 alignment: AlignmentDirectional(-0.03, 1.17),
                                 child: FFButtonWidget(
                                   onPressed: () async {
+                                    logFirebaseEvent(
+                                        'LOGIN_PAGE_LOGIN_BTN_ON_TAP');
+                                    logFirebaseEvent('Button_Navigate-To');
                                     await Navigator.push(
                                       context,
                                       MaterialPageRoute(

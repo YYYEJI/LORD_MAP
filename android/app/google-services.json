@@ -1,20 +1,20 @@
 {
   "project_info": {
-    "project_number": "761665135775",
-    "project_id": "lordmap-605f9",
-    "storage_bucket": "lordmap-605f9.appspot.com"
+    "project_number": "1017501490294",
+    "project_id": "lordmap-52233",
+    "storage_bucket": "lordmap-52233.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:761665135775:android:36b99edf4ffe9640b96eaa",
+        "mobilesdk_app_id": "1:1017501490294:android:e85ea4fde35eb6cb9cd357",
         "android_client_info": {
           "package_name": "com.gbc.lordmap"
         }
       },
       "oauth_client": [
         {
-          "client_id": "761665135775-drdnbpvc4liuv42p0r9nu3feu846skf9.apps.googleusercontent.com",
+          "client_id": "1017501490294-p9cgngucorf7vhh45gkt5d7o08dn4nsh.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.gbc.lordmap",
@@ -22,71 +22,27 @@
           }
         },
         {
-          "client_id": "761665135775-v8f38ptf4lp9mpij7tkqul8drqppvsc4.apps.googleusercontent.com",
+          "client_id": "1017501490294-te3ik7k4sal18lng4v6hr5b2qlsekrvu.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCHtl5d7_6a5E5uhU5xJ3tFo6g12UJgfl0"
+          "current_key": "AIzaSyBgABz1gdltx9JnXj0Ud7Md99B8HtJ1uTs"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "761665135775-v8f38ptf4lp9mpij7tkqul8drqppvsc4.apps.googleusercontent.com",
+              "client_id": "1017501490294-te3ik7k4sal18lng4v6hr5b2qlsekrvu.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "761665135775-2dvcqage3cuqjtdpj2ik17kck20b37a6.apps.googleusercontent.com",
+              "client_id": "1017501490294-vggoftarevtsj8j3bskm1lpqmr93dn4m.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.mycompany.lordmap"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:761665135775:android:5a809cc850893166b96eaa",
-        "android_client_info": {
-          "package_name": "com.mycompany.lordmap"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "761665135775-1dpdnm4rh6jh8m3hlrlhga9aruq8rtls.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.mycompany.lordmap",
-            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
-          }
-        },
-        {
-          "client_id": "761665135775-v8f38ptf4lp9mpij7tkqul8drqppvsc4.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCHtl5d7_6a5E5uhU5xJ3tFo6g12UJgfl0"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "761665135775-v8f38ptf4lp9mpij7tkqul8drqppvsc4.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "761665135775-2dvcqage3cuqjtdpj2ik17kck20b37a6.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.mycompany.lordmap"
+                "bundle_id": "com.gbc.lordmap"
               }
             }
           ]

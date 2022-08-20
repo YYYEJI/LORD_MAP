@@ -21,6 +21,12 @@ class _AlarmWidgetState extends State<AlarmWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
+  void initState() {
+    super.initState();
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Alarm'});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
@@ -38,6 +44,8 @@ class _AlarmWidgetState extends State<AlarmWidget> {
             size: 30,
           ),
           onPressed: () async {
+            logFirebaseEvent('ALARM_PAGE_arrow_back_rounded_ICN_ON_TAP');
+            logFirebaseEvent('IconButton_Navigate-To');
             await Navigator.push(
               context,
               MaterialPageRoute(
@@ -164,6 +172,9 @@ class _AlarmWidgetState extends State<AlarmWidget> {
                       size: 40,
                     ),
                     onPressed: () async {
+                      logFirebaseEvent(
+                          'ALARM_add_circle_outline_sharp_ICN_ON_TA');
+                      logFirebaseEvent('IconButton_Navigate-To');
                       await Navigator.push(
                         context,
                         MaterialPageRoute(

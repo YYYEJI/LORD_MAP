@@ -16,6 +16,12 @@ class _LoadingWidgetState extends State<LoadingWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
+  void initState() {
+    super.initState();
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Loading'});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
@@ -37,6 +43,44 @@ class _LoadingWidgetState extends State<LoadingWidget> {
                 ),
               ),
               Align(
+                alignment: AlignmentDirectional(-0.4, 0),
+                child: FFButtonWidget(
+                  onPressed: () async {
+                    logFirebaseEvent('LOADING_PAGE_SIGN_IN_BTN_ON_TAP');
+                    logFirebaseEvent('Button_Navigate-To');
+                    await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => LoginWidget(),
+                      ),
+                    );
+                  },
+                  text: 'Sign in',
+                  options: FFButtonOptions(
+                    width: 130,
+                    height: 40,
+                    color: Color(0xFFFAFAD2),
+                    textStyle: FlutterFlowTheme.of(context).subtitle2.override(
+                          fontFamily: 'Poppins',
+                          color: FlutterFlowTheme.of(context).primaryColor,
+                        ),
+                    borderSide: BorderSide(
+                      color: Colors.transparent,
+                      width: 1,
+                    ),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+              ),
+              Align(
+                alignment: AlignmentDirectional(0.3, 1.24),
+                child: Image.asset(
+                  'assets/images/Church.png',
+                  width: 345,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              Align(
                 alignment: AlignmentDirectional(0.25, 1.2),
                 child: Image.network(
                   'https://github.com/YYYEJI/LORD_MAP/blob/master/img/Church.png?raw=true',
@@ -45,24 +89,19 @@ class _LoadingWidgetState extends State<LoadingWidget> {
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(0, 0),
+                alignment: AlignmentDirectional(0.45, 0),
                 child: FFButtonWidget(
-                  onPressed: () async {
-                    await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => LoginWidget(),
-                      ),
-                    );
+                  onPressed: () {
+                    print('Button pressed ...');
                   },
-                  text: 'Start',
+                  text: 'Sign up',
                   options: FFButtonOptions(
                     width: 130,
                     height: 40,
-                    color: FlutterFlowTheme.of(context).primaryColor,
+                    color: Color(0xFFFAFAD2),
                     textStyle: FlutterFlowTheme.of(context).subtitle2.override(
                           fontFamily: 'Poppins',
-                          color: Colors.white,
+                          color: FlutterFlowTheme.of(context).primaryColor,
                         ),
                     borderSide: BorderSide(
                       color: Colors.transparent,
@@ -70,6 +109,16 @@ class _LoadingWidgetState extends State<LoadingWidget> {
                     ),
                     borderRadius: BorderRadius.circular(8),
                   ),
+                ),
+              ),
+              Align(
+                alignment: AlignmentDirectional(0, 0),
+                child: Text(
+                  '/',
+                  style: FlutterFlowTheme.of(context).bodyText1.override(
+                        fontFamily: 'Poppins',
+                        color: FlutterFlowTheme.of(context).primaryColor,
+                      ),
                 ),
               ),
             ],

@@ -20,6 +20,7 @@ class _AlarmAddWidgetState extends State<AlarmAddWidget> {
   @override
   void initState() {
     super.initState();
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'AlarmAdd'});
     textController = TextEditingController();
   }
 
@@ -41,6 +42,8 @@ class _AlarmAddWidgetState extends State<AlarmAddWidget> {
             size: 30,
           ),
           onPressed: () async {
+            logFirebaseEvent('ALARM_ADD_arrow_back_rounded_ICN_ON_TAP');
+            logFirebaseEvent('IconButton_Navigate-Back');
             Navigator.pop(context);
           },
         ),
@@ -357,6 +360,8 @@ class _AlarmAddWidgetState extends State<AlarmAddWidget> {
                   children: [
                     FFButtonWidget(
                       onPressed: () async {
+                        logFirebaseEvent('ALARM_ADD_PAGE_CONFIRM_BTN_ON_TAP');
+                        logFirebaseEvent('Button_Navigate-To');
                         await Navigator.push(
                           context,
                           MaterialPageRoute(

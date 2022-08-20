@@ -17,6 +17,12 @@ class _PrayerSend2WidgetState extends State<PrayerSend2Widget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
+  void initState() {
+    super.initState();
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'PrayerSend2'});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
@@ -40,6 +46,8 @@ class _PrayerSend2WidgetState extends State<PrayerSend2Widget> {
               size: 30,
             ),
             onPressed: () async {
+              logFirebaseEvent('PRAYER_SEND2_close_outlined_ICN_ON_TAP');
+              logFirebaseEvent('IconButton_Navigate-To');
               await Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -79,6 +87,8 @@ class _PrayerSend2WidgetState extends State<PrayerSend2Widget> {
                 alignment: AlignmentDirectional(0, 0.86),
                 child: FFButtonWidget(
                   onPressed: () async {
+                    logFirebaseEvent('PRAYER_SEND2_PAGE_FINISH_BTN_ON_TAP');
+                    logFirebaseEvent('Button_Navigate-To');
                     await Navigator.push(
                       context,
                       MaterialPageRoute(

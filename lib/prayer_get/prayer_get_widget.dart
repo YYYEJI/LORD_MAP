@@ -17,6 +17,12 @@ class _PrayerGetWidgetState extends State<PrayerGetWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
+  void initState() {
+    super.initState();
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'PrayerGet'});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
@@ -40,6 +46,8 @@ class _PrayerGetWidgetState extends State<PrayerGetWidget> {
               size: 30,
             ),
             onPressed: () async {
+              logFirebaseEvent('PRAYER_GET_close_outlined_ICN_ON_TAP');
+              logFirebaseEvent('IconButton_Navigate-To');
               await Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -81,6 +89,8 @@ class _PrayerGetWidgetState extends State<PrayerGetWidget> {
                   alignment: AlignmentDirectional(0.04, 0.89),
                   child: FFButtonWidget(
                     onPressed: () async {
+                      logFirebaseEvent('PRAYER_GET_PAGE_GET_BTN_ON_TAP');
+                      logFirebaseEvent('Button_Navigate-To');
                       await Navigator.push(
                         context,
                         MaterialPageRoute(

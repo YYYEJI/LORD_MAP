@@ -18,6 +18,13 @@ class _MappageLecturWidgetState extends State<MappageLecturWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
+  void initState() {
+    super.initState();
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'mappageLectur'});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
@@ -35,6 +42,8 @@ class _MappageLecturWidgetState extends State<MappageLecturWidget> {
             size: 30,
           ),
           onPressed: () async {
+            logFirebaseEvent('MAPPAGE_LECTUR_PAGE_clear_ICN_ON_TAP');
+            logFirebaseEvent('IconButton_Navigate-To');
             await Navigator.push(
               context,
               PageTransition(
@@ -74,6 +83,8 @@ class _MappageLecturWidgetState extends State<MappageLecturWidget> {
               children: [
                 InkWell(
                   onTap: () async {
+                    logFirebaseEvent('MAPLECTUR_Image_m6q3gn0i_ON_TAP');
+                    logFirebaseEvent('Image_Expand-Image');
                     await Navigator.push(
                       context,
                       PageTransition(

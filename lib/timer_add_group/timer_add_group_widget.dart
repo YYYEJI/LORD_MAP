@@ -19,6 +19,8 @@ class _TimerAddGroupWidgetState extends State<TimerAddGroupWidget> {
   @override
   void initState() {
     super.initState();
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'Timer_addGroup'});
     textController = TextEditingController();
   }
 
@@ -45,6 +47,8 @@ class _TimerAddGroupWidgetState extends State<TimerAddGroupWidget> {
               size: 30,
             ),
             onPressed: () async {
+              logFirebaseEvent('TIMER_ADD_GROUP_close_outlined_ICN_ON_TA');
+              logFirebaseEvent('IconButton_Navigate-To');
               await Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -133,6 +137,9 @@ class _TimerAddGroupWidgetState extends State<TimerAddGroupWidget> {
                                   size: 30,
                                 ),
                                 onPressed: () async {
+                                  logFirebaseEvent(
+                                      'TIMER_ADD_GROUP_PAGE_add_ICN_ON_TAP');
+                                  logFirebaseEvent('IconButton_Navigate-To');
                                   await Navigator.push(
                                     context,
                                     MaterialPageRoute(

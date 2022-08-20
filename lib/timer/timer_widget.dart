@@ -20,6 +20,12 @@ class _TimerWidgetState extends State<TimerWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
+  void initState() {
+    super.initState();
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Timer'});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
@@ -38,6 +44,8 @@ class _TimerWidgetState extends State<TimerWidget> {
             size: 30,
           ),
           onPressed: () async {
+            logFirebaseEvent('TIMER_PAGE_arrow_back_rounded_ICN_ON_TAP');
+            logFirebaseEvent('IconButton_Navigate-To');
             await Navigator.push(
               context,
               MaterialPageRoute(
@@ -62,6 +70,8 @@ class _TimerWidgetState extends State<TimerWidget> {
               size: 30,
             ),
             onPressed: () async {
+              logFirebaseEvent('TIMER_find_in_page_rounded_ICN_ON_TAP');
+              logFirebaseEvent('IconButton_Navigate-To');
               await Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -77,6 +87,8 @@ class _TimerWidgetState extends State<TimerWidget> {
       backgroundColor: FlutterFlowTheme.of(context).primaryBtnText,
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () async {
+          logFirebaseEvent('TIMER_FloatingActionButton_6dbk21km_ON_T');
+          logFirebaseEvent('FloatingActionButton_Navigate-To');
           await Navigator.push(
             context,
             MaterialPageRoute(

@@ -95,8 +95,10 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'PrayerRoomDorm': (data) async => PrayerRoomDormWidget(),
   'mappageDorm': (data) async => MappageDormWidget(),
   'mappageLectur': (data) async => MappageLecturWidget(),
-  'setting': (data) async => SettingWidget(),
-  'Mapp': (data) async => MappWidget(),
+  'SelectChurch': (data) async => SelectChurchWidget(),
+  'MappYD': (data) async => MappYDWidget(),
+  'MappHH': (data) async => MappHHWidget(),
+  'MappNG': (data) async => MappNGWidget(),
 };
 
 bool hasMatchingParameters(Map<String, dynamic> data, Set<String> params) =>
