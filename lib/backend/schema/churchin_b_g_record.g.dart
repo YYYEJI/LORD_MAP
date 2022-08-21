@@ -1,23 +1,23 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'churchin_y_d_record.dart';
+part of 'churchin_b_g_record.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<ChurchinYDRecord> _$churchinYDRecordSerializer =
-    new _$ChurchinYDRecordSerializer();
+Serializer<ChurchinBGRecord> _$churchinBGRecordSerializer =
+    new _$ChurchinBGRecordSerializer();
 
-class _$ChurchinYDRecordSerializer
-    implements StructuredSerializer<ChurchinYDRecord> {
+class _$ChurchinBGRecordSerializer
+    implements StructuredSerializer<ChurchinBGRecord> {
   @override
-  final Iterable<Type> types = const [ChurchinYDRecord, _$ChurchinYDRecord];
+  final Iterable<Type> types = const [ChurchinBGRecord, _$ChurchinBGRecord];
   @override
-  final String wireName = 'ChurchinYDRecord';
+  final String wireName = 'ChurchinBGRecord';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, ChurchinYDRecord object,
+  Iterable<Object?> serialize(Serializers serializers, ChurchinBGRecord object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[];
     Object? value;
@@ -47,10 +47,10 @@ class _$ChurchinYDRecordSerializer
   }
 
   @override
-  ChurchinYDRecord deserialize(
+  ChurchinBGRecord deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new ChurchinYDRecordBuilder();
+    final result = new ChurchinBGRecordBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -79,7 +79,7 @@ class _$ChurchinYDRecordSerializer
   }
 }
 
-class _$ChurchinYDRecord extends ChurchinYDRecord {
+class _$ChurchinBGRecord extends ChurchinBGRecord {
   @override
   final String? name;
   @override
@@ -87,24 +87,24 @@ class _$ChurchinYDRecord extends ChurchinYDRecord {
   @override
   final DocumentReference<Object?>? ffRef;
 
-  factory _$ChurchinYDRecord(
-          [void Function(ChurchinYDRecordBuilder)? updates]) =>
-      (new ChurchinYDRecordBuilder()..update(updates))._build();
+  factory _$ChurchinBGRecord(
+          [void Function(ChurchinBGRecordBuilder)? updates]) =>
+      (new ChurchinBGRecordBuilder()..update(updates))._build();
 
-  _$ChurchinYDRecord._({this.name, this.location, this.ffRef}) : super._();
+  _$ChurchinBGRecord._({this.name, this.location, this.ffRef}) : super._();
 
   @override
-  ChurchinYDRecord rebuild(void Function(ChurchinYDRecordBuilder) updates) =>
+  ChurchinBGRecord rebuild(void Function(ChurchinBGRecordBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  ChurchinYDRecordBuilder toBuilder() =>
-      new ChurchinYDRecordBuilder()..replace(this);
+  ChurchinBGRecordBuilder toBuilder() =>
+      new ChurchinBGRecordBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is ChurchinYDRecord &&
+    return other is ChurchinBGRecord &&
         name == other.name &&
         location == other.location &&
         ffRef == other.ffRef;
@@ -118,7 +118,7 @@ class _$ChurchinYDRecord extends ChurchinYDRecord {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'ChurchinYDRecord')
+    return (newBuiltValueToStringHelper(r'ChurchinBGRecord')
           ..add('name', name)
           ..add('location', location)
           ..add('ffRef', ffRef))
@@ -126,9 +126,9 @@ class _$ChurchinYDRecord extends ChurchinYDRecord {
   }
 }
 
-class ChurchinYDRecordBuilder
-    implements Builder<ChurchinYDRecord, ChurchinYDRecordBuilder> {
-  _$ChurchinYDRecord? _$v;
+class ChurchinBGRecordBuilder
+    implements Builder<ChurchinBGRecord, ChurchinBGRecordBuilder> {
+  _$ChurchinBGRecord? _$v;
 
   String? _name;
   String? get name => _$this._name;
@@ -142,11 +142,11 @@ class ChurchinYDRecordBuilder
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
 
-  ChurchinYDRecordBuilder() {
-    ChurchinYDRecord._initializeBuilder(this);
+  ChurchinBGRecordBuilder() {
+    ChurchinBGRecord._initializeBuilder(this);
   }
 
-  ChurchinYDRecordBuilder get _$this {
+  ChurchinBGRecordBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _name = $v.name;
@@ -158,22 +158,22 @@ class ChurchinYDRecordBuilder
   }
 
   @override
-  void replace(ChurchinYDRecord other) {
+  void replace(ChurchinBGRecord other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$ChurchinYDRecord;
+    _$v = other as _$ChurchinBGRecord;
   }
 
   @override
-  void update(void Function(ChurchinYDRecordBuilder)? updates) {
+  void update(void Function(ChurchinBGRecordBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  ChurchinYDRecord build() => _build();
+  ChurchinBGRecord build() => _build();
 
-  _$ChurchinYDRecord _build() {
+  _$ChurchinBGRecord _build() {
     final _$result = _$v ??
-        new _$ChurchinYDRecord._(name: name, location: location, ffRef: ffRef);
+        new _$ChurchinBGRecord._(name: name, location: location, ffRef: ffRef);
     replace(_$result);
     return _$result;
   }

@@ -8,14 +8,14 @@ service cloud.firestore {
       allow delete: if false;
     }
 
-    match /ChurchinYD/{document} {
+    match /ChurchinNG/{document} {
       allow create: if true;
       allow read: if true;
       allow write: if false;
       allow delete: if false;
     }
 
-    match /ChurchinHH/{document} {
+    match /ChurchinBG/{document} {
       allow create: if true;
       allow read: if true;
       allow write: if false;

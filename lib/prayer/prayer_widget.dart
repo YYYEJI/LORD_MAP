@@ -165,6 +165,46 @@ class _PrayerWidgetState extends State<PrayerWidget> {
                   ),
                 ),
               ),
+              Align(
+                alignment: AlignmentDirectional(0.03, -0.65),
+                child: InkWell(
+                  onTap: () async {
+                    logFirebaseEvent('PRAYER_PAGE_Image_lyhe5m1j_ON_TAP');
+                    logFirebaseEvent('Image_Navigate-To');
+                    await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PrayerSend1Widget(),
+                      ),
+                    );
+                  },
+                  child: Image.asset(
+                    'assets/images/letter2.png',
+                    width: 270,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              Align(
+                alignment: AlignmentDirectional(0, 0.6),
+                child: InkWell(
+                  onTap: () async {
+                    logFirebaseEvent('PRAYER_PAGE_Image_kbu5bla0_ON_TAP');
+                    logFirebaseEvent('Image_Navigate-To');
+                    await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PrayerGetWidget(),
+                      ),
+                    );
+                  },
+                  child: Image.asset(
+                    'assets/images/letter2.png',
+                    width: 270,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
             ],
           ),
         ),

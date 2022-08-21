@@ -79,6 +79,7 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
 
 final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'Loading': (data) async => LoadingWidget(),
+  'Sign_up': (data) async => SignUpWidget(),
   'Homepage': (data) async => HomepageWidget(),
   'MovePage': (data) async => MovePageWidget(),
   'Prayer': (data) async => PrayerWidget(),
@@ -88,16 +89,15 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'Timer': (data) async => TimerWidget(),
   'Timer_addGroup': (data) async => TimerAddGroupWidget(),
   'Find_prayer_group': (data) async => FindPrayerGroupWidget(),
-  'Alarm': (data) async => AlarmWidget(),
   'AlarmAdd': (data) async => AlarmAddWidget(),
+  'Alarm': (data) async => AlarmWidget(),
   'SelectRoom': (data) async => SelectRoomWidget(),
   'PrayerRoomlectur': (data) async => PrayerRoomlecturWidget(),
   'PrayerRoomDorm': (data) async => PrayerRoomDormWidget(),
   'mappageDorm': (data) async => MappageDormWidget(),
   'mappageLectur': (data) async => MappageLecturWidget(),
-  'SelectChurch': (data) async => SelectChurchWidget(),
-  'MappYD': (data) async => MappYDWidget(),
-  'MappHH': (data) async => MappHHWidget(),
+  'SelectMap': (data) async => SelectMapWidget(),
+  'MappBG': (data) async => MappBGWidget(),
   'MappNG': (data) async => MappNGWidget(),
 };
 

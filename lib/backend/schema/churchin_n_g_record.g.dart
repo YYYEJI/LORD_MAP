@@ -1,23 +1,23 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'churchin_h_h_record.dart';
+part of 'churchin_n_g_record.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<ChurchinHHRecord> _$churchinHHRecordSerializer =
-    new _$ChurchinHHRecordSerializer();
+Serializer<ChurchinNGRecord> _$churchinNGRecordSerializer =
+    new _$ChurchinNGRecordSerializer();
 
-class _$ChurchinHHRecordSerializer
-    implements StructuredSerializer<ChurchinHHRecord> {
+class _$ChurchinNGRecordSerializer
+    implements StructuredSerializer<ChurchinNGRecord> {
   @override
-  final Iterable<Type> types = const [ChurchinHHRecord, _$ChurchinHHRecord];
+  final Iterable<Type> types = const [ChurchinNGRecord, _$ChurchinNGRecord];
   @override
-  final String wireName = 'ChurchinHHRecord';
+  final String wireName = 'ChurchinNGRecord';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, ChurchinHHRecord object,
+  Iterable<Object?> serialize(Serializers serializers, ChurchinNGRecord object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[];
     Object? value;
@@ -47,10 +47,10 @@ class _$ChurchinHHRecordSerializer
   }
 
   @override
-  ChurchinHHRecord deserialize(
+  ChurchinNGRecord deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new ChurchinHHRecordBuilder();
+    final result = new ChurchinNGRecordBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -79,7 +79,7 @@ class _$ChurchinHHRecordSerializer
   }
 }
 
-class _$ChurchinHHRecord extends ChurchinHHRecord {
+class _$ChurchinNGRecord extends ChurchinNGRecord {
   @override
   final String? name;
   @override
@@ -87,24 +87,24 @@ class _$ChurchinHHRecord extends ChurchinHHRecord {
   @override
   final DocumentReference<Object?>? ffRef;
 
-  factory _$ChurchinHHRecord(
-          [void Function(ChurchinHHRecordBuilder)? updates]) =>
-      (new ChurchinHHRecordBuilder()..update(updates))._build();
+  factory _$ChurchinNGRecord(
+          [void Function(ChurchinNGRecordBuilder)? updates]) =>
+      (new ChurchinNGRecordBuilder()..update(updates))._build();
 
-  _$ChurchinHHRecord._({this.name, this.location, this.ffRef}) : super._();
+  _$ChurchinNGRecord._({this.name, this.location, this.ffRef}) : super._();
 
   @override
-  ChurchinHHRecord rebuild(void Function(ChurchinHHRecordBuilder) updates) =>
+  ChurchinNGRecord rebuild(void Function(ChurchinNGRecordBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  ChurchinHHRecordBuilder toBuilder() =>
-      new ChurchinHHRecordBuilder()..replace(this);
+  ChurchinNGRecordBuilder toBuilder() =>
+      new ChurchinNGRecordBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is ChurchinHHRecord &&
+    return other is ChurchinNGRecord &&
         name == other.name &&
         location == other.location &&
         ffRef == other.ffRef;
@@ -118,7 +118,7 @@ class _$ChurchinHHRecord extends ChurchinHHRecord {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'ChurchinHHRecord')
+    return (newBuiltValueToStringHelper(r'ChurchinNGRecord')
           ..add('name', name)
           ..add('location', location)
           ..add('ffRef', ffRef))
@@ -126,9 +126,9 @@ class _$ChurchinHHRecord extends ChurchinHHRecord {
   }
 }
 
-class ChurchinHHRecordBuilder
-    implements Builder<ChurchinHHRecord, ChurchinHHRecordBuilder> {
-  _$ChurchinHHRecord? _$v;
+class ChurchinNGRecordBuilder
+    implements Builder<ChurchinNGRecord, ChurchinNGRecordBuilder> {
+  _$ChurchinNGRecord? _$v;
 
   String? _name;
   String? get name => _$this._name;
@@ -142,11 +142,11 @@ class ChurchinHHRecordBuilder
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
 
-  ChurchinHHRecordBuilder() {
-    ChurchinHHRecord._initializeBuilder(this);
+  ChurchinNGRecordBuilder() {
+    ChurchinNGRecord._initializeBuilder(this);
   }
 
-  ChurchinHHRecordBuilder get _$this {
+  ChurchinNGRecordBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _name = $v.name;
@@ -158,22 +158,22 @@ class ChurchinHHRecordBuilder
   }
 
   @override
-  void replace(ChurchinHHRecord other) {
+  void replace(ChurchinNGRecord other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$ChurchinHHRecord;
+    _$v = other as _$ChurchinNGRecord;
   }
 
   @override
-  void update(void Function(ChurchinHHRecordBuilder)? updates) {
+  void update(void Function(ChurchinNGRecordBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  ChurchinHHRecord build() => _build();
+  ChurchinNGRecord build() => _build();
 
-  _$ChurchinHHRecord _build() {
+  _$ChurchinNGRecord _build() {
     final _$result = _$v ??
-        new _$ChurchinHHRecord._(name: name, location: location, ffRef: ffRef);
+        new _$ChurchinNGRecord._(name: name, location: location, ffRef: ffRef);
     replace(_$result);
     return _$result;
   }

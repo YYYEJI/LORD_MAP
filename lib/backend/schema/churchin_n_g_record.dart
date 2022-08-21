@@ -4,12 +4,12 @@ import 'index.dart';
 import 'serializers.dart';
 import 'package:built_value/built_value.dart';
 
-part 'churchin_y_d_record.g.dart';
+part 'churchin_n_g_record.g.dart';
 
-abstract class ChurchinYDRecord
-    implements Built<ChurchinYDRecord, ChurchinYDRecordBuilder> {
-  static Serializer<ChurchinYDRecord> get serializer =>
-      _$churchinYDRecordSerializer;
+abstract class ChurchinNGRecord
+    implements Built<ChurchinNGRecord, ChurchinNGRecordBuilder> {
+  static Serializer<ChurchinNGRecord> get serializer =>
+      _$churchinNGRecordSerializer;
 
   String? get name;
 
@@ -19,37 +19,37 @@ abstract class ChurchinYDRecord
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
 
-  static void _initializeBuilder(ChurchinYDRecordBuilder builder) =>
+  static void _initializeBuilder(ChurchinNGRecordBuilder builder) =>
       builder..name = '';
 
   static CollectionReference get collection =>
-      FirebaseFirestore.instance.collection('ChurchinYD');
+      FirebaseFirestore.instance.collection('ChurchinNG');
 
-  static Stream<ChurchinYDRecord> getDocument(DocumentReference ref) => ref
+  static Stream<ChurchinNGRecord> getDocument(DocumentReference ref) => ref
       .snapshots()
       .map((s) => serializers.deserializeWith(serializer, serializedData(s))!);
 
-  static Future<ChurchinYDRecord> getDocumentOnce(DocumentReference ref) => ref
+  static Future<ChurchinNGRecord> getDocumentOnce(DocumentReference ref) => ref
       .get()
       .then((s) => serializers.deserializeWith(serializer, serializedData(s))!);
 
-  ChurchinYDRecord._();
-  factory ChurchinYDRecord([void Function(ChurchinYDRecordBuilder) updates]) =
-      _$ChurchinYDRecord;
+  ChurchinNGRecord._();
+  factory ChurchinNGRecord([void Function(ChurchinNGRecordBuilder) updates]) =
+      _$ChurchinNGRecord;
 
-  static ChurchinYDRecord getDocumentFromData(
+  static ChurchinNGRecord getDocumentFromData(
           Map<String, dynamic> data, DocumentReference reference) =>
       serializers.deserializeWith(serializer,
           {...mapFromFirestore(data), kDocumentReferenceField: reference})!;
 }
 
-Map<String, dynamic> createChurchinYDRecordData({
+Map<String, dynamic> createChurchinNGRecordData({
   String? name,
   LatLng? location,
 }) {
   final firestoreData = serializers.toFirestore(
-    ChurchinYDRecord.serializer,
-    ChurchinYDRecord(
+    ChurchinNGRecord.serializer,
+    ChurchinNGRecord(
       (c) => c
         ..name = name
         ..location = location,

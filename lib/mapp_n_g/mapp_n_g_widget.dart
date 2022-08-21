@@ -1,4 +1,5 @@
 import '../backend/backend.dart';
+import '../components/n_ginfo_widget.dart';
 import '../flutter_flow/flutter_flow_google_map.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -26,8 +27,8 @@ class _MappNGWidgetState extends State<MappNGWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<List<ChurchinYDRecord>>(
-      stream: queryChurchinYDRecord(),
+    return StreamBuilder<List<ChurchinNGRecord>>(
+      stream: queryChurchinNGRecord(),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -41,7 +42,7 @@ class _MappNGWidgetState extends State<MappNGWidget> {
             ),
           );
         }
-        List<ChurchinYDRecord> mappNGChurchinYDRecordList = snapshot.data!;
+        List<ChurchinNGRecord> mappNGChurchinNGRecordList = snapshot.data!;
         return Scaffold(
           key: scaffoldKey,
           resizeToAvoidBottomInset: false,
@@ -80,58 +81,96 @@ class _MappNGWidgetState extends State<MappNGWidget> {
           body: SafeArea(
             child: GestureDetector(
               onTap: () => FocusScope.of(context).unfocus(),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
+              child: Stack(
                 children: [
-                  Expanded(
-                    child: StreamBuilder<List<ChurchinYDRecord>>(
-                      stream: queryChurchinYDRecord(),
-                      builder: (context, snapshot) {
-                        // Customize what your widget looks like when it's loading.
-                        if (!snapshot.hasData) {
-                          return Center(
-                            child: SizedBox(
-                              width: 50,
-                              height: 50,
-                              child: CircularProgressIndicator(
-                                color:
-                                    FlutterFlowTheme.of(context).primaryColor,
-                              ),
+                  Stack(
+                    children: [
+                      Stack(
+                        children: [
+                          Container(
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
                             ),
-                          );
-                        }
-                        List<ChurchinYDRecord> googleMapChurchinYDRecordList =
-                            snapshot.data!;
-                        return FlutterFlowGoogleMap(
-                          controller: googleMapsController,
-                          onCameraIdle: (latLng) =>
-                              setState(() => googleMapsCenter = latLng),
-                          initialLocation: googleMapsCenter ??=
-                              LatLng(36.084, 129.3919),
-                          markers: googleMapChurchinYDRecordList
-                              .map(
-                                (googleMapChurchinYDRecord) =>
-                                    FlutterFlowMarker(
-                                  googleMapChurchinYDRecord.reference.path,
-                                  googleMapChurchinYDRecord.location!,
-                                ),
-                              )
-                              .toList(),
-                          markerColor: GoogleMarkerColor.rose,
-                          mapType: MapType.normal,
-                          style: GoogleMapStyle.standard,
-                          initialZoom: 14.6,
-                          allowInteraction: true,
-                          allowZoom: true,
-                          showZoomControls: true,
-                          showLocation: true,
-                          showCompass: true,
-                          showMapToolbar: false,
-                          showTraffic: false,
-                          centerMapOnMarkerTap: true,
-                        );
-                      },
-                    ),
+                          ),
+                          Align(
+                            alignment: AlignmentDirectional(0, 0),
+                            child: StreamBuilder<List<ChurchinNGRecord>>(
+                              stream: queryChurchinNGRecord(),
+                              builder: (context, snapshot) {
+                                // Customize what your widget looks like when it's loading.
+                                if (!snapshot.hasData) {
+                                  return Center(
+                                    child: SizedBox(
+                                      width: 50,
+                                      height: 50,
+                                      child: CircularProgressIndicator(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryColor,
+                                      ),
+                                    ),
+                                  );
+                                }
+                                List<ChurchinNGRecord>
+                                    googleMapChurchinNGRecordList =
+                                    snapshot.data!;
+                                return FlutterFlowGoogleMap(
+                                  controller: googleMapsController,
+                                  onCameraIdle: (latLng) =>
+                                      googleMapsCenter = latLng,
+                                  initialLocation: googleMapsCenter ??=
+                                      LatLng(36.0287, 129.3402),
+                                  markers: mappNGChurchinNGRecordList
+                                      .map(
+                                        (mappNGChurchinNGRecord) =>
+                                            FlutterFlowMarker(
+                                          mappNGChurchinNGRecord.reference.path,
+                                          mappNGChurchinNGRecord.location!,
+                                          () async {
+                                            logFirebaseEvent(
+                                                'MAPP_N_G_GoogleMap_o52g074p_ON_MARKER_TA');
+                                            logFirebaseEvent(
+                                                'GoogleMap_Bottom-Sheet');
+                                            await showModalBottomSheet(
+                                              isScrollControlled: true,
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              context: context,
+                                              builder: (context) {
+                                                return Padding(
+                                                  padding:
+                                                      MediaQuery.of(context)
+                                                          .viewInsets,
+                                                  child: NGinfoWidget(
+                                                    churchNG:
+                                                        mappNGChurchinNGRecord,
+                                                  ),
+                                                );
+                                              },
+                                            );
+                                          },
+                                        ),
+                                      )
+                                      .toList(),
+                                  markerColor: GoogleMarkerColor.violet,
+                                  mapType: MapType.normal,
+                                  style: GoogleMapStyle.standard,
+                                  initialZoom: 14,
+                                  allowInteraction: true,
+                                  allowZoom: true,
+                                  showZoomControls: true,
+                                  showLocation: true,
+                                  showCompass: false,
+                                  showMapToolbar: false,
+                                  showTraffic: false,
+                                  centerMapOnMarkerTap: true,
+                                );
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ],
               ),

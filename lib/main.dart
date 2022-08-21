@@ -89,7 +89,7 @@ class _MyAppState extends State<MyApp> {
               ),
             )
           : currentUser!.loggedIn
-              ? PushNotificationsHandler(child: LoginWidget())
+              ? PushNotificationsHandler(child: SignInWidget())
               : LoadingWidget(),
     );
   }
