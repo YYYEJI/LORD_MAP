@@ -5,8 +5,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 
 import 'schema/users_record.dart';
-import 'schema/churchin_y_d_record.dart';
-import 'schema/churchin_h_h_record.dart';
+import 'schema/churchin_n_g_record.dart';
+import 'schema/churchin_b_g_record.dart';
 import 'schema/serializers.dart';
 
 export 'dart:async' show StreamSubscription;
@@ -15,8 +15,8 @@ export 'schema/index.dart';
 export 'schema/serializers.dart';
 
 export 'schema/users_record.dart';
-export 'schema/churchin_y_d_record.dart';
-export 'schema/churchin_h_h_record.dart';
+export 'schema/churchin_n_g_record.dart';
+export 'schema/churchin_b_g_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Stream<List<UsersRecord>> queryUsersRecord({
@@ -60,84 +60,84 @@ Future<FFFirestorePage<UsersRecord>> queryUsersRecordPage({
       isStream: isStream,
     );
 
-/// Functions to query ChurchinYDRecords (as a Stream and as a Future).
-Stream<List<ChurchinYDRecord>> queryChurchinYDRecord({
+/// Functions to query ChurchinNGRecords (as a Stream and as a Future).
+Stream<List<ChurchinNGRecord>> queryChurchinNGRecord({
   Query Function(Query)? queryBuilder,
   int limit = -1,
   bool singleRecord = false,
 }) =>
     queryCollection(
-      ChurchinYDRecord.collection,
-      ChurchinYDRecord.serializer,
+      ChurchinNGRecord.collection,
+      ChurchinNGRecord.serializer,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,
     );
 
-Future<List<ChurchinYDRecord>> queryChurchinYDRecordOnce({
+Future<List<ChurchinNGRecord>> queryChurchinNGRecordOnce({
   Query Function(Query)? queryBuilder,
   int limit = -1,
   bool singleRecord = false,
 }) =>
     queryCollectionOnce(
-      ChurchinYDRecord.collection,
-      ChurchinYDRecord.serializer,
+      ChurchinNGRecord.collection,
+      ChurchinNGRecord.serializer,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,
     );
 
-Future<FFFirestorePage<ChurchinYDRecord>> queryChurchinYDRecordPage({
+Future<FFFirestorePage<ChurchinNGRecord>> queryChurchinNGRecordPage({
   Query Function(Query)? queryBuilder,
   DocumentSnapshot? nextPageMarker,
   required int pageSize,
   required bool isStream,
 }) =>
     queryCollectionPage(
-      ChurchinYDRecord.collection,
-      ChurchinYDRecord.serializer,
+      ChurchinNGRecord.collection,
+      ChurchinNGRecord.serializer,
       queryBuilder: queryBuilder,
       nextPageMarker: nextPageMarker,
       pageSize: pageSize,
       isStream: isStream,
     );
 
-/// Functions to query ChurchinHHRecords (as a Stream and as a Future).
-Stream<List<ChurchinHHRecord>> queryChurchinHHRecord({
+/// Functions to query ChurchinBGRecords (as a Stream and as a Future).
+Stream<List<ChurchinBGRecord>> queryChurchinBGRecord({
   Query Function(Query)? queryBuilder,
   int limit = -1,
   bool singleRecord = false,
 }) =>
     queryCollection(
-      ChurchinHHRecord.collection,
-      ChurchinHHRecord.serializer,
+      ChurchinBGRecord.collection,
+      ChurchinBGRecord.serializer,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,
     );
 
-Future<List<ChurchinHHRecord>> queryChurchinHHRecordOnce({
+Future<List<ChurchinBGRecord>> queryChurchinBGRecordOnce({
   Query Function(Query)? queryBuilder,
   int limit = -1,
   bool singleRecord = false,
 }) =>
     queryCollectionOnce(
-      ChurchinHHRecord.collection,
-      ChurchinHHRecord.serializer,
+      ChurchinBGRecord.collection,
+      ChurchinBGRecord.serializer,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,
     );
 
-Future<FFFirestorePage<ChurchinHHRecord>> queryChurchinHHRecordPage({
+Future<FFFirestorePage<ChurchinBGRecord>> queryChurchinBGRecordPage({
   Query Function(Query)? queryBuilder,
   DocumentSnapshot? nextPageMarker,
   required int pageSize,
   required bool isStream,
 }) =>
     queryCollectionPage(
-      ChurchinHHRecord.collection,
-      ChurchinHHRecord.serializer,
+      ChurchinBGRecord.collection,
+      ChurchinBGRecord.serializer,
       queryBuilder: queryBuilder,
       nextPageMarker: nextPageMarker,
       pageSize: pageSize,

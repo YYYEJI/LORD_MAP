@@ -1,5 +1,5 @@
 import '../backend/backend.dart';
-import '../components/y_dinfo_widget.dart';
+import '../components/b_ginfo_widget.dart';
 import '../flutter_flow/flutter_flow_google_map.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -7,14 +7,14 @@ import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class MappYDWidget extends StatefulWidget {
-  const MappYDWidget({Key? key}) : super(key: key);
+class MappBGWidget extends StatefulWidget {
+  const MappBGWidget({Key? key}) : super(key: key);
 
   @override
-  _MappYDWidgetState createState() => _MappYDWidgetState();
+  _MappBGWidgetState createState() => _MappBGWidgetState();
 }
 
-class _MappYDWidgetState extends State<MappYDWidget> {
+class _MappBGWidgetState extends State<MappBGWidget> {
   LatLng? googleMapsCenter;
   final googleMapsController = Completer<GoogleMapController>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -22,13 +22,13 @@ class _MappYDWidgetState extends State<MappYDWidget> {
   @override
   void initState() {
     super.initState();
-    logFirebaseEvent('screen_view', parameters: {'screen_name': 'MappYD'});
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'MappBG'});
   }
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<List<ChurchinYDRecord>>(
-      stream: queryChurchinYDRecord(),
+    return StreamBuilder<List<ChurchinBGRecord>>(
+      stream: queryChurchinBGRecord(),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -42,7 +42,7 @@ class _MappYDWidgetState extends State<MappYDWidget> {
             ),
           );
         }
-        List<ChurchinYDRecord> mappYDChurchinYDRecordList = snapshot.data!;
+        List<ChurchinBGRecord> mappBGChurchinBGRecordList = snapshot.data!;
         return Scaffold(
           key: scaffoldKey,
           resizeToAvoidBottomInset: false,
@@ -60,13 +60,13 @@ class _MappYDWidgetState extends State<MappYDWidget> {
                 size: 30,
               ),
               onPressed: () async {
-                logFirebaseEvent('MAPP_Y_D_arrow_back_rounded_ICN_ON_TAP');
+                logFirebaseEvent('MAPP_B_G_arrow_back_rounded_ICN_ON_TAP');
                 logFirebaseEvent('IconButton_Navigate-Back');
                 Navigator.pop(context);
               },
             ),
             title: Text(
-              '양덕 교회',
+              '북구 교회',
               style: FlutterFlowTheme.of(context).title2.override(
                     fontFamily: 'Poppins',
                     color: FlutterFlowTheme.of(context).black600,
@@ -90,14 +90,14 @@ class _MappYDWidgetState extends State<MappYDWidget> {
                       onCameraIdle: (latLng) => googleMapsCenter = latLng,
                       initialLocation: googleMapsCenter ??=
                           LatLng(36.084, 129.3919),
-                      markers: mappYDChurchinYDRecordList
+                      markers: mappBGChurchinBGRecordList
                           .map(
-                            (mappYDChurchinYDRecord) => FlutterFlowMarker(
-                              mappYDChurchinYDRecord.reference.path,
-                              mappYDChurchinYDRecord.location!,
+                            (mappBGChurchinBGRecord) => FlutterFlowMarker(
+                              mappBGChurchinBGRecord.reference.path,
+                              mappBGChurchinBGRecord.location!,
                               () async {
                                 logFirebaseEvent(
-                                    'MAPP_Y_D_GoogleMap_tthfe3tu_ON_MARKER_TA');
+                                    'MAPP_B_G_GoogleMap_tthfe3tu_ON_MARKER_TA');
                                 logFirebaseEvent('GoogleMap_Bottom-Sheet');
                                 await showModalBottomSheet(
                                   isScrollControlled: true,
@@ -107,8 +107,8 @@ class _MappYDWidgetState extends State<MappYDWidget> {
                                     return Padding(
                                       padding:
                                           MediaQuery.of(context).viewInsets,
-                                      child: YDinfoWidget(
-                                        church: mappYDChurchinYDRecord,
+                                      child: BGinfoWidget(
+                                        churchBG: mappBGChurchinBGRecord,
                                       ),
                                     );
                                   },
@@ -120,7 +120,7 @@ class _MappYDWidgetState extends State<MappYDWidget> {
                       markerColor: GoogleMarkerColor.violet,
                       mapType: MapType.normal,
                       style: GoogleMapStyle.standard,
-                      initialZoom: 14.5,
+                      initialZoom: 14,
                       allowInteraction: true,
                       allowZoom: true,
                       showZoomControls: true,

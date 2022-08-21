@@ -1,7 +1,8 @@
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../login/login_widget.dart';
+import '../sign_in/sign_in_widget.dart';
+import '../sign_up/sign_up_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -32,17 +33,6 @@ class _LoadingWidgetState extends State<LoadingWidget> {
           child: Stack(
             children: [
               Align(
-                alignment: AlignmentDirectional(0.05, -0.3),
-                child: Text(
-                  'Welcome to \n   Lord Map',
-                  style: FlutterFlowTheme.of(context).title2.override(
-                        fontFamily: 'Poppins',
-                        color: Colors.black,
-                        fontSize: 27,
-                      ),
-                ),
-              ),
-              Align(
                 alignment: AlignmentDirectional(-0.4, 0),
                 child: FFButtonWidget(
                   onPressed: () async {
@@ -51,13 +41,13 @@ class _LoadingWidgetState extends State<LoadingWidget> {
                     await Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => LoginWidget(),
+                        builder: (context) => SignInWidget(),
                       ),
                     );
                   },
                   text: 'Sign in',
                   options: FFButtonOptions(
-                    width: 130,
+                    width: 100,
                     height: 40,
                     color: Color(0xFFFAFAD2),
                     textStyle: FlutterFlowTheme.of(context).subtitle2.override(
@@ -70,6 +60,17 @@ class _LoadingWidgetState extends State<LoadingWidget> {
                     ),
                     borderRadius: BorderRadius.circular(8),
                   ),
+                ),
+              ),
+              Align(
+                alignment: AlignmentDirectional(0.05, -0.3),
+                child: Text(
+                  'Welcome to \n   Lord Map',
+                  style: FlutterFlowTheme.of(context).title2.override(
+                        fontFamily: 'Poppins',
+                        color: Colors.black,
+                        fontSize: 27,
+                      ),
                 ),
               ),
               Align(
@@ -89,14 +90,31 @@ class _LoadingWidgetState extends State<LoadingWidget> {
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(0.45, 0),
+                alignment: AlignmentDirectional(0, 0),
+                child: Text(
+                  '|',
+                  style: FlutterFlowTheme.of(context).bodyText1.override(
+                        fontFamily: 'Poppins',
+                        color: FlutterFlowTheme.of(context).primaryColor,
+                      ),
+                ),
+              ),
+              Align(
+                alignment: AlignmentDirectional(0.4, 0),
                 child: FFButtonWidget(
-                  onPressed: () {
-                    print('Button pressed ...');
+                  onPressed: () async {
+                    logFirebaseEvent('LOADING_PAGE_SIGN_UP_BTN_ON_TAP');
+                    logFirebaseEvent('Button_Navigate-To');
+                    await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SignUpWidget(),
+                      ),
+                    );
                   },
                   text: 'Sign up',
                   options: FFButtonOptions(
-                    width: 130,
+                    width: 100,
                     height: 40,
                     color: Color(0xFFFAFAD2),
                     textStyle: FlutterFlowTheme.of(context).subtitle2.override(
@@ -109,16 +127,6 @@ class _LoadingWidgetState extends State<LoadingWidget> {
                     ),
                     borderRadius: BorderRadius.circular(8),
                   ),
-                ),
-              ),
-              Align(
-                alignment: AlignmentDirectional(0, 0),
-                child: Text(
-                  '/',
-                  style: FlutterFlowTheme.of(context).bodyText1.override(
-                        fontFamily: 'Poppins',
-                        color: FlutterFlowTheme.of(context).primaryColor,
-                      ),
                 ),
               ),
             ],

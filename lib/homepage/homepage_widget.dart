@@ -3,9 +3,9 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../mapp_y_d/mapp_y_d_widget.dart';
 import '../move_page/move_page_widget.dart';
 import '../prayer/prayer_widget.dart';
+import '../select_map/select_map_widget.dart';
 import '../select_room/select_room_widget.dart';
 import '../timer/timer_widget.dart';
 import 'package:flutter/material.dart';
@@ -111,7 +111,7 @@ class _HomepageWidgetState extends State<HomepageWidget> {
                         await Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => MappYDWidget(),
+                            builder: (context) => SelectMapWidget(),
                           ),
                         );
                       },
@@ -194,7 +194,7 @@ class _HomepageWidgetState extends State<HomepageWidget> {
                       await Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => MappYDWidget(),
+                          builder: (context) => SelectMapWidget(),
                         ),
                       );
                     },

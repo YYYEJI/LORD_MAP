@@ -7,8 +7,8 @@ part of 'serializers.dart';
 // **************************************************************************
 
 Serializers _$serializers = (new Serializers().toBuilder()
-      ..add(ChurchinHHRecord.serializer)
-      ..add(ChurchinYDRecord.serializer)
+      ..add(ChurchinBGRecord.serializer)
+      ..add(ChurchinNGRecord.serializer)
       ..add(UsersRecord.serializer))
     .build();
 
