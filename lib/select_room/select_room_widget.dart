@@ -6,6 +6,7 @@ import '../homepage/homepage_widget.dart';
 import '../prayer_room_dorm/prayer_room_dorm_widget.dart';
 import '../prayer_roomlectur/prayer_roomlectur_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 

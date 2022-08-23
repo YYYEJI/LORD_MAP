@@ -1,9 +1,13 @@
 import '../alarm_add/alarm_add_widget.dart';
+import '../auth/auth_util.dart';
+import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../homepage/homepage_widget.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AlarmWidget extends StatefulWidget {
@@ -14,10 +18,11 @@ class AlarmWidget extends StatefulWidget {
 }
 
 class _AlarmWidgetState extends State<AlarmWidget> {
-  bool? switchListTileValue1;
+  AlarmRecord? newAlarm;
   bool? switchListTileValue2;
   bool? switchListTileValue3;
   bool? switchListTileValue4;
+  bool? switchListTileValue1;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -181,6 +186,20 @@ class _AlarmWidgetState extends State<AlarmWidget> {
                           builder: (context) => AlarmAddWidget(),
                         ),
                       );
+                      logFirebaseEvent('IconButton_Backend-Call');
+
+                      final alarmCreateData = createAlarmRecordData(
+                        hour: 0,
+                        min: 0,
+                        tag: '\"\"',
+                        isOn: true,
+                      );
+                      var alarmRecordReference = AlarmRecord.collection.doc();
+                      await alarmRecordReference.set(alarmCreateData);
+                      newAlarm = AlarmRecord.getDocumentFromData(
+                          alarmCreateData, alarmRecordReference);
+
+                      setState(() {});
                     },
                   ),
                 ],

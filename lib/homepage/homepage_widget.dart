@@ -9,6 +9,7 @@ import '../select_map/select_map_widget.dart';
 import '../select_room/select_room_widget.dart';
 import '../timer/timer_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomepageWidget extends StatefulWidget {
@@ -247,7 +248,7 @@ class _HomepageWidgetState extends State<HomepageWidget> {
                       );
                     },
                     child: Text(
-                      '기도실예약',
+                      '기도실',
                       style: FlutterFlowTheme.of(context).bodyText1,
                     ),
                   ),

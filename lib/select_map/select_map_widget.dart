@@ -8,6 +8,8 @@ import '../mapp_n_g/mapp_n_g_widget.dart';
 import '../prayer_room_dorm/prayer_room_dorm_widget.dart';
 import '../prayer_roomlectur/prayer_roomlectur_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SelectMapWidget extends StatefulWidget {
@@ -55,7 +57,7 @@ class _SelectMapWidgetState extends State<SelectMapWidget> {
           },
         ),
         title: Text(
-          'Prayer Room',
+          'Church',
           style: FlutterFlowTheme.of(context).title2.override(
                 fontFamily: 'Poppins',
                 color: Colors.white,
@@ -100,14 +102,14 @@ class _SelectMapWidgetState extends State<SelectMapWidget> {
                           borderRadius: 30,
                           borderWidth: 1,
                           buttonSize: 60,
-                          icon: Icon(
-                            Icons.follow_the_signs_sharp,
+                          icon: FaIcon(
+                            FontAwesomeIcons.cross,
                             color: FlutterFlowTheme.of(context).primaryText,
                             size: 35,
                           ),
                           onPressed: () async {
                             logFirebaseEvent(
-                                'SELECT_MAP_follow_the_signs_sharp_ICN_ON');
+                                'SELECT_MAP_PAGE_cross_ICN_ON_TAP');
                             logFirebaseEvent('IconButton_Navigate-To');
                             await Navigator.push(
                               context,

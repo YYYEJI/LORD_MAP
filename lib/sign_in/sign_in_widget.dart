@@ -1,9 +1,12 @@
+import '../auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_checkbox_group.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../homepage/homepage_widget.dart';
+import '../sign_up/sign_up_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SignInWidget extends StatefulWidget {
@@ -15,7 +18,7 @@ class SignInWidget extends StatefulWidget {
 
 class _SignInWidgetState extends State<SignInWidget> {
   List<String>? checkboxGroupValues;
-  TextEditingController? textController2;
+  TextEditingController? passwordTextController;
   late bool passwordVisibility;
   TextEditingController? emailController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -24,7 +27,7 @@ class _SignInWidgetState extends State<SignInWidget> {
   void initState() {
     super.initState();
     emailController = TextEditingController();
-    textController2 = TextEditingController();
+    passwordTextController = TextEditingController();
     passwordVisibility = false;
     logFirebaseEvent('screen_view', parameters: {'screen_name': 'Sign_in'});
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -71,41 +74,54 @@ class _SignInWidgetState extends State<SignInWidget> {
                   child: Stack(
                     children: [
                       Align(
-                        alignment: AlignmentDirectional(-0.05, 0.52),
-                        child: FFButtonWidget(
-                          onPressed: () async {
-                            logFirebaseEvent('SIGN_IN_PAGE_LOGIN_BTN_ON_TAP');
-                            logFirebaseEvent('Button_Navigate-To');
-                            await Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => HomepageWidget(),
-                              ),
-                            );
-                          },
-                          text: 'Login',
-                          options: FFButtonOptions(
-                            width: 90,
-                            height: 20,
-                            color: Colors.white,
-                            textStyle:
-                                FlutterFlowTheme.of(context).subtitle2.override(
-                                      fontFamily: 'Poppins',
-                                      color: Colors.black,
-                                      fontSize: 1,
-                                    ),
-                            borderSide: BorderSide(
-                              color: Colors.transparent,
-                              width: 1,
-                            ),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                        ),
-                      ),
-                      Align(
                         alignment: AlignmentDirectional(0, 0),
                         child: Stack(
                           children: [
+                            Align(
+                              alignment: AlignmentDirectional(-0.81, 0.89),
+                              child: FFButtonWidget(
+                                onPressed: () async {
+                                  logFirebaseEvent(
+                                      'SIGN_IN_PAGE_LOGIN_BTN_ON_TAP');
+                                  logFirebaseEvent('Button_Auth');
+
+                                  final user = await signInWithEmail(
+                                    context,
+                                    emailController!.text,
+                                    passwordTextController!.text,
+                                  );
+                                  if (user == null) {
+                                    return;
+                                  }
+
+                                  logFirebaseEvent('Button_Navigate-To');
+                                  await Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => HomepageWidget(),
+                                    ),
+                                  );
+                                },
+                                text: 'login',
+                                options: FFButtonOptions(
+                                  width: 130,
+                                  height: 40,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryColor,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .subtitle2
+                                      .override(
+                                        fontFamily: 'Poppins',
+                                        color: Colors.white,
+                                      ),
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                              ),
+                            ),
                             Align(
                               alignment: AlignmentDirectional(0, -0.72),
                               child: Container(
@@ -181,34 +197,6 @@ class _SignInWidgetState extends State<SignInWidget> {
                                       ),
                                     ),
                                     Align(
-                                      alignment: AlignmentDirectional(0, 2.2),
-                                      child: FFButtonWidget(
-                                        onPressed: () {
-                                          print('Button pressed ...');
-                                        },
-                                        text: 'Find your ID  |  Find your PW',
-                                        options: FFButtonOptions(
-                                          width: 1250,
-                                          height: 20,
-                                          color: Colors.white,
-                                          textStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .subtitle2
-                                                  .override(
-                                                    fontFamily: 'Poppins',
-                                                    color: Colors.black,
-                                                    fontSize: 1,
-                                                  ),
-                                          borderSide: BorderSide(
-                                            color: Colors.transparent,
-                                            width: 1,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(8),
-                                        ),
-                                      ),
-                                    ),
-                                    Align(
                                       alignment:
                                           AlignmentDirectional(-0.05, -0.4),
                                       child: Container(
@@ -220,7 +208,8 @@ class _SignInWidgetState extends State<SignInWidget> {
                                         child: Stack(
                                           children: [
                                             TextFormField(
-                                              controller: textController2,
+                                              controller:
+                                                  passwordTextController,
                                               autofocus: true,
                                               obscureText: !passwordVisibility,
                                               decoration: InputDecoration(
@@ -286,19 +275,45 @@ class _SignInWidgetState extends State<SignInWidget> {
                                 ),
                               ),
                             ),
+                            Align(
+                              alignment: AlignmentDirectional(0.86, 0.88),
+                              child: FFButtonWidget(
+                                onPressed: () async {
+                                  logFirebaseEvent(
+                                      'SIGN_IN_PAGE_SIGN_UP_BTN_ON_TAP');
+                                  logFirebaseEvent('Button_Navigate-To');
+                                  await Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => SignUpWidget(),
+                                    ),
+                                  );
+                                },
+                                text: 'Sign up',
+                                options: FFButtonOptions(
+                                  width: 130,
+                                  height: 40,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryColor,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .subtitle2
+                                      .override(
+                                        fontFamily: 'Poppins',
+                                        color: Colors.white,
+                                      ),
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),
                     ],
                   ),
-                ),
-              ),
-              Align(
-                alignment: AlignmentDirectional(0.25, 1.2),
-                child: Image.network(
-                  'https://github.com/YYYEJI/LORD_MAP/blob/master/img/Church.png?raw=true',
-                  height: 350,
-                  fit: BoxFit.cover,
                 ),
               ),
             ],

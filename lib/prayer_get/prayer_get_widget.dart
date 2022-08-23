@@ -3,7 +3,10 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../prayer/prayer_widget.dart';
+import '../flutter_flow/random_data_util.dart' as random_data;
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class PrayerGetWidget extends StatefulWidget {
@@ -78,8 +81,17 @@ class _PrayerGetWidgetState extends State<PrayerGetWidget> {
                     ),
                     child: Align(
                       alignment: AlignmentDirectional(0, 0),
-                      child: Text(
-                        '예수님으로 만족하고 싶어요 ',
+                      child: AutoSizeText(
+                        valueOrDefault<String>(
+                          random_data.randomString(
+                            1,
+                            10,
+                            true,
+                            false,
+                            false,
+                          ),
+                          'God bless you!',
+                        ),
                         style: FlutterFlowTheme.of(context).bodyText1,
                       ),
                     ),
@@ -88,15 +100,8 @@ class _PrayerGetWidgetState extends State<PrayerGetWidget> {
                 Align(
                   alignment: AlignmentDirectional(0.04, 0.89),
                   child: FFButtonWidget(
-                    onPressed: () async {
-                      logFirebaseEvent('PRAYER_GET_PAGE_GET_BTN_ON_TAP');
-                      logFirebaseEvent('Button_Navigate-To');
-                      await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => PrayerWidget(),
-                        ),
-                      );
+                    onPressed: () {
+                      print('Button pressed ...');
                     },
                     text: 'Get',
                     options: FFButtonOptions(

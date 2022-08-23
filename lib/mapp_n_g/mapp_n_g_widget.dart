@@ -5,6 +5,7 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MappNGWidget extends StatefulWidget {
@@ -36,8 +37,9 @@ class _MappNGWidgetState extends State<MappNGWidget> {
             child: SizedBox(
               width: 50,
               height: 50,
-              child: CircularProgressIndicator(
-                color: FlutterFlowTheme.of(context).primaryColor,
+              child: SpinKitPumpingHeart(
+                color: Color(0xFFEF393C),
+                size: 50,
               ),
             ),
           );
@@ -104,9 +106,9 @@ class _MappNGWidgetState extends State<MappNGWidget> {
                                     child: SizedBox(
                                       width: 50,
                                       height: 50,
-                                      child: CircularProgressIndicator(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryColor,
+                                      child: SpinKitPumpingHeart(
+                                        color: Color(0xFFEF393C),
+                                        size: 50,
                                       ),
                                     ),
                                   );
