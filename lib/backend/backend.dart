@@ -7,6 +7,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import 'schema/users_record.dart';
 import 'schema/churchin_n_g_record.dart';
 import 'schema/churchin_b_g_record.dart';
+import 'schema/alarm_record.dart';
 import 'schema/serializers.dart';
 
 export 'dart:async' show StreamSubscription;
@@ -17,6 +18,7 @@ export 'schema/serializers.dart';
 export 'schema/users_record.dart';
 export 'schema/churchin_n_g_record.dart';
 export 'schema/churchin_b_g_record.dart';
+export 'schema/alarm_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Stream<List<UsersRecord>> queryUsersRecord({
@@ -138,6 +140,48 @@ Future<FFFirestorePage<ChurchinBGRecord>> queryChurchinBGRecordPage({
     queryCollectionPage(
       ChurchinBGRecord.collection,
       ChurchinBGRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
+
+/// Functions to query AlarmRecords (as a Stream and as a Future).
+Stream<List<AlarmRecord>> queryAlarmRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      AlarmRecord.collection,
+      AlarmRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<AlarmRecord>> queryAlarmRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      AlarmRecord.collection,
+      AlarmRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<AlarmRecord>> queryAlarmRecordPage({
+  Query Function(Query)? queryBuilder,
+  DocumentSnapshot? nextPageMarker,
+  required int pageSize,
+  required bool isStream,
+}) =>
+    queryCollectionPage(
+      AlarmRecord.collection,
+      AlarmRecord.serializer,
       queryBuilder: queryBuilder,
       nextPageMarker: nextPageMarker,
       pageSize: pageSize,

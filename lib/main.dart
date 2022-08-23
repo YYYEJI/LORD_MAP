@@ -8,6 +8,7 @@ import 'backend/push_notifications/push_notifications_util.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/internationalization.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'index.dart';
 
 void main() async {
@@ -79,12 +80,12 @@ class _MyAppState extends State<MyApp> {
       darkTheme: ThemeData(brightness: Brightness.dark),
       themeMode: _themeMode,
       home: initialUser == null || displaySplashImage
-          ? Center(
-              child: SizedBox(
-                width: 50,
-                height: 50,
-                child: CircularProgressIndicator(
-                  color: FlutterFlowTheme.of(context).primaryColor,
+          ? Container(
+              color: FlutterFlowTheme.of(context).primaryBtnText,
+              child: Builder(
+                builder: (context) => Image.asset(
+                  'assets/images/Church.png',
+                  fit: BoxFit.contain,
                 ),
               ),
             )

@@ -5,6 +5,7 @@ import 'serialization_util.dart';
 import '../backend.dart';
 import '../../flutter_flow/flutter_flow_theme.dart';
 import '../../flutter_flow/flutter_flow_util.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
@@ -65,12 +66,12 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
 
   @override
   Widget build(BuildContext context) => _loading
-      ? Center(
-          child: SizedBox(
-            width: 50,
-            height: 50,
-            child: CircularProgressIndicator(
-              color: FlutterFlowTheme.of(context).primaryColor,
+      ? Container(
+          color: FlutterFlowTheme.of(context).primaryBtnText,
+          child: Builder(
+            builder: (context) => Image.asset(
+              'assets/images/Church.png',
+              fit: BoxFit.contain,
             ),
           ),
         )
@@ -84,13 +85,13 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'MovePage': (data) async => MovePageWidget(),
   'Prayer': (data) async => PrayerWidget(),
   'PrayerSend1': (data) async => PrayerSend1Widget(),
-  'PrayerSend2': (data) async => PrayerSend2Widget(),
   'PrayerGet': (data) async => PrayerGetWidget(),
+  'PrayerSend2': (data) async => PrayerSend2Widget(),
   'Timer': (data) async => TimerWidget(),
   'Timer_addGroup': (data) async => TimerAddGroupWidget(),
   'Find_prayer_group': (data) async => FindPrayerGroupWidget(),
-  'AlarmAdd': (data) async => AlarmAddWidget(),
   'Alarm': (data) async => AlarmWidget(),
+  'AlarmAdd': (data) async => AlarmAddWidget(),
   'SelectRoom': (data) async => SelectRoomWidget(),
   'PrayerRoomlectur': (data) async => PrayerRoomlecturWidget(),
   'PrayerRoomDorm': (data) async => PrayerRoomDormWidget(),
@@ -99,6 +100,10 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'SelectMap': (data) async => SelectMapWidget(),
   'MappBG': (data) async => MappBGWidget(),
   'MappNG': (data) async => MappNGWidget(),
+  'aaaa': (data) async => AaaaWidget(),
+  'David': (data) async => DavidWidget(),
+  'OH': (data) async => OhWidget(),
+  'HDH': (data) async => HdhWidget(),
 };
 
 bool hasMatchingParameters(Map<String, dynamic> data, Set<String> params) =>

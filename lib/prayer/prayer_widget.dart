@@ -6,6 +6,7 @@ import '../homepage/homepage_widget.dart';
 import '../prayer_get/prayer_get_widget.dart';
 import '../prayer_send1/prayer_send1_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class PrayerWidget extends StatefulWidget {
@@ -117,22 +118,6 @@ class _PrayerWidgetState extends State<PrayerWidget> {
                     ),
                     borderRadius: BorderRadius.circular(8),
                   ),
-                ),
-              ),
-              Align(
-                alignment: AlignmentDirectional(-0.05, -0.7),
-                child: Image.network(
-                  'https://github.com/YYYEJI/LORD_MAP/blob/master/img/letter2.png?raw=true',
-                  height: 170,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              Align(
-                alignment: AlignmentDirectional(0, 0.45),
-                child: Image.network(
-                  'https://github.com/YYYEJI/LORD_MAP/blob/master/img/letter2.png?raw=true',
-                  height: 170,
-                  fit: BoxFit.cover,
                 ),
               ),
               Align(

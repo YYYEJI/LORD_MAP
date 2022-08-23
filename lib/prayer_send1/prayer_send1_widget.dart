@@ -1,10 +1,14 @@
+import '../auth/auth_util.dart';
+import '../backend/backend.dart';
+import '../components/complete_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../prayer/prayer_widget.dart';
-import '../prayer_send2/prayer_send2_widget.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class PrayerSend1Widget extends StatefulWidget {
@@ -114,12 +118,23 @@ class _PrayerSend1WidgetState extends State<PrayerSend1Widget> {
                 child: FFButtonWidget(
                   onPressed: () async {
                     logFirebaseEvent('PRAYER_SEND1_PAGE_SEND_BTN_ON_TAP');
-                    logFirebaseEvent('Button_Navigate-To');
-                    await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => PrayerSend2Widget(),
-                      ),
+                    logFirebaseEvent('Button_Backend-Call');
+
+                    final usersUpdateData = createUsersRecordData(
+                      prayTitleToday: textController!.text,
+                    );
+                    await currentUserReference!.update(usersUpdateData);
+                    logFirebaseEvent('Button_Bottom-Sheet');
+                    await showModalBottomSheet(
+                      isScrollControlled: true,
+                      backgroundColor: Colors.transparent,
+                      context: context,
+                      builder: (context) {
+                        return Padding(
+                          padding: MediaQuery.of(context).viewInsets,
+                          child: CompleteWidget(),
+                        );
+                      },
                     );
                   },
                   text: 'Send',

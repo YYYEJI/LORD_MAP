@@ -11,6 +11,7 @@ import '../select_room/select_room_widget.dart';
 import '../sign_in/sign_in_widget.dart';
 import '../timer/timer_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MovePageWidget extends StatefulWidget {
@@ -213,15 +214,6 @@ class _MovePageWidgetState extends State<MovePageWidget> {
                     '지도',
                     style: FlutterFlowTheme.of(context).bodyText1,
                   ),
-                ),
-              ),
-              Align(
-                alignment: AlignmentDirectional(-0.66, -0.76),
-                child: Image.network(
-                  'https://github.com/YYYEJI/LORD_MAP/blob/master/img/line.png?raw=true',
-                  width: 190,
-                  height: 10,
-                  fit: BoxFit.cover,
                 ),
               ),
               Align(

@@ -1,3 +1,5 @@
+import '../auth/auth_util.dart';
+import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -5,6 +7,7 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 import '../loading/loading_widget.dart';
 import '../sign_in/sign_in_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SignUpWidget extends StatefulWidget {
@@ -15,22 +18,26 @@ class SignUpWidget extends StatefulWidget {
 }
 
 class _SignUpWidgetState extends State<SignUpWidget> {
+  TextEditingController? confirmPasswordTextController;
+  late bool passwordVisibility2;
+  TextEditingController? emailTextController;
   TextEditingController? textController1;
   TextEditingController? textController2;
-  TextEditingController? textController3;
-  TextEditingController? textController4;
-  late bool passwordVisibility;
+  TextEditingController? passwordTextController;
+  late bool passwordVisibility1;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Sign_up'});
+    confirmPasswordTextController = TextEditingController();
+    passwordVisibility2 = false;
+    emailTextController = TextEditingController();
     textController1 = TextEditingController();
     textController2 = TextEditingController();
-    textController3 = TextEditingController();
-    textController4 = TextEditingController();
-    passwordVisibility = false;
+    passwordTextController = TextEditingController();
+    passwordVisibility1 = false;
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Sign_up'});
   }
 
   @override
@@ -153,7 +160,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                         keyboardType: TextInputType.number,
                       ),
                       TextFormField(
-                        controller: textController3,
+                        controller: emailTextController,
                         autofocus: true,
                         obscureText: false,
                         decoration: InputDecoration(
@@ -184,9 +191,9 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                         keyboardType: TextInputType.emailAddress,
                       ),
                       TextFormField(
-                        controller: textController4,
+                        controller: passwordTextController,
                         autofocus: true,
-                        obscureText: !passwordVisibility,
+                        obscureText: !passwordVisibility1,
                         decoration: InputDecoration(
                           hintText: '   Password',
                           hintStyle: FlutterFlowTheme.of(context).bodyText2,
@@ -212,11 +219,54 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                           ),
                           suffixIcon: InkWell(
                             onTap: () => setState(
-                              () => passwordVisibility = !passwordVisibility,
+                              () => passwordVisibility1 = !passwordVisibility1,
                             ),
                             focusNode: FocusNode(skipTraversal: true),
                             child: Icon(
-                              passwordVisibility
+                              passwordVisibility1
+                                  ? Icons.visibility_outlined
+                                  : Icons.visibility_off_outlined,
+                              color: Color(0xFF757575),
+                              size: 22,
+                            ),
+                          ),
+                        ),
+                        style: FlutterFlowTheme.of(context).bodyText1,
+                      ),
+                      TextFormField(
+                        controller: confirmPasswordTextController,
+                        autofocus: true,
+                        obscureText: !passwordVisibility2,
+                        decoration: InputDecoration(
+                          hintText: '   Please enter password again',
+                          hintStyle: FlutterFlowTheme.of(context).bodyText2,
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0x00000000),
+                              width: 1,
+                            ),
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(4.0),
+                              topRight: Radius.circular(4.0),
+                            ),
+                          ),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0x00000000),
+                              width: 1,
+                            ),
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(4.0),
+                              topRight: Radius.circular(4.0),
+                            ),
+                          ),
+                          suffixIcon: InkWell(
+                            onTap: () => setState(
+                              () => passwordVisibility2 = !passwordVisibility2,
+                            ),
+                            focusNode: FocusNode(skipTraversal: true),
+                            child: Icon(
+                              passwordVisibility2
                                   ? Icons.visibility_outlined
                                   : Icons.visibility_off_outlined,
                               color: Color(0xFF757575),
@@ -239,12 +289,46 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                         child: FFButtonWidget(
                           onPressed: () async {
                             logFirebaseEvent('SIGN_UP_PAGE_SIGN_UP_BTN_ON_TAP');
-                            logFirebaseEvent('Button_Navigate-To');
-                            await Navigator.push(
+                            logFirebaseEvent('Button_Auth');
+                            if (passwordTextController?.text !=
+                                confirmPasswordTextController?.text) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Passwords don\'t match!',
+                                  ),
+                                ),
+                              );
+                              return;
+                            }
+
+                            final user = await createAccountWithEmail(
+                              context,
+                              emailTextController!.text,
+                              passwordTextController!.text,
+                            );
+                            if (user == null) {
+                              return;
+                            }
+
+                            final usersCreateData = createUsersRecordData(
+                              age: int.parse(textController2!.text),
+                              displayName: textController1!.text,
+                              uid: emailTextController!.text,
+                              email: '',
+                            );
+                            await UsersRecord.collection
+                                .doc(user.uid)
+                                .update(usersCreateData);
+
+                            logFirebaseEvent('Button_Auth');
+                            await sendEmailVerification();
+                            await Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => SignInWidget(),
                               ),
+                              (r) => false,
                             );
                           },
                           text: 'Sign up',
