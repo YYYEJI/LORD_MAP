@@ -1,6 +1,7 @@
 import '../alarm/alarm_widget.dart';
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../flutter_flow/flutter_flow_count_controller.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -8,24 +9,27 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class AlarmAddWidget extends StatefulWidget {
-  const AlarmAddWidget({Key? key}) : super(key: key);
+class AlarmAddCopyWidget extends StatefulWidget {
+  const AlarmAddCopyWidget({Key? key}) : super(key: key);
 
   @override
-  _AlarmAddWidgetState createState() => _AlarmAddWidgetState();
+  _AlarmAddCopyWidgetState createState() => _AlarmAddCopyWidgetState();
 }
 
-class _AlarmAddWidgetState extends State<AlarmAddWidget> {
+class _AlarmAddCopyWidgetState extends State<AlarmAddCopyWidget> {
   AlarmRecord? newTestAlarm;
   TextEditingController? textController;
+  int? countControllerValue;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    logFirebaseEvent('screen_view', parameters: {'screen_name': 'AlarmAdd'});
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'AlarmAddCopy'});
     textController = TextEditingController();
   }
 
@@ -47,7 +51,7 @@ class _AlarmAddWidgetState extends State<AlarmAddWidget> {
             size: 30,
           ),
           onPressed: () async {
-            logFirebaseEvent('ALARM_ADD_arrow_back_rounded_ICN_ON_TAP');
+            logFirebaseEvent('ALARM_ADD_COPY_arrow_back_rounded_ICN_ON');
             logFirebaseEvent('IconButton_Navigate-Back');
             Navigator.pop(context);
           },
@@ -108,20 +112,61 @@ class _AlarmAddWidgetState extends State<AlarmAddWidget> {
                   ],
                 ),
               ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Expanded(
-                    child: Text(
-                      '06 : 00',
-                      textAlign: TextAlign.center,
-                      style: FlutterFlowTheme.of(context).bodyText1.override(
-                            fontFamily: 'Poppins',
-                            fontSize: 60,
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Container(
+                      width: 160,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(25),
+                        shape: BoxShape.rectangle,
+                        border: Border.all(
+                          color: Color(0xFF9E9E9E),
+                          width: 1,
+                        ),
+                      ),
+                      child: FlutterFlowCountController(
+                        decrementIconBuilder: (enabled) => FaIcon(
+                          FontAwesomeIcons.minus,
+                          color:
+                              enabled ? Color(0xDD000000) : Color(0xFFEEEEEE),
+                          size: 20,
+                        ),
+                        incrementIconBuilder: (enabled) => FaIcon(
+                          FontAwesomeIcons.plus,
+                          color: enabled ? Colors.blue : Color(0xFFEEEEEE),
+                          size: 20,
+                        ),
+                        countBuilder: (count) => Text(
+                          count.toString(),
+                          style: GoogleFonts.getFont(
+                            'Roboto',
+                            color: Colors.black,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 16,
                           ),
+                        ),
+                        count: countControllerValue ??= 0,
+                        updateCount: (count) =>
+                            setState(() => countControllerValue = count),
+                        stepSize: 1,
+                        minimum: 0,
+                        maximum: 24,
+                      ),
                     ),
-                  ),
-                ],
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                      child: Text(
+                        '시',
+                        style: FlutterFlowTheme.of(context).bodyText1,
+                      ),
+                    ),
+                  ],
+                ),
               ),
               Row(
                 mainAxisSize: MainAxisSize.max,
@@ -156,162 +201,6 @@ class _AlarmAddWidgetState extends State<AlarmAddWidget> {
                     },
                   ),
                 ],
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
-                      },
-                      text: '일',
-                      options: FFButtonOptions(
-                        width: 40,
-                        height: 40,
-                        color: Color(0xFFFAFAD2),
-                        textStyle:
-                            FlutterFlowTheme.of(context).subtitle2.override(
-                                  fontFamily: 'Poppins',
-                                  color: FlutterFlowTheme.of(context).black600,
-                                ),
-                        borderSide: BorderSide(
-                          color: Colors.transparent,
-                          width: 1,
-                        ),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                    FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
-                      },
-                      text: '월',
-                      options: FFButtonOptions(
-                        width: 40,
-                        height: 40,
-                        color: Color(0xFFFAFAD2),
-                        textStyle:
-                            FlutterFlowTheme.of(context).subtitle2.override(
-                                  fontFamily: 'Poppins',
-                                  color: FlutterFlowTheme.of(context).black600,
-                                ),
-                        borderSide: BorderSide(
-                          color: Colors.transparent,
-                          width: 1,
-                        ),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                    FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
-                      },
-                      text: '화',
-                      options: FFButtonOptions(
-                        width: 40,
-                        height: 40,
-                        color: Color(0xFFFAFAD2),
-                        textStyle:
-                            FlutterFlowTheme.of(context).subtitle2.override(
-                                  fontFamily: 'Poppins',
-                                  color: FlutterFlowTheme.of(context).black600,
-                                ),
-                        borderSide: BorderSide(
-                          color: Colors.transparent,
-                          width: 1,
-                        ),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                    FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
-                      },
-                      text: '수',
-                      options: FFButtonOptions(
-                        width: 40,
-                        height: 40,
-                        color: Color(0xFFFAFAD2),
-                        textStyle:
-                            FlutterFlowTheme.of(context).subtitle2.override(
-                                  fontFamily: 'Poppins',
-                                  color: FlutterFlowTheme.of(context).black600,
-                                ),
-                        borderSide: BorderSide(
-                          color: Colors.transparent,
-                          width: 1,
-                        ),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                    FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
-                      },
-                      text: '목',
-                      options: FFButtonOptions(
-                        width: 40,
-                        height: 40,
-                        color: Color(0xFFFAFAD2),
-                        textStyle:
-                            FlutterFlowTheme.of(context).subtitle2.override(
-                                  fontFamily: 'Poppins',
-                                  color: FlutterFlowTheme.of(context).black600,
-                                ),
-                        borderSide: BorderSide(
-                          color: Colors.transparent,
-                          width: 1,
-                        ),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                    FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
-                      },
-                      text: '금',
-                      options: FFButtonOptions(
-                        width: 40,
-                        height: 40,
-                        color: Color(0xFFFAFAD2),
-                        textStyle:
-                            FlutterFlowTheme.of(context).subtitle2.override(
-                                  fontFamily: 'Poppins',
-                                  color: FlutterFlowTheme.of(context).black600,
-                                ),
-                        borderSide: BorderSide(
-                          color: Colors.transparent,
-                          width: 1,
-                        ),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                    FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
-                      },
-                      text: '토',
-                      options: FFButtonOptions(
-                        width: 40,
-                        height: 40,
-                        color: Color(0xFFFAFAD2),
-                        textStyle:
-                            FlutterFlowTheme.of(context).subtitle2.override(
-                                  fontFamily: 'Poppins',
-                                  color: FlutterFlowTheme.of(context).black600,
-                                ),
-                        borderSide: BorderSide(
-                          color: Colors.transparent,
-                          width: 1,
-                        ),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                  ],
-                ),
               ),
               Row(
                 mainAxisSize: MainAxisSize.max,
@@ -365,7 +254,8 @@ class _AlarmAddWidgetState extends State<AlarmAddWidget> {
                   children: [
                     FFButtonWidget(
                       onPressed: () async {
-                        logFirebaseEvent('ALARM_ADD_PAGE_CONFIRM_BTN_ON_TAP');
+                        logFirebaseEvent(
+                            'ALARM_ADD_COPY_PAGE_CONFIRM_BTN_ON_TAP');
                         logFirebaseEvent('Button_Backend-Call');
 
                         final alarmCreateData = createAlarmRecordData(

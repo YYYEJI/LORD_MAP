@@ -8,6 +8,7 @@ import 'schema/users_record.dart';
 import 'schema/churchin_n_g_record.dart';
 import 'schema/churchin_b_g_record.dart';
 import 'schema/alarm_record.dart';
+import 'schema/bible_record.dart';
 import 'schema/serializers.dart';
 
 export 'dart:async' show StreamSubscription;
@@ -19,6 +20,7 @@ export 'schema/users_record.dart';
 export 'schema/churchin_n_g_record.dart';
 export 'schema/churchin_b_g_record.dart';
 export 'schema/alarm_record.dart';
+export 'schema/bible_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Stream<List<UsersRecord>> queryUsersRecord({
@@ -182,6 +184,48 @@ Future<FFFirestorePage<AlarmRecord>> queryAlarmRecordPage({
     queryCollectionPage(
       AlarmRecord.collection,
       AlarmRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
+
+/// Functions to query BibleRecords (as a Stream and as a Future).
+Stream<List<BibleRecord>> queryBibleRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      BibleRecord.collection,
+      BibleRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<BibleRecord>> queryBibleRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      BibleRecord.collection,
+      BibleRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<BibleRecord>> queryBibleRecordPage({
+  Query Function(Query)? queryBuilder,
+  DocumentSnapshot? nextPageMarker,
+  required int pageSize,
+  required bool isStream,
+}) =>
+    queryCollectionPage(
+      BibleRecord.collection,
+      BibleRecord.serializer,
       queryBuilder: queryBuilder,
       nextPageMarker: nextPageMarker,
       pageSize: pageSize,

@@ -8,6 +8,7 @@ part of 'serializers.dart';
 
 Serializers _$serializers = (new Serializers().toBuilder()
       ..add(AlarmRecord.serializer)
+      ..add(BibleRecord.serializer)
       ..add(ChurchinBGRecord.serializer)
       ..add(ChurchinNGRecord.serializer)
       ..add(UsersRecord.serializer))
