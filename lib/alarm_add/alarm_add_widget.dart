@@ -22,6 +22,9 @@ class _AlarmAddWidgetState extends State<AlarmAddWidget> {
   TextEditingController? textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
+  int newHour = 0;
+  int newMin = 0;
+
   @override
   void initState() {
     super.initState();
@@ -53,7 +56,7 @@ class _AlarmAddWidgetState extends State<AlarmAddWidget> {
           },
         ),
         title: Text(
-          'Add new Alarm',
+          'Add new Alarm!!!!',
           style: FlutterFlowTheme.of(context).title2.override(
                 fontFamily: 'Poppins',
                 color: FlutterFlowTheme.of(context).black600,
@@ -89,6 +92,11 @@ class _AlarmAddWidgetState extends State<AlarmAddWidget> {
                       ),
                       onPressed: () {
                         print('IconButton pressed ...');
+                        setState(() {
+                          if(newHour < 23) newHour++;
+                          else newHour = 0;
+                        });
+
                       },
                     ),
                     FlutterFlowIconButton(
@@ -103,6 +111,10 @@ class _AlarmAddWidgetState extends State<AlarmAddWidget> {
                       ),
                       onPressed: () {
                         print('IconButton pressed ...');
+                        setState(() {
+                          if(newMin < 59) newMin++;
+                          else newMin = 0;
+                        });
                       },
                     ),
                   ],
@@ -113,7 +125,8 @@ class _AlarmAddWidgetState extends State<AlarmAddWidget> {
                 children: [
                   Expanded(
                     child: Text(
-                      '06 : 00',
+                      //'06 : 00',
+                      '$newHour : $newMin',
                       textAlign: TextAlign.center,
                       style: FlutterFlowTheme.of(context).bodyText1.override(
                             fontFamily: 'Poppins',
@@ -139,6 +152,11 @@ class _AlarmAddWidgetState extends State<AlarmAddWidget> {
                     ),
                     onPressed: () {
                       print('IconButton pressed ...');
+                      setState(() {
+                        if(newHour > 0) newHour--;
+                        else newHour = 23;
+                      });
+
                     },
                   ),
                   FlutterFlowIconButton(
@@ -153,6 +171,10 @@ class _AlarmAddWidgetState extends State<AlarmAddWidget> {
                     ),
                     onPressed: () {
                       print('IconButton pressed ...');
+                      setState(() {
+                        if(newMin > 0) newMin--;
+                        else newMin = 59;
+                      });
                     },
                   ),
                 ],
@@ -369,8 +391,8 @@ class _AlarmAddWidgetState extends State<AlarmAddWidget> {
                         logFirebaseEvent('Button_Backend-Call');
 
                         final alarmCreateData = createAlarmRecordData(
-                          hour: 99,
-                          min: 0,
+                          hour: newHour,
+                          min: newMin,
                           tag: textController!.text,
                           isOn: true,
                         );
