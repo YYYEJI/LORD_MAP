@@ -1,4 +1,6 @@
 import 'package:cloud_functions/cloud_functions.dart';
+import 'package:lord_map/backend/backend.dart';
+import 'dart:math';
 
 Future<Map<String, dynamic>> makeCloudCall(
     String callName, Map<String, dynamic> input) async {
@@ -23,3 +25,78 @@ Future<Map<String, dynamic>> makeCloudCall(
     return {};
   }
 }
+
+
+
+class RandomGetter{
+  String? whatWeWant;
+  DocumentReference? reference;
+  Random rand = Random();
+
+  //특정 필드 데려오는 기능이길 희망함
+  String fromJson(dynamic json, DocumentReference reference){
+    return json['text'];
+  }
+
+  /*
+  //스냅샷 자료형을 받아올 때..?특정 자료를 받아올 떄? 사용한다는 친구
+  RandomGetter.fromSnapShot(DocumentSnapshot<Map<String, dynamic>> snapshot)
+  : fromJson(snapshot.data(), snapshot.reference);
+
+  //컬렉션 내 특정 조건을 만족하는 데이터를 가지고 올 때 사용한다고 함
+  RandomGetter.fromQuerySnapshot(
+      QueryDocumentSnapshot<Map<String, dynamic>> snapshot)
+      :this.fromJson(snapshot.data(), snapshot.reference);
+*/
+
+
+
+  late CollectionReference<Map<String, dynamic>> _bibleReference;
+  late QuerySnapshot<Map<String, dynamic>> bibleQuery;
+
+
+  init() async {
+    //컬렉션 인스턴트 생성
+    _bibleReference = FirebaseFirestore.instance.collection("Bible");
+    //쿼리스냅샷들 가져오기
+    bibleQuery = await _bibleReference.get();
+  }
+
+  //생성..자..?
+  RandomGetter(){
+    init();
+  }
+
+
+
+
+  //CollectionReference<Map<String, dynamic>> _bibleReference =
+  //   FirebaseFirestore.instance.collection("Bible");
+  //QuerySnapshot<Map<String, dynamic>> bibleQuery =
+  //    await _bibleReference.get();
+
+
+
+
+
+  //랜덤한 하나 얻는 메서드(로 작동하기 희망)
+  String getBibleToday(){
+
+    List<String> bibles = [];
+
+    for(var one in bibleQuery.docs){
+      String text = fromJson(one.data(), one.reference);
+      bibles.add(text);
+    }
+
+    return bibles[rand.nextInt(bibles.length)];
+
+  }
+
+//근데 이거 어케 실행시켜보지..?
+
+
+
+
+}
+
