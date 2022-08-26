@@ -87,6 +87,27 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
         ..add('age')
         ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
+    value = object.getBible;
+    if (value != null) {
+      result
+        ..add('get_bible')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
+    value = object.prayTitleGot;
+    if (value != null) {
+      result
+        ..add('prayTitle_got')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.prayerGroup;
+    if (value != null) {
+      result
+        ..add('Prayer_group')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -149,6 +170,18 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
           result.age = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int?;
           break;
+        case 'get_bible':
+          result.getBible = serializers.deserialize(value,
+              specifiedType: const FullType(bool)) as bool?;
+          break;
+        case 'prayTitle_got':
+          result.prayTitleGot = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'Prayer_group':
+          result.prayerGroup = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -184,6 +217,12 @@ class _$UsersRecord extends UsersRecord {
   @override
   final int? age;
   @override
+  final bool? getBible;
+  @override
+  final String? prayTitleGot;
+  @override
+  final String? prayerGroup;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$UsersRecord([void Function(UsersRecordBuilder)? updates]) =>
@@ -200,6 +239,9 @@ class _$UsersRecord extends UsersRecord {
       this.isCompletedToday,
       this.prayTimeToday,
       this.age,
+      this.getBible,
+      this.prayTitleGot,
+      this.prayerGroup,
       this.ffRef})
       : super._();
 
@@ -224,6 +266,9 @@ class _$UsersRecord extends UsersRecord {
         isCompletedToday == other.isCompletedToday &&
         prayTimeToday == other.prayTimeToday &&
         age == other.age &&
+        getBible == other.getBible &&
+        prayTitleGot == other.prayTitleGot &&
+        prayerGroup == other.prayerGroup &&
         ffRef == other.ffRef;
   }
 
@@ -238,16 +283,22 @@ class _$UsersRecord extends UsersRecord {
                             $jc(
                                 $jc(
                                     $jc(
-                                        $jc($jc(0, email.hashCode),
-                                            displayName.hashCode),
-                                        photoUrl.hashCode),
-                                    uid.hashCode),
-                                createdTime.hashCode),
-                            phoneNumber.hashCode),
-                        prayTitleToday.hashCode),
-                    isCompletedToday.hashCode),
-                prayTimeToday.hashCode),
-            age.hashCode),
+                                        $jc(
+                                            $jc(
+                                                $jc(
+                                                    $jc($jc(0, email.hashCode),
+                                                        displayName.hashCode),
+                                                    photoUrl.hashCode),
+                                                uid.hashCode),
+                                            createdTime.hashCode),
+                                        phoneNumber.hashCode),
+                                    prayTitleToday.hashCode),
+                                isCompletedToday.hashCode),
+                            prayTimeToday.hashCode),
+                        age.hashCode),
+                    getBible.hashCode),
+                prayTitleGot.hashCode),
+            prayerGroup.hashCode),
         ffRef.hashCode));
   }
 
@@ -264,6 +315,9 @@ class _$UsersRecord extends UsersRecord {
           ..add('isCompletedToday', isCompletedToday)
           ..add('prayTimeToday', prayTimeToday)
           ..add('age', age)
+          ..add('getBible', getBible)
+          ..add('prayTitleGot', prayTitleGot)
+          ..add('prayerGroup', prayerGroup)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -315,6 +369,18 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
   int? get age => _$this._age;
   set age(int? age) => _$this._age = age;
 
+  bool? _getBible;
+  bool? get getBible => _$this._getBible;
+  set getBible(bool? getBible) => _$this._getBible = getBible;
+
+  String? _prayTitleGot;
+  String? get prayTitleGot => _$this._prayTitleGot;
+  set prayTitleGot(String? prayTitleGot) => _$this._prayTitleGot = prayTitleGot;
+
+  String? _prayerGroup;
+  String? get prayerGroup => _$this._prayerGroup;
+  set prayerGroup(String? prayerGroup) => _$this._prayerGroup = prayerGroup;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -336,6 +402,9 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
       _isCompletedToday = $v.isCompletedToday;
       _prayTimeToday = $v.prayTimeToday;
       _age = $v.age;
+      _getBible = $v.getBible;
+      _prayTitleGot = $v.prayTitleGot;
+      _prayerGroup = $v.prayerGroup;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -369,6 +438,9 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
             isCompletedToday: isCompletedToday,
             prayTimeToday: prayTimeToday,
             age: age,
+            getBible: getBible,
+            prayTitleGot: prayTitleGot,
+            prayerGroup: prayerGroup,
             ffRef: ffRef);
     replace(_$result);
     return _$result;

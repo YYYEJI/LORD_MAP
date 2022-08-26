@@ -17,6 +17,22 @@ abstract class AlarmRecord implements Built<AlarmRecord, AlarmRecordBuilder> {
 
   bool? get isOn;
 
+  String? get email;
+
+  @BuiltValueField(wireName: 'display_name')
+  String? get displayName;
+
+  @BuiltValueField(wireName: 'photo_url')
+  String? get photoUrl;
+
+  String? get uid;
+
+  @BuiltValueField(wireName: 'created_time')
+  DateTime? get createdTime;
+
+  @BuiltValueField(wireName: 'phone_number')
+  String? get phoneNumber;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -25,7 +41,12 @@ abstract class AlarmRecord implements Built<AlarmRecord, AlarmRecordBuilder> {
     ..hour = 0
     ..min = 0
     ..tag = ''
-    ..isOn = false;
+    ..isOn = false
+    ..email = ''
+    ..displayName = ''
+    ..photoUrl = ''
+    ..uid = ''
+    ..phoneNumber = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('Alarm');
@@ -53,6 +74,12 @@ Map<String, dynamic> createAlarmRecordData({
   int? min,
   String? tag,
   bool? isOn,
+  String? email,
+  String? displayName,
+  String? photoUrl,
+  String? uid,
+  DateTime? createdTime,
+  String? phoneNumber,
 }) {
   final firestoreData = serializers.toFirestore(
     AlarmRecord.serializer,
@@ -61,7 +88,13 @@ Map<String, dynamic> createAlarmRecordData({
         ..hour = hour
         ..min = min
         ..tag = tag
-        ..isOn = isOn,
+        ..isOn = isOn
+        ..email = email
+        ..displayName = displayName
+        ..photoUrl = photoUrl
+        ..uid = uid
+        ..createdTime = createdTime
+        ..phoneNumber = phoneNumber,
     ),
   );
 

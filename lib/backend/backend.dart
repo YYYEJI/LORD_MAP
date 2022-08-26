@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:built_value/serializer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -9,6 +10,8 @@ import 'schema/churchin_n_g_record.dart';
 import 'schema/churchin_b_g_record.dart';
 import 'schema/alarm_record.dart';
 import 'schema/bible_record.dart';
+import 'schema/prayer_group_record.dart';
+import 'schema/col_p_t_today_record.dart';
 import 'schema/serializers.dart';
 
 export 'dart:async' show StreamSubscription;
@@ -21,6 +24,8 @@ export 'schema/churchin_n_g_record.dart';
 export 'schema/churchin_b_g_record.dart';
 export 'schema/alarm_record.dart';
 export 'schema/bible_record.dart';
+export 'schema/prayer_group_record.dart';
+export 'schema/col_p_t_today_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Stream<List<UsersRecord>> queryUsersRecord({
@@ -232,6 +237,90 @@ Future<FFFirestorePage<BibleRecord>> queryBibleRecordPage({
       isStream: isStream,
     );
 
+/// Functions to query PrayerGroupRecords (as a Stream and as a Future).
+Stream<List<PrayerGroupRecord>> queryPrayerGroupRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      PrayerGroupRecord.collection,
+      PrayerGroupRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<PrayerGroupRecord>> queryPrayerGroupRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      PrayerGroupRecord.collection,
+      PrayerGroupRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<PrayerGroupRecord>> queryPrayerGroupRecordPage({
+  Query Function(Query)? queryBuilder,
+  DocumentSnapshot? nextPageMarker,
+  required int pageSize,
+  required bool isStream,
+}) =>
+    queryCollectionPage(
+      PrayerGroupRecord.collection,
+      PrayerGroupRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
+
+/// Functions to query ColPTTodayRecords (as a Stream and as a Future).
+Stream<List<ColPTTodayRecord>> queryColPTTodayRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      ColPTTodayRecord.collection,
+      ColPTTodayRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<ColPTTodayRecord>> queryColPTTodayRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      ColPTTodayRecord.collection,
+      ColPTTodayRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<ColPTTodayRecord>> queryColPTTodayRecordPage({
+  Query Function(Query)? queryBuilder,
+  DocumentSnapshot? nextPageMarker,
+  required int pageSize,
+  required bool isStream,
+}) =>
+    queryCollectionPage(
+      ColPTTodayRecord.collection,
+      ColPTTodayRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
+
 Stream<List<T>> queryCollection<T>(Query collection, Serializer<T> serializer,
     {Query Function(Query)? queryBuilder,
     int limit = -1,
@@ -275,6 +364,14 @@ Future<List<T>> queryCollectionOnce<T>(
       .where((d) => d != null)
       .map((d) => d!)
       .toList());
+}
+
+extension WhereInExtension on Query {
+  Query whereIn(String field, List? list) => (list?.isEmpty ?? false)
+      //Ensures an empty list is returned for a query with no results
+      //since it is near impossible for list to have the same random double value
+      ? where(field, whereIn: [Random().nextDouble()])
+      : where(field, whereIn: list);
 }
 
 class FFFirestorePage<T> {

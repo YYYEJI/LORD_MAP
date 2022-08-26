@@ -5,6 +5,8 @@ import 'churchin_n_g_record.dart';
 import 'churchin_b_g_record.dart';
 import 'alarm_record.dart';
 import 'bible_record.dart';
+import 'prayer_group_record.dart';
+import 'col_p_t_today_record.dart';
 
 import 'index.dart';
 
@@ -20,6 +22,8 @@ const kDocumentReferenceField = 'Document__Reference__Field';
   ChurchinBGRecord,
   AlarmRecord,
   BibleRecord,
+  PrayerGroupRecord,
+  ColPTTodayRecord,
 ])
 final Serializers serializers = (_$serializers.toBuilder()
       ..add(DocumentReferenceSerializer())

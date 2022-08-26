@@ -22,9 +22,6 @@ class _AlarmAddWidgetState extends State<AlarmAddWidget> {
   TextEditingController? textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  int newHour = 0;
-  int newMin = 0;
-
   @override
   void initState() {
     super.initState();
@@ -56,7 +53,7 @@ class _AlarmAddWidgetState extends State<AlarmAddWidget> {
           },
         ),
         title: Text(
-          'Add new Alarm!!!!',
+          'Add new Alarm',
           style: FlutterFlowTheme.of(context).title2.override(
                 fontFamily: 'Poppins',
                 color: FlutterFlowTheme.of(context).black600,
@@ -92,11 +89,6 @@ class _AlarmAddWidgetState extends State<AlarmAddWidget> {
                       ),
                       onPressed: () {
                         print('IconButton pressed ...');
-                        setState(() {
-                          if(newHour < 23) newHour++;
-                          else newHour = 0;
-                        });
-
                       },
                     ),
                     FlutterFlowIconButton(
@@ -111,10 +103,6 @@ class _AlarmAddWidgetState extends State<AlarmAddWidget> {
                       ),
                       onPressed: () {
                         print('IconButton pressed ...');
-                        setState(() {
-                          if(newMin < 59) newMin++;
-                          else newMin = 0;
-                        });
                       },
                     ),
                   ],
@@ -125,8 +113,7 @@ class _AlarmAddWidgetState extends State<AlarmAddWidget> {
                 children: [
                   Expanded(
                     child: Text(
-                      //'06 : 00',
-                      '$newHour : $newMin',
+                      '06 : 00',
                       textAlign: TextAlign.center,
                       style: FlutterFlowTheme.of(context).bodyText1.override(
                             fontFamily: 'Poppins',
@@ -152,11 +139,6 @@ class _AlarmAddWidgetState extends State<AlarmAddWidget> {
                     ),
                     onPressed: () {
                       print('IconButton pressed ...');
-                      setState(() {
-                        if(newHour > 0) newHour--;
-                        else newHour = 23;
-                      });
-
                     },
                   ),
                   FlutterFlowIconButton(
@@ -171,169 +153,9 @@ class _AlarmAddWidgetState extends State<AlarmAddWidget> {
                     ),
                     onPressed: () {
                       print('IconButton pressed ...');
-                      setState(() {
-                        if(newMin > 0) newMin--;
-                        else newMin = 59;
-                      });
                     },
                   ),
                 ],
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
-                      },
-                      text: '일',
-                      options: FFButtonOptions(
-                        width: 40,
-                        height: 40,
-                        color: Color(0xFFFAFAD2),
-                        textStyle:
-                            FlutterFlowTheme.of(context).subtitle2.override(
-                                  fontFamily: 'Poppins',
-                                  color: FlutterFlowTheme.of(context).black600,
-                                ),
-                        borderSide: BorderSide(
-                          color: Colors.transparent,
-                          width: 1,
-                        ),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                    FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
-                      },
-                      text: '월',
-                      options: FFButtonOptions(
-                        width: 40,
-                        height: 40,
-                        color: Color(0xFFFAFAD2),
-                        textStyle:
-                            FlutterFlowTheme.of(context).subtitle2.override(
-                                  fontFamily: 'Poppins',
-                                  color: FlutterFlowTheme.of(context).black600,
-                                ),
-                        borderSide: BorderSide(
-                          color: Colors.transparent,
-                          width: 1,
-                        ),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                    FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
-                      },
-                      text: '화',
-                      options: FFButtonOptions(
-                        width: 40,
-                        height: 40,
-                        color: Color(0xFFFAFAD2),
-                        textStyle:
-                            FlutterFlowTheme.of(context).subtitle2.override(
-                                  fontFamily: 'Poppins',
-                                  color: FlutterFlowTheme.of(context).black600,
-                                ),
-                        borderSide: BorderSide(
-                          color: Colors.transparent,
-                          width: 1,
-                        ),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                    FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
-                      },
-                      text: '수',
-                      options: FFButtonOptions(
-                        width: 40,
-                        height: 40,
-                        color: Color(0xFFFAFAD2),
-                        textStyle:
-                            FlutterFlowTheme.of(context).subtitle2.override(
-                                  fontFamily: 'Poppins',
-                                  color: FlutterFlowTheme.of(context).black600,
-                                ),
-                        borderSide: BorderSide(
-                          color: Colors.transparent,
-                          width: 1,
-                        ),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                    FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
-                      },
-                      text: '목',
-                      options: FFButtonOptions(
-                        width: 40,
-                        height: 40,
-                        color: Color(0xFFFAFAD2),
-                        textStyle:
-                            FlutterFlowTheme.of(context).subtitle2.override(
-                                  fontFamily: 'Poppins',
-                                  color: FlutterFlowTheme.of(context).black600,
-                                ),
-                        borderSide: BorderSide(
-                          color: Colors.transparent,
-                          width: 1,
-                        ),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                    FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
-                      },
-                      text: '금',
-                      options: FFButtonOptions(
-                        width: 40,
-                        height: 40,
-                        color: Color(0xFFFAFAD2),
-                        textStyle:
-                            FlutterFlowTheme.of(context).subtitle2.override(
-                                  fontFamily: 'Poppins',
-                                  color: FlutterFlowTheme.of(context).black600,
-                                ),
-                        borderSide: BorderSide(
-                          color: Colors.transparent,
-                          width: 1,
-                        ),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                    FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
-                      },
-                      text: '토',
-                      options: FFButtonOptions(
-                        width: 40,
-                        height: 40,
-                        color: Color(0xFFFAFAD2),
-                        textStyle:
-                            FlutterFlowTheme.of(context).subtitle2.override(
-                                  fontFamily: 'Poppins',
-                                  color: FlutterFlowTheme.of(context).black600,
-                                ),
-                        borderSide: BorderSide(
-                          color: Colors.transparent,
-                          width: 1,
-                        ),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                  ],
-                ),
               ),
               Row(
                 mainAxisSize: MainAxisSize.max,
@@ -391,8 +213,8 @@ class _AlarmAddWidgetState extends State<AlarmAddWidget> {
                         logFirebaseEvent('Button_Backend-Call');
 
                         final alarmCreateData = createAlarmRecordData(
-                          hour: newHour,
-                          min: newMin,
+                          hour: 99,
+                          min: 0,
                           tag: textController!.text,
                           isOn: true,
                         );

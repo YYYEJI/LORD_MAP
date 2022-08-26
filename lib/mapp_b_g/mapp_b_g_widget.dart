@@ -37,8 +37,8 @@ class _MappBGWidgetState extends State<MappBGWidget> {
             child: SizedBox(
               width: 50,
               height: 50,
-              child: SpinKitPumpingHeart(
-                color: Color(0xFFEF393C),
+              child: SpinKitRipple(
+                color: Color(0xFFCBCBCB),
                 size: 50,
               ),
             ),

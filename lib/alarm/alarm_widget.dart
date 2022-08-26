@@ -18,11 +18,10 @@ class AlarmWidget extends StatefulWidget {
 }
 
 class _AlarmWidgetState extends State<AlarmWidget> {
-  AlarmRecord? newAlarm;
-  bool? switchListTileValue2;
-  bool? switchListTileValue3;
-  bool? switchListTileValue4;
+  bool? getBibleValue;
+  bool? samepleMorningValue;
   bool? switchListTileValue1;
+  bool? switchListTileValue2;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -50,6 +49,12 @@ class _AlarmWidgetState extends State<AlarmWidget> {
           ),
           onPressed: () async {
             logFirebaseEvent('ALARM_PAGE_arrow_back_rounded_ICN_ON_TAP');
+            logFirebaseEvent('IconButton_Backend-Call');
+
+            final usersUpdateData = createUsersRecordData(
+              getBible: getBibleValue,
+            );
+            await currentUserReference!.update(usersUpdateData);
             logFirebaseEvent('IconButton_Navigate-To');
             await Navigator.push(
               context,
@@ -80,20 +85,23 @@ class _AlarmWidgetState extends State<AlarmWidget> {
             children: [
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 20),
-                child: SwitchListTile(
-                  value: switchListTileValue1 ??= true,
-                  onChanged: (newValue) =>
-                      setState(() => switchListTileValue1 = newValue),
-                  title: Text(
-                    '오늘의 말씀 받기',
-                    style: FlutterFlowTheme.of(context).bodyText1.override(
-                          fontFamily: 'Poppins',
-                          fontSize: 20,
-                        ),
+                child: AuthUserStreamWidget(
+                  child: SwitchListTile(
+                    value: getBibleValue ??= valueOrDefault<bool>(
+                        currentUserDocument?.getBible, false),
+                    onChanged: (newValue) =>
+                        setState(() => getBibleValue = newValue),
+                    title: Text(
+                      '오늘의 말씀 받기',
+                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                            fontFamily: 'Poppins',
+                            fontSize: 20,
+                          ),
+                    ),
+                    tileColor: Color(0xFFF5F5F5),
+                    dense: false,
+                    controlAffinity: ListTileControlAffinity.trailing,
                   ),
-                  tileColor: Color(0xFFF5F5F5),
-                  dense: false,
-                  controlAffinity: ListTileControlAffinity.trailing,
                 ),
               ),
               ListView(
@@ -110,47 +118,47 @@ class _AlarmWidgetState extends State<AlarmWidget> {
                     ),
                   ),
                   SwitchListTile(
+                    value: samepleMorningValue ??= true,
+                    onChanged: (newValue) =>
+                        setState(() => samepleMorningValue = newValue),
+                    title: Text(
+                      '08 : 00',
+                      style: FlutterFlowTheme.of(context).title1.override(
+                            fontFamily: 'Poppins',
+                            fontSize: 40,
+                          ),
+                    ),
+                    subtitle: Text(
+                      '\" 아침기도! \"',
+                      style: FlutterFlowTheme.of(context).subtitle2,
+                    ),
+                    tileColor: Color(0xFFF5F5F5),
+                    dense: false,
+                    controlAffinity: ListTileControlAffinity.trailing,
+                  ),
+                  SwitchListTile(
+                    value: switchListTileValue1 ??= true,
+                    onChanged: (newValue) =>
+                        setState(() => switchListTileValue1 = newValue),
+                    title: Text(
+                      '08 : 00',
+                      style: FlutterFlowTheme.of(context).title1.override(
+                            fontFamily: 'Poppins',
+                            fontSize: 40,
+                          ),
+                    ),
+                    subtitle: Text(
+                      '\" 아침기도! \"',
+                      style: FlutterFlowTheme.of(context).subtitle2,
+                    ),
+                    tileColor: Color(0xFFF5F5F5),
+                    dense: false,
+                    controlAffinity: ListTileControlAffinity.trailing,
+                  ),
+                  SwitchListTile(
                     value: switchListTileValue2 ??= true,
                     onChanged: (newValue) =>
                         setState(() => switchListTileValue2 = newValue),
-                    title: Text(
-                      '08 : 00',
-                      style: FlutterFlowTheme.of(context).title1.override(
-                            fontFamily: 'Poppins',
-                            fontSize: 40,
-                          ),
-                    ),
-                    subtitle: Text(
-                      '\" 아침기도! \"',
-                      style: FlutterFlowTheme.of(context).subtitle2,
-                    ),
-                    tileColor: Color(0xFFF5F5F5),
-                    dense: false,
-                    controlAffinity: ListTileControlAffinity.trailing,
-                  ),
-                  SwitchListTile(
-                    value: switchListTileValue3 ??= true,
-                    onChanged: (newValue) =>
-                        setState(() => switchListTileValue3 = newValue),
-                    title: Text(
-                      '08 : 00',
-                      style: FlutterFlowTheme.of(context).title1.override(
-                            fontFamily: 'Poppins',
-                            fontSize: 40,
-                          ),
-                    ),
-                    subtitle: Text(
-                      '\" 아침기도! \"',
-                      style: FlutterFlowTheme.of(context).subtitle2,
-                    ),
-                    tileColor: Color(0xFFF5F5F5),
-                    dense: false,
-                    controlAffinity: ListTileControlAffinity.trailing,
-                  ),
-                  SwitchListTile(
-                    value: switchListTileValue4 ??= true,
-                    onChanged: (newValue) =>
-                        setState(() => switchListTileValue4 = newValue),
                     title: Text(
                       '08 : 00',
                       style: FlutterFlowTheme.of(context).title1.override(
@@ -186,20 +194,6 @@ class _AlarmWidgetState extends State<AlarmWidget> {
                           builder: (context) => AlarmAddWidget(),
                         ),
                       );
-                      logFirebaseEvent('IconButton_Backend-Call');
-
-                      final alarmCreateData = createAlarmRecordData(
-                        hour: 0,
-                        min: 0,
-                        tag: '\"\"',
-                        isOn: true,
-                      );
-                      var alarmRecordReference = AlarmRecord.collection.doc();
-                      await alarmRecordReference.set(alarmCreateData);
-                      newAlarm = AlarmRecord.getDocumentFromData(
-                          alarmCreateData, alarmRecordReference);
-
-                      setState(() {});
                     },
                   ),
                 ],

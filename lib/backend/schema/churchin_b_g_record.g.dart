@@ -35,6 +35,13 @@ class _$ChurchinBGRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(LatLng)));
     }
+    value = object.address;
+    if (value != null) {
+      result
+        ..add('address')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -66,6 +73,10 @@ class _$ChurchinBGRecordSerializer
           result.location = serializers.deserialize(value,
               specifiedType: const FullType(LatLng)) as LatLng?;
           break;
+        case 'address':
+          result.address = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -85,13 +96,16 @@ class _$ChurchinBGRecord extends ChurchinBGRecord {
   @override
   final LatLng? location;
   @override
+  final String? address;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$ChurchinBGRecord(
           [void Function(ChurchinBGRecordBuilder)? updates]) =>
       (new ChurchinBGRecordBuilder()..update(updates))._build();
 
-  _$ChurchinBGRecord._({this.name, this.location, this.ffRef}) : super._();
+  _$ChurchinBGRecord._({this.name, this.location, this.address, this.ffRef})
+      : super._();
 
   @override
   ChurchinBGRecord rebuild(void Function(ChurchinBGRecordBuilder) updates) =>
@@ -107,13 +121,15 @@ class _$ChurchinBGRecord extends ChurchinBGRecord {
     return other is ChurchinBGRecord &&
         name == other.name &&
         location == other.location &&
+        address == other.address &&
         ffRef == other.ffRef;
   }
 
   @override
   int get hashCode {
-    return $jf(
-        $jc($jc($jc(0, name.hashCode), location.hashCode), ffRef.hashCode));
+    return $jf($jc(
+        $jc($jc($jc(0, name.hashCode), location.hashCode), address.hashCode),
+        ffRef.hashCode));
   }
 
   @override
@@ -121,6 +137,7 @@ class _$ChurchinBGRecord extends ChurchinBGRecord {
     return (newBuiltValueToStringHelper(r'ChurchinBGRecord')
           ..add('name', name)
           ..add('location', location)
+          ..add('address', address)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -138,6 +155,10 @@ class ChurchinBGRecordBuilder
   LatLng? get location => _$this._location;
   set location(LatLng? location) => _$this._location = location;
 
+  String? _address;
+  String? get address => _$this._address;
+  set address(String? address) => _$this._address = address;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -151,6 +172,7 @@ class ChurchinBGRecordBuilder
     if ($v != null) {
       _name = $v.name;
       _location = $v.location;
+      _address = $v.address;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -173,7 +195,8 @@ class ChurchinBGRecordBuilder
 
   _$ChurchinBGRecord _build() {
     final _$result = _$v ??
-        new _$ChurchinBGRecord._(name: name, location: location, ffRef: ffRef);
+        new _$ChurchinBGRecord._(
+            name: name, location: location, address: address, ffRef: ffRef);
     replace(_$result);
     return _$result;
   }

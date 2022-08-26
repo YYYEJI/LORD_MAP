@@ -19,6 +19,7 @@ class PrayerSend1Widget extends StatefulWidget {
 }
 
 class _PrayerSend1WidgetState extends State<PrayerSend1Widget> {
+  ColPTTodayRecord? praytitle;
   TextEditingController? textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -124,6 +125,16 @@ class _PrayerSend1WidgetState extends State<PrayerSend1Widget> {
                       prayTitleToday: textController!.text,
                     );
                     await currentUserReference!.update(usersUpdateData);
+                    logFirebaseEvent('Button_Backend-Call');
+
+                    final colPTTodayCreateData = createColPTTodayRecordData(
+                      colPt: textController!.text,
+                    );
+                    var colPTTodayRecordReference =
+                        ColPTTodayRecord.collection.doc();
+                    await colPTTodayRecordReference.set(colPTTodayCreateData);
+                    praytitle = ColPTTodayRecord.getDocumentFromData(
+                        colPTTodayCreateData, colPTTodayRecordReference);
                     logFirebaseEvent('Button_Bottom-Sheet');
                     await showModalBottomSheet(
                       isScrollControlled: true,
@@ -136,6 +147,8 @@ class _PrayerSend1WidgetState extends State<PrayerSend1Widget> {
                         );
                       },
                     );
+
+                    setState(() {});
                   },
                   text: 'Send',
                   options: FFButtonOptions(
