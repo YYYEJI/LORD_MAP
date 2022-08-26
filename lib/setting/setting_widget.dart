@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../backend/cloud_functions/cloud_functions.dart';
+
 class SettingWidget extends StatefulWidget {
   const SettingWidget({Key? key}) : super(key: key);
 
@@ -95,6 +97,8 @@ class _SettingWidgetState extends State<SettingWidget> {
                     ),
                     onPressed: () {
                       print('IconButton pressed ...');
+                      RandomGetter n = RandomGetter();
+                      print(n.getBibleToday());
                     },
                   ),
                 ],
