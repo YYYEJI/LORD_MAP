@@ -82,17 +82,16 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'Loading': (data) async => LoadingWidget(),
   'Sign_up': (data) async => SignUpWidget(),
   'Homepage': (data) async => HomepageWidget(),
-  'MovePage': (data) async => MovePageWidget(),
   'Prayer': (data) async => PrayerWidget(),
+  'MovePage': (data) async => MovePageWidget(),
   'PrayerSend1': (data) async => PrayerSend1Widget(),
   'PrayerGet': (data) async => PrayerGetWidget(),
-  'PrayerSend2': (data) async => PrayerSend2Widget(),
   'Timer': (data) async => TimerWidget(),
+  'Formoreget': (data) async => FormoregetWidget(),
   'Timer_addGroup': (data) async => TimerAddGroupWidget(),
   'Find_prayer_group': (data) async => FindPrayerGroupWidget(),
   'Alarm': (data) async => AlarmWidget(),
   'AlarmAdd': (data) async => AlarmAddWidget(),
-  'AlarmAddCopy': (data) async => AlarmAddCopyWidget(),
   'SelectRoom': (data) async => SelectRoomWidget(),
   'PrayerRoomlectur': (data) async => PrayerRoomlecturWidget(),
   'PrayerRoomDorm': (data) async => PrayerRoomDormWidget(),
@@ -104,6 +103,7 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'David': (data) async => DavidWidget(),
   'OH': (data) async => OhWidget(),
   'HDH': (data) async => HdhWidget(),
+  'Setting': (data) async => SettingWidget(),
 };
 
 bool hasMatchingParameters(Map<String, dynamic> data, Set<String> params) =>

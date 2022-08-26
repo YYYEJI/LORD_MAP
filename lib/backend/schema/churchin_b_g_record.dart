@@ -15,12 +15,15 @@ abstract class ChurchinBGRecord
 
   LatLng? get location;
 
+  String? get address;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
 
-  static void _initializeBuilder(ChurchinBGRecordBuilder builder) =>
-      builder..name = '';
+  static void _initializeBuilder(ChurchinBGRecordBuilder builder) => builder
+    ..name = ''
+    ..address = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('ChurchinBG');
@@ -46,13 +49,15 @@ abstract class ChurchinBGRecord
 Map<String, dynamic> createChurchinBGRecordData({
   String? name,
   LatLng? location,
+  String? address,
 }) {
   final firestoreData = serializers.toFirestore(
     ChurchinBGRecord.serializer,
     ChurchinBGRecord(
       (c) => c
         ..name = name
-        ..location = location,
+        ..location = location
+        ..address = address,
     ),
   );
 

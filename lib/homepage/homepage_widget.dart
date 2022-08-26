@@ -7,6 +7,7 @@ import '../move_page/move_page_widget.dart';
 import '../prayer/prayer_widget.dart';
 import '../select_map/select_map_widget.dart';
 import '../select_room/select_room_widget.dart';
+import '../setting/setting_widget.dart';
 import '../timer/timer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -74,8 +75,15 @@ class _HomepageWidgetState extends State<HomepageWidget> {
               color: FlutterFlowTheme.of(context).primaryText,
               size: 30,
             ),
-            onPressed: () {
-              print('IconButton pressed ...');
+            onPressed: () async {
+              logFirebaseEvent('HOMEsettings_outlined_ICN_ON_TAP');
+              logFirebaseEvent('IconButton_Navigate-To');
+              await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SettingWidget(),
+                ),
+              );
             },
           ),
         ],
@@ -95,20 +103,11 @@ class _HomepageWidgetState extends State<HomepageWidget> {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    FlutterFlowIconButton(
-                      borderColor: Colors.transparent,
-                      borderRadius: 30,
-                      borderWidth: 1,
-                      buttonSize: 60,
-                      icon: Icon(
-                        Icons.map_outlined,
-                        color: FlutterFlowTheme.of(context).primaryText,
-                        size: 30,
-                      ),
-                      onPressed: () async {
+                    InkWell(
+                      onTap: () async {
                         logFirebaseEvent(
-                            'HOMEPAGE_PAGE_map_outlined_ICN_ON_TAP');
-                        logFirebaseEvent('IconButton_Navigate-To');
+                            'HOMEPAGE_PAGE_Column_06yivz1c_ON_TAP');
+                        logFirebaseEvent('Column_Navigate-To');
                         await Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -116,21 +115,43 @@ class _HomepageWidgetState extends State<HomepageWidget> {
                           ),
                         );
                       },
-                    ),
-                    FlutterFlowIconButton(
-                      borderColor: Colors.transparent,
-                      borderRadius: 30,
-                      borderWidth: 1,
-                      buttonSize: 60,
-                      icon: Icon(
-                        Icons.mail_outlined,
-                        color: FlutterFlowTheme.of(context).primaryText,
-                        size: 30,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          FlutterFlowIconButton(
+                            borderColor: Colors.transparent,
+                            borderRadius: 30,
+                            borderWidth: 1,
+                            buttonSize: 60,
+                            icon: Icon(
+                              Icons.map_outlined,
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              size: 30,
+                            ),
+                            onPressed: () async {
+                              logFirebaseEvent(
+                                  'HOMEPAGE_PAGE_map_outlined_ICN_ON_TAP');
+                              logFirebaseEvent('IconButton_Navigate-To');
+                              await Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => SelectMapWidget(),
+                                ),
+                              );
+                            },
+                          ),
+                          Text(
+                            '지역교회',
+                            style: FlutterFlowTheme.of(context).bodyText1,
+                          ),
+                        ],
                       ),
-                      onPressed: () async {
+                    ),
+                    InkWell(
+                      onTap: () async {
                         logFirebaseEvent(
-                            'HOMEPAGE_PAGE_mail_outlined_ICN_ON_TAP');
-                        logFirebaseEvent('IconButton_Navigate-To');
+                            'HOMEPAGE_PAGE_Column_idqbtbkc_ON_TAP');
+                        logFirebaseEvent('Column_Navigate-To');
                         await Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -138,20 +159,43 @@ class _HomepageWidgetState extends State<HomepageWidget> {
                           ),
                         );
                       },
-                    ),
-                    FlutterFlowIconButton(
-                      borderColor: Colors.transparent,
-                      borderRadius: 30,
-                      borderWidth: 1,
-                      buttonSize: 60,
-                      icon: Icon(
-                        Icons.alarm,
-                        color: FlutterFlowTheme.of(context).primaryText,
-                        size: 30,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          FlutterFlowIconButton(
+                            borderColor: Colors.transparent,
+                            borderRadius: 30,
+                            borderWidth: 1,
+                            buttonSize: 60,
+                            icon: Icon(
+                              Icons.mail_outline_rounded,
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              size: 30,
+                            ),
+                            onPressed: () async {
+                              logFirebaseEvent(
+                                  'HOMEmail_outline_rounded_ICN_ON_TAP');
+                              logFirebaseEvent('IconButton_Navigate-To');
+                              await Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => PrayerWidget(),
+                                ),
+                              );
+                            },
+                          ),
+                          Text(
+                            '기도제목',
+                            style: FlutterFlowTheme.of(context).bodyText1,
+                          ),
+                        ],
                       ),
-                      onPressed: () async {
-                        logFirebaseEvent('HOMEPAGE_PAGE_alarm_ICN_ON_TAP');
-                        logFirebaseEvent('IconButton_Navigate-To');
+                    ),
+                    InkWell(
+                      onTap: () async {
+                        logFirebaseEvent(
+                            'HOMEPAGE_PAGE_Column_agbkyokk_ON_TAP');
+                        logFirebaseEvent('Column_Navigate-To');
                         await Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -159,20 +203,43 @@ class _HomepageWidgetState extends State<HomepageWidget> {
                           ),
                         );
                       },
-                    ),
-                    FlutterFlowIconButton(
-                      borderColor: Colors.transparent,
-                      borderRadius: 30,
-                      borderWidth: 1,
-                      buttonSize: 60,
-                      icon: Icon(
-                        Icons.bookmarks_outlined,
-                        color: FlutterFlowTheme.of(context).primaryText,
-                        size: 30,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          FlutterFlowIconButton(
+                            borderColor: Colors.transparent,
+                            borderRadius: 30,
+                            borderWidth: 1,
+                            buttonSize: 60,
+                            icon: Icon(
+                              Icons.alarm_rounded,
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              size: 30,
+                            ),
+                            onPressed: () async {
+                              logFirebaseEvent(
+                                  'HOMEPAGE_PAGE_alarm_rounded_ICN_ON_TAP');
+                              logFirebaseEvent('IconButton_Navigate-To');
+                              await Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => AlarmWidget(),
+                                ),
+                              );
+                            },
+                          ),
+                          Text(
+                            '기도알림',
+                            style: FlutterFlowTheme.of(context).bodyText1,
+                          ),
+                        ],
                       ),
-                      onPressed: () async {
-                        logFirebaseEvent('HOMEbookmarks_outlined_ICN_ON_TAP');
-                        logFirebaseEvent('IconButton_Navigate-To');
+                    ),
+                    InkWell(
+                      onTap: () async {
+                        logFirebaseEvent(
+                            'HOMEPAGE_PAGE_Column_xpink7i4_ON_TAP');
+                        logFirebaseEvent('Column_Navigate-To');
                         await Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -180,79 +247,40 @@ class _HomepageWidgetState extends State<HomepageWidget> {
                           ),
                         );
                       },
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          FlutterFlowIconButton(
+                            borderColor: Colors.transparent,
+                            borderRadius: 30,
+                            borderWidth: 1,
+                            buttonSize: 60,
+                            icon: Icon(
+                              Icons.bookmarks_outlined,
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              size: 30,
+                            ),
+                            onPressed: () async {
+                              logFirebaseEvent(
+                                  'HOMEbookmarks_outlined_ICN_ON_TAP');
+                              logFirebaseEvent('IconButton_Navigate-To');
+                              await Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => SelectRoomWidget(),
+                                ),
+                              );
+                            },
+                          ),
+                          Text(
+                            '기도실',
+                            style: FlutterFlowTheme.of(context).bodyText1,
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  InkWell(
-                    onTap: () async {
-                      logFirebaseEvent('HOMEPAGE_PAGE_Text_6aitk2gr_ON_TAP');
-                      logFirebaseEvent('Text_Navigate-To');
-                      await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => SelectMapWidget(),
-                        ),
-                      );
-                    },
-                    child: Text(
-                      '지역교회',
-                      style: FlutterFlowTheme.of(context).bodyText1,
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () async {
-                      logFirebaseEvent('HOMEPAGE_PAGE_Text_3pcyrov8_ON_TAP');
-                      logFirebaseEvent('Text_Navigate-To');
-                      await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => PrayerWidget(),
-                        ),
-                      );
-                    },
-                    child: Text(
-                      '기도제목',
-                      style: FlutterFlowTheme.of(context).bodyText1,
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () async {
-                      logFirebaseEvent('HOMEPAGE_PAGE_Text_hdlg80mz_ON_TAP');
-                      logFirebaseEvent('Text_Navigate-To');
-                      await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => AlarmWidget(),
-                        ),
-                      );
-                    },
-                    child: Text(
-                      '기도알람',
-                      style: FlutterFlowTheme.of(context).bodyText1,
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () async {
-                      logFirebaseEvent('HOMEPAGE_PAGE_Text_sg19gfzd_ON_TAP');
-                      logFirebaseEvent('Text_Navigate-To');
-                      await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => SelectRoomWidget(),
-                        ),
-                      );
-                    },
-                    child: Text(
-                      '기도실',
-                      style: FlutterFlowTheme.of(context).bodyText1,
-                    ),
-                  ),
-                ],
               ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 50),

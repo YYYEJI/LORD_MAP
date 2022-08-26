@@ -18,25 +18,25 @@ class SignUpWidget extends StatefulWidget {
 }
 
 class _SignUpWidgetState extends State<SignUpWidget> {
-  TextEditingController? confirmPasswordTextController;
-  late bool passwordVisibility2;
-  TextEditingController? emailTextController;
-  TextEditingController? textController1;
-  TextEditingController? textController2;
-  TextEditingController? passwordTextController;
-  late bool passwordVisibility1;
+  TextEditingController? ageController;
+  TextEditingController? nameController;
+  TextEditingController? emailController;
+  TextEditingController? passwordController;
+  late bool passwordVisibility;
+  TextEditingController? confirmController;
+  late bool confirmVisibility;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    confirmPasswordTextController = TextEditingController();
-    passwordVisibility2 = false;
-    emailTextController = TextEditingController();
-    textController1 = TextEditingController();
-    textController2 = TextEditingController();
-    passwordTextController = TextEditingController();
-    passwordVisibility1 = false;
+    ageController = TextEditingController();
+    nameController = TextEditingController();
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
+    passwordVisibility = false;
+    confirmController = TextEditingController();
+    confirmVisibility = false;
     logFirebaseEvent('screen_view', parameters: {'screen_name': 'Sign_up'});
   }
 
@@ -97,7 +97,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           TextFormField(
-                            controller: textController1,
+                            controller: nameController,
                             autofocus: true,
                             obscureText: false,
                             decoration: InputDecoration(
@@ -129,7 +129,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                         ],
                       ),
                       TextFormField(
-                        controller: textController2,
+                        controller: ageController,
                         autofocus: true,
                         obscureText: false,
                         decoration: InputDecoration(
@@ -160,7 +160,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                         keyboardType: TextInputType.number,
                       ),
                       TextFormField(
-                        controller: emailTextController,
+                        controller: emailController,
                         autofocus: true,
                         obscureText: false,
                         decoration: InputDecoration(
@@ -191,9 +191,9 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                         keyboardType: TextInputType.emailAddress,
                       ),
                       TextFormField(
-                        controller: passwordTextController,
+                        controller: passwordController,
                         autofocus: true,
-                        obscureText: !passwordVisibility1,
+                        obscureText: !passwordVisibility,
                         decoration: InputDecoration(
                           hintText: '   Password',
                           hintStyle: FlutterFlowTheme.of(context).bodyText2,
@@ -219,11 +219,11 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                           ),
                           suffixIcon: InkWell(
                             onTap: () => setState(
-                              () => passwordVisibility1 = !passwordVisibility1,
+                              () => passwordVisibility = !passwordVisibility,
                             ),
                             focusNode: FocusNode(skipTraversal: true),
                             child: Icon(
-                              passwordVisibility1
+                              passwordVisibility
                                   ? Icons.visibility_outlined
                                   : Icons.visibility_off_outlined,
                               color: Color(0xFF757575),
@@ -234,9 +234,9 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                         style: FlutterFlowTheme.of(context).bodyText1,
                       ),
                       TextFormField(
-                        controller: confirmPasswordTextController,
+                        controller: confirmController,
                         autofocus: true,
-                        obscureText: !passwordVisibility2,
+                        obscureText: !confirmVisibility,
                         decoration: InputDecoration(
                           hintText: '   Please enter password again',
                           hintStyle: FlutterFlowTheme.of(context).bodyText2,
@@ -262,11 +262,11 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                           ),
                           suffixIcon: InkWell(
                             onTap: () => setState(
-                              () => passwordVisibility2 = !passwordVisibility2,
+                              () => confirmVisibility = !confirmVisibility,
                             ),
                             focusNode: FocusNode(skipTraversal: true),
                             child: Icon(
-                              passwordVisibility2
+                              confirmVisibility
                                   ? Icons.visibility_outlined
                                   : Icons.visibility_off_outlined,
                               color: Color(0xFF757575),
@@ -290,8 +290,8 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                           onPressed: () async {
                             logFirebaseEvent('SIGN_UP_PAGE_SIGN_UP_BTN_ON_TAP');
                             logFirebaseEvent('Button_Auth');
-                            if (passwordTextController?.text !=
-                                confirmPasswordTextController?.text) {
+                            if (passwordController?.text !=
+                                confirmController?.text) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(
@@ -304,18 +304,18 @@ class _SignUpWidgetState extends State<SignUpWidget> {
 
                             final user = await createAccountWithEmail(
                               context,
-                              emailTextController!.text,
-                              passwordTextController!.text,
+                              emailController!.text,
+                              passwordController!.text,
                             );
                             if (user == null) {
                               return;
                             }
 
                             final usersCreateData = createUsersRecordData(
-                              age: int.parse(textController2!.text),
-                              displayName: textController1!.text,
-                              uid: emailTextController!.text,
-                              email: '',
+                              age: int.parse(ageController!.text),
+                              displayName: nameController!.text,
+                              uid: emailController!.text,
+                              email: emailController!.text,
                             );
                             await UsersRecord.collection
                                 .doc(user.uid)

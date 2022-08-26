@@ -2,10 +2,10 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     match /Users/{document} {
-      allow create: if request.auth.uid == document;
+      allow create: if true;
       allow read: if true;
-      allow write: if request.auth.uid == document;
-      allow delete: if false;
+      allow write: if true;
+      allow delete: if true;
     }
 
     match /ChurchinNG/{document} {
@@ -23,8 +23,8 @@ service cloud.firestore {
     }
 
     match /Alarm/{document} {
-      allow create: if true;
-      allow read: if true;
+      allow create: if request.auth != null;
+      allow read: if request.auth != null;
       allow write: if request.auth != null;
       allow delete: if request.auth != null;
     }
@@ -34,6 +34,25 @@ service cloud.firestore {
       allow read: if false;
       allow write: if false;
       allow delete: if false;
+    }
+
+    match /prayer_group/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /col_PT_Today/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /ff_user_push_notifications/{id} {
+      allow read, update, delete: if false;
+      allow create: if /databases/$(database)/documents/Users/$(request.auth.uid) == request.resource.data.sender;
     }
   }
 }

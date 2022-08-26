@@ -1,9 +1,9 @@
-import '../flutter_flow/flutter_flow_icon_button.dart';
+import '../auth/auth_util.dart';
+import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../prayer/prayer_widget.dart';
-import '../flutter_flow/random_data_util.dart' as random_data;
+import '../formoreget/formoreget_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -37,29 +37,7 @@ class _PrayerGetWidgetState extends State<PrayerGetWidget> {
           '기도제목 받기',
           style: FlutterFlowTheme.of(context).bodyText1,
         ),
-        actions: [
-          FlutterFlowIconButton(
-            borderColor: Colors.transparent,
-            borderRadius: 30,
-            borderWidth: 1,
-            buttonSize: 60,
-            icon: Icon(
-              Icons.close_outlined,
-              color: FlutterFlowTheme.of(context).primaryText,
-              size: 30,
-            ),
-            onPressed: () async {
-              logFirebaseEvent('PRAYER_GET_close_outlined_ICN_ON_TAP');
-              logFirebaseEvent('IconButton_Navigate-To');
-              await Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => PrayerWidget(),
-                ),
-              );
-            },
-          ),
-        ],
+        actions: [],
         centerTitle: true,
         elevation: 4,
       ),
@@ -81,44 +59,113 @@ class _PrayerGetWidgetState extends State<PrayerGetWidget> {
                     ),
                     child: Align(
                       alignment: AlignmentDirectional(0, 0),
-                      child: AutoSizeText(
-                        valueOrDefault<String>(
-                          random_data.randomString(
-                            1,
-                            10,
-                            true,
-                            false,
-                            false,
+                      child: AuthUserStreamWidget(
+                        child: StreamBuilder<List<ColPTTodayRecord>>(
+                          stream: queryColPTTodayRecord(
+                            queryBuilder: (colPTTodayRecord) =>
+                                colPTTodayRecord.where('col_pt',
+                                    isNotEqualTo: valueOrDefault(
+                                        currentUserDocument?.prayTitleToday,
+                                        '')),
+                            singleRecord: true,
                           ),
-                          'God bless you!',
+                          builder: (context, snapshot) {
+                            // Customize what your widget looks like when it's loading.
+                            if (!snapshot.hasData) {
+                              return Center(
+                                child: SizedBox(
+                                  width: 50,
+                                  height: 50,
+                                  child: SpinKitRipple(
+                                    color: Color(0xFFCBCBCB),
+                                    size: 50,
+                                  ),
+                                ),
+                              );
+                            }
+                            List<ColPTTodayRecord> textColPTTodayRecordList =
+                                snapshot.data!;
+                            // Return an empty Container when the document does not exist.
+                            if (snapshot.data!.isEmpty) {
+                              return Container();
+                            }
+                            final textColPTTodayRecord =
+                                textColPTTodayRecordList.isNotEmpty
+                                    ? textColPTTodayRecordList.first
+                                    : null;
+                            return AutoSizeText(
+                              valueOrDefault<String>(
+                                textColPTTodayRecord!.colPt,
+                                '기도해주셔서 감사해요!',
+                              ),
+                              style: FlutterFlowTheme.of(context).bodyText1,
+                            );
+                          },
                         ),
-                        style: FlutterFlowTheme.of(context).bodyText1,
                       ),
                     ),
                   ),
                 ),
                 Align(
                   alignment: AlignmentDirectional(0.04, 0.89),
-                  child: FFButtonWidget(
-                    onPressed: () {
-                      print('Button pressed ...');
-                    },
-                    text: 'Get',
-                    options: FFButtonOptions(
-                      width: 130,
-                      height: 40,
-                      color: FlutterFlowTheme.of(context).primaryColor,
-                      textStyle:
-                          FlutterFlowTheme.of(context).subtitle2.override(
-                                fontFamily: 'Poppins',
-                                color: Colors.white,
-                              ),
-                      borderSide: BorderSide(
-                        color: Colors.transparent,
-                        width: 1,
-                      ),
-                      borderRadius: BorderRadius.circular(8),
+                  child: StreamBuilder<List<ColPTTodayRecord>>(
+                    stream: queryColPTTodayRecord(
+                      singleRecord: true,
                     ),
+                    builder: (context, snapshot) {
+                      // Customize what your widget looks like when it's loading.
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: SizedBox(
+                            width: 50,
+                            height: 50,
+                            child: SpinKitRipple(
+                              color: Color(0xFFCBCBCB),
+                              size: 50,
+                            ),
+                          ),
+                        );
+                      }
+                      List<ColPTTodayRecord> buttonColPTTodayRecordList =
+                          snapshot.data!;
+                      // Return an empty Container when the document does not exist.
+                      if (snapshot.data!.isEmpty) {
+                        return Container();
+                      }
+                      final buttonColPTTodayRecord =
+                          buttonColPTTodayRecordList.isNotEmpty
+                              ? buttonColPTTodayRecordList.first
+                              : null;
+                      return FFButtonWidget(
+                        onPressed: () async {
+                          logFirebaseEvent(
+                              'PRAYER_GET_PAGE_GET_MORE!_BTN_ON_TAP');
+                          logFirebaseEvent('Button_Navigate-To');
+                          await Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => FormoregetWidget(),
+                            ),
+                          );
+                        },
+                        text: 'Get More!',
+                        options: FFButtonOptions(
+                          width: 130,
+                          height: 40,
+                          color: FlutterFlowTheme.of(context).primaryColor,
+                          textStyle:
+                              FlutterFlowTheme.of(context).subtitle2.override(
+                                    fontFamily: 'Poppins',
+                                    color: Colors.white,
+                                  ),
+                          borderSide: BorderSide(
+                            color: Colors.transparent,
+                            width: 1,
+                          ),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      );
+                    },
                   ),
                 ),
               ],

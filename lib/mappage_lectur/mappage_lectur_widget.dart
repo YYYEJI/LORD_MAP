@@ -2,7 +2,7 @@ import '../flutter_flow/flutter_flow_expanded_image_view.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../prayer_room_dorm/prayer_room_dorm_widget.dart';
+import '../prayer_roomlectur/prayer_roomlectur_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -51,7 +51,7 @@ class _MappageLecturWidgetState extends State<MappageLecturWidget> {
                 type: PageTransitionType.bottomToTop,
                 duration: Duration(milliseconds: 300),
                 reverseDuration: Duration(milliseconds: 300),
-                child: PrayerRoomDormWidget(),
+                child: PrayerRoomlecturWidget(),
               ),
             );
           },

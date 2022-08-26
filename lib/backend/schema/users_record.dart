@@ -34,6 +34,15 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
 
   int? get age;
 
+  @BuiltValueField(wireName: 'get_bible')
+  bool? get getBible;
+
+  @BuiltValueField(wireName: 'prayTitle_got')
+  String? get prayTitleGot;
+
+  @BuiltValueField(wireName: 'Prayer_group')
+  String? get prayerGroup;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -47,7 +56,10 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
     ..prayTitleToday = ''
     ..isCompletedToday = false
     ..prayTimeToday = 0
-    ..age = 0;
+    ..age = 0
+    ..getBible = false
+    ..prayTitleGot = ''
+    ..prayerGroup = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('Users');
@@ -81,6 +93,9 @@ Map<String, dynamic> createUsersRecordData({
   bool? isCompletedToday,
   int? prayTimeToday,
   int? age,
+  bool? getBible,
+  String? prayTitleGot,
+  String? prayerGroup,
 }) {
   final firestoreData = serializers.toFirestore(
     UsersRecord.serializer,
@@ -95,7 +110,10 @@ Map<String, dynamic> createUsersRecordData({
         ..prayTitleToday = prayTitleToday
         ..isCompletedToday = isCompletedToday
         ..prayTimeToday = prayTimeToday
-        ..age = age,
+        ..age = age
+        ..getBible = getBible
+        ..prayTitleGot = prayTitleGot
+        ..prayerGroup = prayerGroup,
     ),
   );
 

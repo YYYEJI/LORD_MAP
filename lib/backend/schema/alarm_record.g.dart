@@ -45,6 +45,48 @@ class _$AlarmRecordSerializer implements StructuredSerializer<AlarmRecord> {
         ..add(
             serializers.serialize(value, specifiedType: const FullType(bool)));
     }
+    value = object.email;
+    if (value != null) {
+      result
+        ..add('email')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.displayName;
+    if (value != null) {
+      result
+        ..add('display_name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.photoUrl;
+    if (value != null) {
+      result
+        ..add('photo_url')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.uid;
+    if (value != null) {
+      result
+        ..add('uid')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.createdTime;
+    if (value != null) {
+      result
+        ..add('created_time')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(DateTime)));
+    }
+    value = object.phoneNumber;
+    if (value != null) {
+      result
+        ..add('phone_number')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -83,6 +125,30 @@ class _$AlarmRecordSerializer implements StructuredSerializer<AlarmRecord> {
           result.isOn = serializers.deserialize(value,
               specifiedType: const FullType(bool)) as bool?;
           break;
+        case 'email':
+          result.email = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'display_name':
+          result.displayName = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'photo_url':
+          result.photoUrl = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'uid':
+          result.uid = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'created_time':
+          result.createdTime = serializers.deserialize(value,
+              specifiedType: const FullType(DateTime)) as DateTime?;
+          break;
+        case 'phone_number':
+          result.phoneNumber = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -106,12 +172,35 @@ class _$AlarmRecord extends AlarmRecord {
   @override
   final bool? isOn;
   @override
+  final String? email;
+  @override
+  final String? displayName;
+  @override
+  final String? photoUrl;
+  @override
+  final String? uid;
+  @override
+  final DateTime? createdTime;
+  @override
+  final String? phoneNumber;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$AlarmRecord([void Function(AlarmRecordBuilder)? updates]) =>
       (new AlarmRecordBuilder()..update(updates))._build();
 
-  _$AlarmRecord._({this.hour, this.min, this.tag, this.isOn, this.ffRef})
+  _$AlarmRecord._(
+      {this.hour,
+      this.min,
+      this.tag,
+      this.isOn,
+      this.email,
+      this.displayName,
+      this.photoUrl,
+      this.uid,
+      this.createdTime,
+      this.phoneNumber,
+      this.ffRef})
       : super._();
 
   @override
@@ -129,14 +218,36 @@ class _$AlarmRecord extends AlarmRecord {
         min == other.min &&
         tag == other.tag &&
         isOn == other.isOn &&
+        email == other.email &&
+        displayName == other.displayName &&
+        photoUrl == other.photoUrl &&
+        uid == other.uid &&
+        createdTime == other.createdTime &&
+        phoneNumber == other.phoneNumber &&
         ffRef == other.ffRef;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc($jc(0, hour.hashCode), min.hashCode), tag.hashCode),
-            isOn.hashCode),
+        $jc(
+            $jc(
+                $jc(
+                    $jc(
+                        $jc(
+                            $jc(
+                                $jc(
+                                    $jc(
+                                        $jc($jc(0, hour.hashCode),
+                                            min.hashCode),
+                                        tag.hashCode),
+                                    isOn.hashCode),
+                                email.hashCode),
+                            displayName.hashCode),
+                        photoUrl.hashCode),
+                    uid.hashCode),
+                createdTime.hashCode),
+            phoneNumber.hashCode),
         ffRef.hashCode));
   }
 
@@ -147,6 +258,12 @@ class _$AlarmRecord extends AlarmRecord {
           ..add('min', min)
           ..add('tag', tag)
           ..add('isOn', isOn)
+          ..add('email', email)
+          ..add('displayName', displayName)
+          ..add('photoUrl', photoUrl)
+          ..add('uid', uid)
+          ..add('createdTime', createdTime)
+          ..add('phoneNumber', phoneNumber)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -171,6 +288,30 @@ class AlarmRecordBuilder implements Builder<AlarmRecord, AlarmRecordBuilder> {
   bool? get isOn => _$this._isOn;
   set isOn(bool? isOn) => _$this._isOn = isOn;
 
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
+
+  String? _displayName;
+  String? get displayName => _$this._displayName;
+  set displayName(String? displayName) => _$this._displayName = displayName;
+
+  String? _photoUrl;
+  String? get photoUrl => _$this._photoUrl;
+  set photoUrl(String? photoUrl) => _$this._photoUrl = photoUrl;
+
+  String? _uid;
+  String? get uid => _$this._uid;
+  set uid(String? uid) => _$this._uid = uid;
+
+  DateTime? _createdTime;
+  DateTime? get createdTime => _$this._createdTime;
+  set createdTime(DateTime? createdTime) => _$this._createdTime = createdTime;
+
+  String? _phoneNumber;
+  String? get phoneNumber => _$this._phoneNumber;
+  set phoneNumber(String? phoneNumber) => _$this._phoneNumber = phoneNumber;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -186,6 +327,12 @@ class AlarmRecordBuilder implements Builder<AlarmRecord, AlarmRecordBuilder> {
       _min = $v.min;
       _tag = $v.tag;
       _isOn = $v.isOn;
+      _email = $v.email;
+      _displayName = $v.displayName;
+      _photoUrl = $v.photoUrl;
+      _uid = $v.uid;
+      _createdTime = $v.createdTime;
+      _phoneNumber = $v.phoneNumber;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -209,7 +356,17 @@ class AlarmRecordBuilder implements Builder<AlarmRecord, AlarmRecordBuilder> {
   _$AlarmRecord _build() {
     final _$result = _$v ??
         new _$AlarmRecord._(
-            hour: hour, min: min, tag: tag, isOn: isOn, ffRef: ffRef);
+            hour: hour,
+            min: min,
+            tag: tag,
+            isOn: isOn,
+            email: email,
+            displayName: displayName,
+            photoUrl: photoUrl,
+            uid: uid,
+            createdTime: createdTime,
+            phoneNumber: phoneNumber,
+            ffRef: ffRef);
     replace(_$result);
     return _$result;
   }

@@ -1,7 +1,6 @@
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_widgets.dart';
 import '../homepage/homepage_widget.dart';
 import '../prayer_get/prayer_get_widget.dart';
 import '../prayer_send1/prayer_send1_widget.dart';
@@ -88,107 +87,85 @@ class _PrayerWidgetState extends State<PrayerWidget> {
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
-          child: Stack(
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Align(
-                alignment: AlignmentDirectional(-0.01, 0.87),
-                child: FFButtonWidget(
-                  onPressed: () async {
-                    logFirebaseEvent('PRAYER_PAGE_GET_BTN_ON_TAP');
-                    logFirebaseEvent('Button_Navigate-To');
-                    await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => PrayerGetWidget(),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Expanded(
+                    child: InkWell(
+                      onTap: () async {
+                        logFirebaseEvent('PRAYER_PAGE_Column_4qzosyhu_ON_TAP');
+                        logFirebaseEvent('Column_Navigate-To');
+                        await Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => PrayerSend1Widget(),
+                          ),
+                        );
+                      },
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Image.asset(
+                            'assets/images/letter2.png',
+                            width: 270,
+                            height: 160,
+                            fit: BoxFit.fill,
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                            child: Text(
+                              'Send',
+                              style: FlutterFlowTheme.of(context).subtitle2,
+                            ),
+                          ),
+                        ],
                       ),
-                    );
-                  },
-                  text: 'Get',
-                  options: FFButtonOptions(
-                    width: 130,
-                    height: 40,
-                    color: Color(0xFFFAFAD2),
-                    textStyle: FlutterFlowTheme.of(context).subtitle2.override(
-                          fontFamily: 'Poppins',
-                          color: Colors.black,
-                        ),
-                    borderSide: BorderSide(
-                      color: Colors.transparent,
-                      width: 1,
                     ),
-                    borderRadius: BorderRadius.circular(8),
                   ),
-                ),
+                ],
               ),
-              Align(
-                alignment: AlignmentDirectional(0, -0.1),
-                child: FFButtonWidget(
-                  onPressed: () async {
-                    logFirebaseEvent('PRAYER_PAGE_SEND_BTN_ON_TAP');
-                    logFirebaseEvent('Button_Navigate-To');
-                    await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => PrayerSend1Widget(),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Expanded(
+                    child: InkWell(
+                      onTap: () async {
+                        logFirebaseEvent('PRAYER_PAGE_Column_mps2osu8_ON_TAP');
+                        logFirebaseEvent('Column_Navigate-To');
+                        await Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => PrayerGetWidget(),
+                          ),
+                        );
+                      },
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Image.asset(
+                            'assets/images/letter2.png',
+                            width: 270,
+                            height: 160,
+                            fit: BoxFit.fill,
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                            child: Text(
+                              'Get',
+                              style: FlutterFlowTheme.of(context).subtitle2,
+                            ),
+                          ),
+                        ],
                       ),
-                    );
-                  },
-                  text: 'Send',
-                  options: FFButtonOptions(
-                    width: 130,
-                    height: 40,
-                    color: Color(0xFFFAFAD2),
-                    textStyle: FlutterFlowTheme.of(context).subtitle2.override(
-                          fontFamily: 'Poppins',
-                          color: Colors.black,
-                        ),
-                    borderSide: BorderSide(
-                      color: Colors.transparent,
-                      width: 1,
                     ),
-                    borderRadius: BorderRadius.circular(8),
                   ),
-                ),
-              ),
-              Align(
-                alignment: AlignmentDirectional(0.03, -0.65),
-                child: InkWell(
-                  onTap: () async {
-                    logFirebaseEvent('PRAYER_PAGE_Image_lyhe5m1j_ON_TAP');
-                    logFirebaseEvent('Image_Navigate-To');
-                    await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => PrayerSend1Widget(),
-                      ),
-                    );
-                  },
-                  child: Image.asset(
-                    'assets/images/letter2.png',
-                    width: 270,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-              Align(
-                alignment: AlignmentDirectional(0, 0.6),
-                child: InkWell(
-                  onTap: () async {
-                    logFirebaseEvent('PRAYER_PAGE_Image_kbu5bla0_ON_TAP');
-                    logFirebaseEvent('Image_Navigate-To');
-                    await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => PrayerGetWidget(),
-                      ),
-                    );
-                  },
-                  child: Image.asset(
-                    'assets/images/letter2.png',
-                    width: 270,
-                    fit: BoxFit.cover,
-                  ),
-                ),
+                ],
               ),
             ],
           ),

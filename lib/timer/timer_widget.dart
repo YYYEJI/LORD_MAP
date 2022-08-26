@@ -1,3 +1,6 @@
+import '../auth/auth_util.dart';
+import '../backend/backend.dart';
+import '../backend/push_notifications/push_notifications_util.dart';
 import '../find_prayer_group/find_prayer_group_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -5,6 +8,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../homepage/homepage_widget.dart';
 import '../timer_add_group/timer_add_group_widget.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -66,12 +70,12 @@ class _TimerWidgetState extends State<TimerWidget> {
             borderWidth: 1,
             buttonSize: 60,
             icon: Icon(
-              Icons.find_in_page_rounded,
+              Icons.search,
               color: FlutterFlowTheme.of(context).primaryText,
-              size: 30,
+              size: 20,
             ),
             onPressed: () async {
-              logFirebaseEvent('TIMER_find_in_page_rounded_ICN_ON_TAP');
+              logFirebaseEvent('TIMER_PAGE_search_ICN_ON_TAP');
               logFirebaseEvent('IconButton_Navigate-To');
               await Navigator.push(
                 context,
@@ -132,9 +136,12 @@ class _TimerWidgetState extends State<TimerWidget> {
                           Padding(
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                            child: Text(
-                              '\" 어쩌구저쩌구기도제목\"',
-                              style: FlutterFlowTheme.of(context).title3,
+                            child: AuthUserStreamWidget(
+                              child: Text(
+                                valueOrDefault(
+                                    currentUserDocument?.prayTitleGot, ''),
+                                style: FlutterFlowTheme.of(context).title3,
+                              ),
                             ),
                           ),
                         ],
@@ -146,16 +153,16 @@ class _TimerWidgetState extends State<TimerWidget> {
               Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Expanded(
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 40),
+                    child: AuthUserStreamWidget(
                       child: Text(
-                        '00 : 02',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 80,
-                        ),
+                        valueOrDefault(currentUserDocument?.prayTimeToday, 0)
+                            .toString(),
+                        style: FlutterFlowTheme.of(context).bodyText1.override(
+                              fontFamily: 'Poppins',
+                              fontSize: 40,
+                            ),
                       ),
                     ),
                   ),
@@ -189,8 +196,23 @@ class _TimerWidgetState extends State<TimerWidget> {
                       ),
                     ),
                     FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
+                      onPressed: () async {
+                        logFirebaseEvent('TIMER_PAGE_FINISH_BTN_ON_TAP');
+                        logFirebaseEvent('Button_Backend-Call');
+
+                        final usersUpdateData = createUsersRecordData(
+                          isCompletedToday: true,
+                        );
+                        await currentUserReference!.update(usersUpdateData);
+                        logFirebaseEvent('Button_Trigger-Push-Notification');
+                        triggerPushNotification(
+                          notificationTitle: '누군가 당신을 위해 기도했어요 :)',
+                          notificationText: valueOrDefault(
+                              currentUserDocument?.prayTitleGot, ''),
+                          userRefs: [currentUserReference!],
+                          initialPageName: 'Homepage',
+                          parameterData: {},
+                        );
                       },
                       text: 'Finish',
                       options: FFButtonOptions(
@@ -224,8 +246,38 @@ class _TimerWidgetState extends State<TimerWidget> {
                         labelStyle: FlutterFlowTheme.of(context).bodyText1,
                         indicatorColor: Color(0xFFFAFAD2),
                         tabs: [
-                          Tab(
-                            text: '그룹1',
+                          FutureBuilder<List<UsersRecord>>(
+                            future: queryUsersRecordOnce(
+                              singleRecord: true,
+                            ),
+                            builder: (context, snapshot) {
+                              // Customize what your widget looks like when it's loading.
+                              if (!snapshot.hasData) {
+                                return Center(
+                                  child: SizedBox(
+                                    width: 50,
+                                    height: 50,
+                                    child: SpinKitRipple(
+                                      color: Color(0xFFCBCBCB),
+                                      size: 50,
+                                    ),
+                                  ),
+                                );
+                              }
+                              List<UsersRecord> tabUsersRecordList =
+                                  snapshot.data!;
+                              // Return an empty Container when the document does not exist.
+                              if (snapshot.data!.isEmpty) {
+                                return Container();
+                              }
+                              final tabUsersRecord =
+                                  tabUsersRecordList.isNotEmpty
+                                      ? tabUsersRecordList.first
+                                      : null;
+                              return Tab(
+                                text: tabUsersRecord!.prayerGroup!,
+                              );
+                            },
                           ),
                           Tab(
                             text: '그룹2',
@@ -259,205 +311,48 @@ class _TimerWidgetState extends State<TimerWidget> {
                                     ),
                                   ],
                                 ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          10, 0, 10, 0),
-                                      child: Text(
-                                        '1. ',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1,
-                                      ),
+                                AuthUserStreamWidget(
+                                  child: StreamBuilder<List<PrayerGroupRecord>>(
+                                    stream: queryPrayerGroupRecord(
+                                      queryBuilder: (prayerGroupRecord) =>
+                                          prayerGroupRecord.where('users',
+                                              arrayContains:
+                                                  currentUserDisplayName),
                                     ),
-                                    Container(
-                                      width: 50,
-                                      height: 50,
-                                      clipBehavior: Clip.antiAlias,
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                      ),
-                                      child: Image.network(
-                                        'https://picsum.photos/seed/645/600',
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          10, 0, 10, 0),
-                                      child: Text(
-                                        '김개똥',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          10, 0, 10, 0),
-                                      child: Text(
-                                        '04:19',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1,
-                                      ),
-                                    ),
-                                    FaIcon(
-                                      FontAwesomeIcons.solidCircle,
-                                      color: Color(0xFF3FD239),
-                                      size: 24,
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          10, 0, 10, 0),
-                                      child: Text(
-                                        '1. ',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1,
-                                      ),
-                                    ),
-                                    Container(
-                                      width: 50,
-                                      height: 50,
-                                      clipBehavior: Clip.antiAlias,
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                      ),
-                                      child: Image.network(
-                                        'https://picsum.photos/seed/645/600',
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          10, 0, 10, 0),
-                                      child: Text(
-                                        '김개똥',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          10, 0, 10, 0),
-                                      child: Text(
-                                        '04:19',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1,
-                                      ),
-                                    ),
-                                    FaIcon(
-                                      FontAwesomeIcons.solidCircle,
-                                      color: Color(0xFF3FD239),
-                                      size: 24,
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          10, 0, 10, 0),
-                                      child: Text(
-                                        '1. ',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1,
-                                      ),
-                                    ),
-                                    Container(
-                                      width: 50,
-                                      height: 50,
-                                      clipBehavior: Clip.antiAlias,
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                      ),
-                                      child: Image.network(
-                                        'https://picsum.photos/seed/645/600',
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          10, 0, 10, 0),
-                                      child: Text(
-                                        '김개똥',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          10, 0, 10, 0),
-                                      child: Text(
-                                        '04:19',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1,
-                                      ),
-                                    ),
-                                    FaIcon(
-                                      FontAwesomeIcons.solidCircle,
-                                      color: Color(0xFF3FD239),
-                                      size: 24,
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          10, 0, 10, 0),
-                                      child: Text(
-                                        '1. ',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1,
-                                      ),
-                                    ),
-                                    Container(
-                                      width: 50,
-                                      height: 50,
-                                      clipBehavior: Clip.antiAlias,
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                      ),
-                                      child: Image.network(
-                                        'https://picsum.photos/seed/645/600',
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          10, 0, 10, 0),
-                                      child: Text(
-                                        '김개똥',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          10, 0, 10, 0),
-                                      child: Text(
-                                        '04:19',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1,
-                                      ),
-                                    ),
-                                    FaIcon(
-                                      FontAwesomeIcons.solidCircle,
-                                      color: Color(0xFF3FD239),
-                                      size: 24,
-                                    ),
-                                  ],
+                                    builder: (context, snapshot) {
+                                      // Customize what your widget looks like when it's loading.
+                                      if (!snapshot.hasData) {
+                                        return Center(
+                                          child: SizedBox(
+                                            width: 50,
+                                            height: 50,
+                                            child: SpinKitRipple(
+                                              color: Color(0xFFCBCBCB),
+                                              size: 50,
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                      List<PrayerGroupRecord>
+                                          listTilePrayerGroupRecordList =
+                                          snapshot.data!;
+                                      return ListTile(
+                                        title: Text(
+                                          listTilePrayerGroupRecordList.length
+                                              .toString(),
+                                          style: FlutterFlowTheme.of(context)
+                                              .title3,
+                                        ),
+                                        subtitle: Text(
+                                          'Lorem ipsum dolor...',
+                                          style: FlutterFlowTheme.of(context)
+                                              .subtitle2,
+                                        ),
+                                        tileColor: Color(0xFFF5F5F5),
+                                        dense: false,
+                                      );
+                                    },
+                                  ),
                                 ),
                               ],
                             ),
@@ -738,26 +633,10 @@ class _TimerWidgetState extends State<TimerWidget> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceEvenly,
                                       children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  10, 0, 10, 0),
-                                          child: Text(
-                                            '1. ',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyText1,
-                                          ),
-                                        ),
-                                        Container(
-                                          width: 50,
-                                          height: 50,
-                                          clipBehavior: Clip.antiAlias,
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                          ),
-                                          child: Image.network(
-                                            'https://picsum.photos/seed/645/600',
-                                          ),
+                                        Text(
+                                          '1',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyText1,
                                         ),
                                         Padding(
                                           padding:
@@ -791,26 +670,10 @@ class _TimerWidgetState extends State<TimerWidget> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceEvenly,
                                       children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  10, 0, 10, 0),
-                                          child: Text(
-                                            '1. ',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyText1,
-                                          ),
-                                        ),
-                                        Container(
-                                          width: 50,
-                                          height: 50,
-                                          clipBehavior: Clip.antiAlias,
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                          ),
-                                          child: Image.network(
-                                            'https://picsum.photos/seed/645/600',
-                                          ),
+                                        Text(
+                                          '2',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyText1,
                                         ),
                                         Padding(
                                           padding:
@@ -844,26 +707,10 @@ class _TimerWidgetState extends State<TimerWidget> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceEvenly,
                                       children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  10, 0, 10, 0),
-                                          child: Text(
-                                            '1. ',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyText1,
-                                          ),
-                                        ),
-                                        Container(
-                                          width: 50,
-                                          height: 50,
-                                          clipBehavior: Clip.antiAlias,
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                          ),
-                                          child: Image.network(
-                                            'https://picsum.photos/seed/645/600',
-                                          ),
+                                        Text(
+                                          '3',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyText1,
                                         ),
                                         Padding(
                                           padding:
@@ -897,26 +744,10 @@ class _TimerWidgetState extends State<TimerWidget> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceEvenly,
                                       children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  10, 0, 10, 0),
-                                          child: Text(
-                                            '1. ',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyText1,
-                                          ),
-                                        ),
-                                        Container(
-                                          width: 50,
-                                          height: 50,
-                                          clipBehavior: Clip.antiAlias,
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                          ),
-                                          child: Image.network(
-                                            'https://picsum.photos/seed/645/600',
-                                          ),
+                                        Text(
+                                          '4',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyText1,
                                         ),
                                         Padding(
                                           padding:
@@ -928,14 +759,18 @@ class _TimerWidgetState extends State<TimerWidget> {
                                                 .bodyText1,
                                           ),
                                         ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  10, 0, 10, 0),
-                                          child: Text(
-                                            '04:19',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyText1,
+                                        Align(
+                                          alignment: AlignmentDirectional(0, 0),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    10, 0, 10, 0),
+                                            child: Text(
+                                              '04:19',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyText1,
+                                            ),
                                           ),
                                         ),
                                         FaIcon(
