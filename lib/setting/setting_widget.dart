@@ -97,8 +97,15 @@ class _SettingWidgetState extends State<SettingWidget> {
                     ),
                     onPressed: () {
                       print('IconButton pressed ...');
-                      RandomGetter n = RandomGetter();
-                      print(n.getBibleToday());
+
+
+
+                      RandGetter n = RandGetter();
+                      //print(n.getBibleToday());
+                      //for(int i = 0; i < 10; i++) n.createdata( i.toString(), "this is test word ^0^");
+                      print(n.getRandom());
+
+
                     },
                   ),
                 ],
