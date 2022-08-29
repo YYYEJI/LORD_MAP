@@ -27,9 +27,11 @@ Future<Map<String, dynamic>> makeCloudCall(
 }
 
 
+
+
+
 class RandGetter{
   Random rand = Random();
-
 
 
   //데이터 삽입
@@ -48,18 +50,26 @@ class RandGetter{
     });
   }
 
+
   //랜덤 데이터 반환
-  String getRandom(){
+  Future<String> getRandom() async {
+
     int ranNum = rand.nextInt(10);
     final usercol=FirebaseFirestore.instance.collection("Bible").doc(ranNum.toString());
-    String randVar = "NULL";
-    List <String> a;
-    usercol.get().then((value) => {
-      print(value.data())
-      //a = value.data().values;
-      //randVar = value.data()
-    });
-    return randVar;
+
+    final foo = await usercol.get();
+    final randVar = foo.data()!['text'];
+    //print(randVar);
+    //print(randVar.runtimeType);
+    //print(foo.runtimeType);
+
+
+    /*usercol.get().then((value) => {
+      randVar = value.data()!['text'],
+      //print(randVar)
+    });*/
+
+    return randVar.toString();
   }
 
   //데이터 수정

@@ -95,15 +95,14 @@ class _SettingWidgetState extends State<SettingWidget> {
                       color: FlutterFlowTheme.of(context).primaryText,
                       size: 30,
                     ),
-                    onPressed: () {
-                      print('IconButton pressed ...');
-
-
+                    onPressed: () async {
+                      print('notification button pressed ...');
 
                       RandGetter n = RandGetter();
-                      //print(n.getBibleToday());
                       //for(int i = 0; i < 10; i++) n.createdata( i.toString(), "this is test word ^0^");
-                      print(n.getRandom());
+                      //n.getRandom();
+                      var plz = await n.getRandom();
+                      print(plz);
 
 
                     },
