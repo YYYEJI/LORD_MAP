@@ -11,6 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../backend/cloud_functions/cloud_functions.dart';
+
 class PrayerSend1Widget extends StatefulWidget {
   const PrayerSend1Widget({Key? key}) : super(key: key);
 
@@ -127,6 +129,18 @@ class _PrayerSend1WidgetState extends State<PrayerSend1Widget> {
                     await currentUserReference!.update(usersUpdateData);
                     logFirebaseEvent('Button_Backend-Call');
 
+
+                    // -----------------------------
+                    RandGetter n = RandGetter();
+                    //dummy불러오고
+                    //+1하고 dummy업데이트
+                    //그값을 key로 data생성
+                    int I = await n.updateDummy();
+                    n.createPrayerTitleData(textController!.text, I);
+
+                    // -----------------------------
+
+                    /*
                     final colPTTodayCreateData = createColPTTodayRecordData(
                       colPt: textController!.text,
                     );
@@ -135,6 +149,7 @@ class _PrayerSend1WidgetState extends State<PrayerSend1Widget> {
                     await colPTTodayRecordReference.set(colPTTodayCreateData);
                     praytitle = ColPTTodayRecord.getDocumentFromData(
                         colPTTodayCreateData, colPTTodayRecordReference);
+                    */
                     logFirebaseEvent('Button_Bottom-Sheet');
                     await showModalBottomSheet(
                       isScrollControlled: true,

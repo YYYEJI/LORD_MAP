@@ -101,8 +101,11 @@ class _SettingWidgetState extends State<SettingWidget> {
                       RandGetter n = RandGetter();
                       //for(int i = 0; i < 10; i++) n.createdata( i.toString(), "this is test word ^0^");
                       //n.getRandom();
-                      var plz = await n.getRandom();
+                      var plz = await n.getRandomBible();
                       print(plz);
+                      print("-----------------------------------");
+                      String nnn = await n.getRandomPrayTitle();
+                      print(nnn);
 
 
                     },
