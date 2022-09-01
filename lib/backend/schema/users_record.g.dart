@@ -108,6 +108,12 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.prayerStack;
+    if (value != null) {
+      result
+        ..add('prayerStack')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -182,6 +188,10 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
           result.prayerGroup = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'prayerStack':
+          result.prayerStack = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -223,6 +233,8 @@ class _$UsersRecord extends UsersRecord {
   @override
   final String? prayerGroup;
   @override
+  final int? prayerStack;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$UsersRecord([void Function(UsersRecordBuilder)? updates]) =>
@@ -242,6 +254,7 @@ class _$UsersRecord extends UsersRecord {
       this.getBible,
       this.prayTitleGot,
       this.prayerGroup,
+      this.prayerStack,
       this.ffRef})
       : super._();
 
@@ -269,6 +282,7 @@ class _$UsersRecord extends UsersRecord {
         getBible == other.getBible &&
         prayTitleGot == other.prayTitleGot &&
         prayerGroup == other.prayerGroup &&
+        prayerStack == other.prayerStack &&
         ffRef == other.ffRef;
   }
 
@@ -286,19 +300,24 @@ class _$UsersRecord extends UsersRecord {
                                         $jc(
                                             $jc(
                                                 $jc(
-                                                    $jc($jc(0, email.hashCode),
-                                                        displayName.hashCode),
-                                                    photoUrl.hashCode),
-                                                uid.hashCode),
-                                            createdTime.hashCode),
-                                        phoneNumber.hashCode),
-                                    prayTitleToday.hashCode),
-                                isCompletedToday.hashCode),
-                            prayTimeToday.hashCode),
-                        age.hashCode),
-                    getBible.hashCode),
-                prayTitleGot.hashCode),
-            prayerGroup.hashCode),
+                                                    $jc(
+                                                        $jc(
+                                                            $jc(0,
+                                                                email.hashCode),
+                                                            displayName
+                                                                .hashCode),
+                                                        photoUrl.hashCode),
+                                                    uid.hashCode),
+                                                createdTime.hashCode),
+                                            phoneNumber.hashCode),
+                                        prayTitleToday.hashCode),
+                                    isCompletedToday.hashCode),
+                                prayTimeToday.hashCode),
+                            age.hashCode),
+                        getBible.hashCode),
+                    prayTitleGot.hashCode),
+                prayerGroup.hashCode),
+            prayerStack.hashCode),
         ffRef.hashCode));
   }
 
@@ -318,6 +337,7 @@ class _$UsersRecord extends UsersRecord {
           ..add('getBible', getBible)
           ..add('prayTitleGot', prayTitleGot)
           ..add('prayerGroup', prayerGroup)
+          ..add('prayerStack', prayerStack)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -381,6 +401,10 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
   String? get prayerGroup => _$this._prayerGroup;
   set prayerGroup(String? prayerGroup) => _$this._prayerGroup = prayerGroup;
 
+  int? _prayerStack;
+  int? get prayerStack => _$this._prayerStack;
+  set prayerStack(int? prayerStack) => _$this._prayerStack = prayerStack;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -405,6 +429,7 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
       _getBible = $v.getBible;
       _prayTitleGot = $v.prayTitleGot;
       _prayerGroup = $v.prayerGroup;
+      _prayerStack = $v.prayerStack;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -441,6 +466,7 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
             getBible: getBible,
             prayTitleGot: prayTitleGot,
             prayerGroup: prayerGroup,
+            prayerStack: prayerStack,
             ffRef: ffRef);
     replace(_$result);
     return _$result;

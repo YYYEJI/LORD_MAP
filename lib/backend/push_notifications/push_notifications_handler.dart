@@ -108,9 +108,6 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'Setting': (data) async => SettingWidget(),
   'practice': (data) async => PracticeWidget(),
   'practice1': (data) async => Practice1Widget(),
-  'TimerCopy': (data) async => TimerCopyWidget(
-        prayerGroup: getParameter(data, 'prayerGroup'),
-      ),
   'BibleToday': (data) async => BibleTodayWidget(),
 };
 

@@ -74,31 +74,28 @@ class _SettingWidgetState extends State<SettingWidget> {
           onTap: () => FocusScope.of(context).unfocus(),
           child: Column(
             mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
                 mainAxisSize: MainAxisSize.max,
-                children: [],
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [],
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  FlutterFlowIconButton(
-                    borderColor: Colors.transparent,
-                    borderRadius: 30,
-                    borderWidth: 1,
-                    buttonSize: 60,
-                    icon: Icon(
-                      Icons.notifications,
-                      color: FlutterFlowTheme.of(context).primaryText,
-                      size: 30,
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
+                    child: FlutterFlowIconButton(
+                      borderColor: Colors.transparent,
+                      borderRadius: 30,
+                      borderWidth: 1,
+                      buttonSize: 60,
+                      icon: Icon(
+                        Icons.notifications_off,
+                        color: FlutterFlowTheme.of(context).primaryText,
+                        size: 30,
+                      ),
+                      onPressed: () {
+                        print('IconButton pressed ...');
+                      },
                     ),
-                    onPressed: () {
-                      print('IconButton pressed ...');
-                    },
                   ),
                 ],
               ),
@@ -164,6 +161,27 @@ class _SettingWidgetState extends State<SettingWidget> {
                         width: 1,
                       ),
                       borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                ],
+              ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0, 100, 0, 300),
+                child: Text(
+                  '                ',
+                  style: FlutterFlowTheme.of(context).bodyText1,
+                ),
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(10, 20, 0, 10),
+                    child: Text(
+                      'GHOST33 :: GBC PROJECT\n이찬휘 송예지 이진주',
+                      style: TextStyle(
+                        color: FlutterFlowTheme.of(context).grayIcon,
+                      ),
                     ),
                   ),
                 ],

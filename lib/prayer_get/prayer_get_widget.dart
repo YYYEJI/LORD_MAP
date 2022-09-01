@@ -216,61 +216,6 @@ class _PrayerGetWidgetState extends State<PrayerGetWidget> {
                         },
                       ),
                     ),
-                    Align(
-                      alignment: AlignmentDirectional(-0.02, 1.42),
-                      child: StreamBuilder<List<ColPTTodayRecord>>(
-                        stream: queryColPTTodayRecord(
-                          singleRecord: true,
-                        ),
-                        builder: (context, snapshot) {
-                          // Customize what your widget looks like when it's loading.
-                          if (!snapshot.hasData) {
-                            return Center(
-                              child: SizedBox(
-                                width: 50,
-                                height: 50,
-                                child: SpinKitRipple(
-                                  color: Color(0xFFCBCBCB),
-                                  size: 50,
-                                ),
-                              ),
-                            );
-                          }
-                          List<ColPTTodayRecord> buttonColPTTodayRecordList =
-                              snapshot.data!;
-                          // Return an empty Container when the document does not exist.
-                          if (snapshot.data!.isEmpty) {
-                            return Container();
-                          }
-                          final buttonColPTTodayRecord =
-                              buttonColPTTodayRecordList.isNotEmpty
-                                  ? buttonColPTTodayRecordList.first
-                                  : null;
-                          return FFButtonWidget(
-                            onPressed: () {
-                              print('Button pressed ...');
-                            },
-                            text: 'Another one!',
-                            options: FFButtonOptions(
-                              width: 130,
-                              height: 40,
-                              color: FlutterFlowTheme.of(context).primaryColor,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .subtitle2
-                                  .override(
-                                    fontFamily: 'Poppins',
-                                    color: Colors.white,
-                                  ),
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1,
-                              ),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
                   ],
                 ),
               ),

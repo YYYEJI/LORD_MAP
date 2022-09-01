@@ -42,6 +42,13 @@ class _$ChurchinNGRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.churchImage;
+    if (value != null) {
+      result
+        ..add('Church_Image')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -77,6 +84,10 @@ class _$ChurchinNGRecordSerializer
           result.address = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'Church_Image':
+          result.churchImage = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -98,13 +109,16 @@ class _$ChurchinNGRecord extends ChurchinNGRecord {
   @override
   final String? address;
   @override
+  final String? churchImage;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$ChurchinNGRecord(
           [void Function(ChurchinNGRecordBuilder)? updates]) =>
       (new ChurchinNGRecordBuilder()..update(updates))._build();
 
-  _$ChurchinNGRecord._({this.name, this.location, this.address, this.ffRef})
+  _$ChurchinNGRecord._(
+      {this.name, this.location, this.address, this.churchImage, this.ffRef})
       : super._();
 
   @override
@@ -122,13 +136,17 @@ class _$ChurchinNGRecord extends ChurchinNGRecord {
         name == other.name &&
         location == other.location &&
         address == other.address &&
+        churchImage == other.churchImage &&
         ffRef == other.ffRef;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc(0, name.hashCode), location.hashCode), address.hashCode),
+        $jc(
+            $jc($jc($jc(0, name.hashCode), location.hashCode),
+                address.hashCode),
+            churchImage.hashCode),
         ffRef.hashCode));
   }
 
@@ -138,6 +156,7 @@ class _$ChurchinNGRecord extends ChurchinNGRecord {
           ..add('name', name)
           ..add('location', location)
           ..add('address', address)
+          ..add('churchImage', churchImage)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -159,6 +178,10 @@ class ChurchinNGRecordBuilder
   String? get address => _$this._address;
   set address(String? address) => _$this._address = address;
 
+  String? _churchImage;
+  String? get churchImage => _$this._churchImage;
+  set churchImage(String? churchImage) => _$this._churchImage = churchImage;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -173,6 +196,7 @@ class ChurchinNGRecordBuilder
       _name = $v.name;
       _location = $v.location;
       _address = $v.address;
+      _churchImage = $v.churchImage;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -196,7 +220,11 @@ class ChurchinNGRecordBuilder
   _$ChurchinNGRecord _build() {
     final _$result = _$v ??
         new _$ChurchinNGRecord._(
-            name: name, location: location, address: address, ffRef: ffRef);
+            name: name,
+            location: location,
+            address: address,
+            churchImage: churchImage,
+            ffRef: ffRef);
     replace(_$result);
     return _$result;
   }
