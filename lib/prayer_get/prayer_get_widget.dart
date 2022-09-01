@@ -27,16 +27,22 @@ class _PrayerGetWidgetState extends State<PrayerGetWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   //여기
 
-  static Future<void> getRandomPrayerTitle() async {
 
-    //새거 가져오고
-    RandGetter n = RandGetter();
-    someonePrayerTitle = await n.getRandomPrayTitle();
-    //유저필드도 그걸로 업데이트 해주기
-    n.updatePTitleGot(someonePrayerTitle);
-    //근데 유저아이디를 어케알지ㅣ요..?
 
-    print("got new Random title :D");
+  //랜덤기도제목 받아오고 DB에도 저장해주는 친구
+   Future<void> getRandomPrayerTitle() async {
+      //새거 가져오고
+      RandGetter n = RandGetter();
+      String foo = await n.getRandomPrayTitle();
+      setState(() {
+        someonePrayerTitle = foo;
+      });
+
+      //유저필드도 그걸로 업데이트 해주기
+      n.updatePTitleGot(someonePrayerTitle);
+      //근데 유저아이디를 어케알지ㅣ요..?
+
+      print("got new Random title :D");
 
   }
 
@@ -50,8 +56,6 @@ class _PrayerGetWidgetState extends State<PrayerGetWidget> {
 
   @override
   Widget build(BuildContext context) {
-
-    getRandomPrayerTitle();
 
     return Scaffold(
       key: scaffoldKey,
@@ -173,14 +177,17 @@ class _PrayerGetWidgetState extends State<PrayerGetWidget> {
                           logFirebaseEvent(
                               'PRAYER_GET_PAGE_GET_MORE!_BTN_ON_TAP');
                           logFirebaseEvent('Button_Navigate-To');
-                          await Navigator.push(
+                          getRandomPrayerTitle();
+
+                          /*await Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) => FormoregetWidget(),
                             ),
-                          );
+                          );*/
+
                         },
-                        text: '다른 기도제목 받기',
+                        text: '기도제목 받기',
                         options: FFButtonOptions(
                           width: 130,
                           height: 40,
