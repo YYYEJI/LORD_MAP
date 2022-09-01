@@ -1,30 +1,37 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'prayer_group_record.dart';
+part of 'userin_p_g_record.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<PrayerGroupRecord> _$prayerGroupRecordSerializer =
-    new _$PrayerGroupRecordSerializer();
+Serializer<UserinPGRecord> _$userinPGRecordSerializer =
+    new _$UserinPGRecordSerializer();
 
-class _$PrayerGroupRecordSerializer
-    implements StructuredSerializer<PrayerGroupRecord> {
+class _$UserinPGRecordSerializer
+    implements StructuredSerializer<UserinPGRecord> {
   @override
-  final Iterable<Type> types = const [PrayerGroupRecord, _$PrayerGroupRecord];
+  final Iterable<Type> types = const [UserinPGRecord, _$UserinPGRecord];
   @override
-  final String wireName = 'PrayerGroupRecord';
+  final String wireName = 'UserinPGRecord';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, PrayerGroupRecord object,
+  Iterable<Object?> serialize(Serializers serializers, UserinPGRecord object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[];
     Object? value;
-    value = object.groupName;
+    value = object.users;
     if (value != null) {
       result
-        ..add('group_name')
+        ..add('users')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.prayerTime;
+    if (value != null) {
+      result
+        ..add('prayerTime')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -40,10 +47,10 @@ class _$PrayerGroupRecordSerializer
   }
 
   @override
-  PrayerGroupRecord deserialize(
+  UserinPGRecord deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new PrayerGroupRecordBuilder();
+    final result = new UserinPGRecordBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -51,8 +58,12 @@ class _$PrayerGroupRecordSerializer
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
-        case 'group_name':
-          result.groupName = serializers.deserialize(value,
+        case 'users':
+          result.users = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'prayerTime':
+          result.prayerTime = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
         case 'Document__Reference__Field':
@@ -68,68 +79,77 @@ class _$PrayerGroupRecordSerializer
   }
 }
 
-class _$PrayerGroupRecord extends PrayerGroupRecord {
+class _$UserinPGRecord extends UserinPGRecord {
   @override
-  final String? groupName;
+  final String? users;
+  @override
+  final String? prayerTime;
   @override
   final DocumentReference<Object?>? ffRef;
 
-  factory _$PrayerGroupRecord(
-          [void Function(PrayerGroupRecordBuilder)? updates]) =>
-      (new PrayerGroupRecordBuilder()..update(updates))._build();
+  factory _$UserinPGRecord([void Function(UserinPGRecordBuilder)? updates]) =>
+      (new UserinPGRecordBuilder()..update(updates))._build();
 
-  _$PrayerGroupRecord._({this.groupName, this.ffRef}) : super._();
+  _$UserinPGRecord._({this.users, this.prayerTime, this.ffRef}) : super._();
 
   @override
-  PrayerGroupRecord rebuild(void Function(PrayerGroupRecordBuilder) updates) =>
+  UserinPGRecord rebuild(void Function(UserinPGRecordBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  PrayerGroupRecordBuilder toBuilder() =>
-      new PrayerGroupRecordBuilder()..replace(this);
+  UserinPGRecordBuilder toBuilder() =>
+      new UserinPGRecordBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is PrayerGroupRecord &&
-        groupName == other.groupName &&
+    return other is UserinPGRecord &&
+        users == other.users &&
+        prayerTime == other.prayerTime &&
         ffRef == other.ffRef;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc(0, groupName.hashCode), ffRef.hashCode));
+    return $jf(
+        $jc($jc($jc(0, users.hashCode), prayerTime.hashCode), ffRef.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'PrayerGroupRecord')
-          ..add('groupName', groupName)
+    return (newBuiltValueToStringHelper(r'UserinPGRecord')
+          ..add('users', users)
+          ..add('prayerTime', prayerTime)
           ..add('ffRef', ffRef))
         .toString();
   }
 }
 
-class PrayerGroupRecordBuilder
-    implements Builder<PrayerGroupRecord, PrayerGroupRecordBuilder> {
-  _$PrayerGroupRecord? _$v;
+class UserinPGRecordBuilder
+    implements Builder<UserinPGRecord, UserinPGRecordBuilder> {
+  _$UserinPGRecord? _$v;
 
-  String? _groupName;
-  String? get groupName => _$this._groupName;
-  set groupName(String? groupName) => _$this._groupName = groupName;
+  String? _users;
+  String? get users => _$this._users;
+  set users(String? users) => _$this._users = users;
+
+  String? _prayerTime;
+  String? get prayerTime => _$this._prayerTime;
+  set prayerTime(String? prayerTime) => _$this._prayerTime = prayerTime;
 
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
 
-  PrayerGroupRecordBuilder() {
-    PrayerGroupRecord._initializeBuilder(this);
+  UserinPGRecordBuilder() {
+    UserinPGRecord._initializeBuilder(this);
   }
 
-  PrayerGroupRecordBuilder get _$this {
+  UserinPGRecordBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _groupName = $v.groupName;
+      _users = $v.users;
+      _prayerTime = $v.prayerTime;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -137,22 +157,23 @@ class PrayerGroupRecordBuilder
   }
 
   @override
-  void replace(PrayerGroupRecord other) {
+  void replace(UserinPGRecord other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$PrayerGroupRecord;
+    _$v = other as _$UserinPGRecord;
   }
 
   @override
-  void update(void Function(PrayerGroupRecordBuilder)? updates) {
+  void update(void Function(UserinPGRecordBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  PrayerGroupRecord build() => _build();
+  UserinPGRecord build() => _build();
 
-  _$PrayerGroupRecord _build() {
-    final _$result =
-        _$v ?? new _$PrayerGroupRecord._(groupName: groupName, ffRef: ffRef);
+  _$UserinPGRecord _build() {
+    final _$result = _$v ??
+        new _$UserinPGRecord._(
+            users: users, prayerTime: prayerTime, ffRef: ffRef);
     replace(_$result);
     return _$result;
   }

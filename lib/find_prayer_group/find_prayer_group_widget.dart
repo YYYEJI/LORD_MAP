@@ -35,7 +35,7 @@ class _FindPrayerGroupWidgetState extends State<FindPrayerGroupWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.of(context).primaryBtnText,
+        backgroundColor: Color(0xFFFAFAD2),
         automaticallyImplyLeading: true,
         title: Text(
           'Find Group',
@@ -205,12 +205,12 @@ class _FindPrayerGroupWidgetState extends State<FindPrayerGroupWidget> {
                                           logFirebaseEvent(
                                               'SlidableActionWidget_Backend-Call');
 
-                                          final prayerGroupCreateData = {
-                                            'users': [currentUserDisplayName],
-                                          };
-                                          await PrayerGroupRecord.collection
-                                              .doc()
-                                              .set(prayerGroupCreateData);
+                                          final userinPGCreateData =
+                                              createUserinPGRecordData();
+                                          await UserinPGRecord.createDoc(
+                                                  listViewPrayerGroupRecord
+                                                      .reference)
+                                              .set(userinPGCreateData);
                                         },
                                       ),
                                     ],

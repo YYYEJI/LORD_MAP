@@ -1,11 +1,8 @@
 import '../alarm_add/alarm_add_widget.dart';
 import '../auth/auth_util.dart';
-import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../homepage/homepage_widget.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -36,47 +33,17 @@ class _AlarmWidgetState extends State<AlarmWidget> {
       key: scaffoldKey,
       appBar: AppBar(
         backgroundColor: Color(0xFFFAFAD2),
-        automaticallyImplyLeading: false,
-        leading: FlutterFlowIconButton(
-          borderColor: Colors.transparent,
-          borderRadius: 30,
-          borderWidth: 1,
-          buttonSize: 60,
-          icon: Icon(
-            Icons.arrow_back_rounded,
-            color: FlutterFlowTheme.of(context).primaryText,
-            size: 30,
-          ),
-          onPressed: () async {
-            logFirebaseEvent('ALARM_PAGE_arrow_back_rounded_ICN_ON_TAP');
-            logFirebaseEvent('IconButton_Backend-Call');
-
-            final usersUpdateData = createUsersRecordData(
-              getBible: getBibleValue,
-            );
-            await currentUserReference!.update(usersUpdateData);
-            logFirebaseEvent('IconButton_Navigate-To');
-            await Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => HomepageWidget(),
-              ),
-            );
-          },
-        ),
+        iconTheme: IconThemeData(color: Colors.black),
+        automaticallyImplyLeading: true,
         title: Text(
           'Alarm',
-          style: FlutterFlowTheme.of(context).title2.override(
-                fontFamily: 'Poppins',
-                color: FlutterFlowTheme.of(context).black600,
-                fontSize: 22,
-              ),
+          style: FlutterFlowTheme.of(context).bodyText1,
         ),
         actions: [],
-        centerTitle: false,
-        elevation: 2,
+        centerTitle: true,
+        elevation: 4,
       ),
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+      backgroundColor: Color(0xFFFAFAD2),
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -98,7 +65,7 @@ class _AlarmWidgetState extends State<AlarmWidget> {
                             fontSize: 20,
                           ),
                     ),
-                    tileColor: Color(0xFFF5F5F5),
+                    tileColor: Color(0xFFFAFAD2),
                     dense: false,
                     controlAffinity: ListTileControlAffinity.trailing,
                   ),
@@ -132,7 +99,7 @@ class _AlarmWidgetState extends State<AlarmWidget> {
                       '\" 아침기도! \"',
                       style: FlutterFlowTheme.of(context).subtitle2,
                     ),
-                    tileColor: Color(0xFFF5F5F5),
+                    tileColor: Color(0xFFFAFAD2),
                     dense: false,
                     controlAffinity: ListTileControlAffinity.trailing,
                   ),
@@ -151,7 +118,7 @@ class _AlarmWidgetState extends State<AlarmWidget> {
                       '\" 아침기도! \"',
                       style: FlutterFlowTheme.of(context).subtitle2,
                     ),
-                    tileColor: Color(0xFFF5F5F5),
+                    tileColor: Color(0xFFFAFAD2),
                     dense: false,
                     controlAffinity: ListTileControlAffinity.trailing,
                   ),
@@ -170,7 +137,7 @@ class _AlarmWidgetState extends State<AlarmWidget> {
                       '\" 아침기도! \"',
                       style: FlutterFlowTheme.of(context).subtitle2,
                     ),
-                    tileColor: Color(0xFFF5F5F5),
+                    tileColor: Color(0xFFFAFAD2),
                     dense: false,
                     controlAffinity: ListTileControlAffinity.trailing,
                   ),

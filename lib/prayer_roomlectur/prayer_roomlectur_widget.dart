@@ -107,7 +107,7 @@ class _PrayerRoomlecturWidgetState extends State<PrayerRoomlecturWidget>
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.of(context).primaryColor,
+        backgroundColor: Color(0xFFFAFAD2),
         automaticallyImplyLeading: false,
         leading: FlutterFlowIconButton(
           borderColor: Colors.transparent,
@@ -134,8 +134,8 @@ class _PrayerRoomlecturWidgetState extends State<PrayerRoomlecturWidget>
           '강의동 기도실',
           style: FlutterFlowTheme.of(context).title2.override(
                 fontFamily: 'Poppins',
-                color: Colors.white,
-                fontSize: 22,
+                color: FlutterFlowTheme.of(context).black600,
+                fontSize: 18,
               ),
         ),
         actions: [],

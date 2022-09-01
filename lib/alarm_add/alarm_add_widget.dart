@@ -35,36 +35,17 @@ class _AlarmAddWidgetState extends State<AlarmAddWidget> {
       key: scaffoldKey,
       appBar: AppBar(
         backgroundColor: Color(0xFFFAFAD2),
-        automaticallyImplyLeading: false,
-        leading: FlutterFlowIconButton(
-          borderColor: Colors.transparent,
-          borderRadius: 30,
-          borderWidth: 1,
-          buttonSize: 60,
-          icon: Icon(
-            Icons.arrow_back_rounded,
-            color: FlutterFlowTheme.of(context).primaryText,
-            size: 30,
-          ),
-          onPressed: () async {
-            logFirebaseEvent('ALARM_ADD_arrow_back_rounded_ICN_ON_TAP');
-            logFirebaseEvent('IconButton_Navigate-Back');
-            Navigator.pop(context);
-          },
-        ),
+        iconTheme: IconThemeData(color: FlutterFlowTheme.of(context).black600),
+        automaticallyImplyLeading: true,
         title: Text(
-          'Add new Alarm',
-          style: FlutterFlowTheme.of(context).title2.override(
-                fontFamily: 'Poppins',
-                color: FlutterFlowTheme.of(context).black600,
-                fontSize: 22,
-              ),
+          'Add new alarm',
+          style: FlutterFlowTheme.of(context).bodyText1,
         ),
         actions: [],
-        centerTitle: false,
-        elevation: 2,
+        centerTitle: true,
+        elevation: 4,
       ),
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+      backgroundColor: Color(0xFFFAFAD2),
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -160,6 +141,13 @@ class _AlarmAddWidgetState extends State<AlarmAddWidget> {
               Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
+                  Container(
+                    width: 85,
+                    height: 90,
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFAFAD2),
+                    ),
+                  ),
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
                     child: Text(
@@ -168,38 +156,48 @@ class _AlarmAddWidgetState extends State<AlarmAddWidget> {
                     ),
                   ),
                   Expanded(
-                    child: TextFormField(
-                      controller: textController,
-                      autofocus: true,
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        hintText: '[ Alarm Tag... ]',
-                        hintStyle: FlutterFlowTheme.of(context).bodyText2,
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color(0x00000000),
-                            width: 1,
+                    child: Align(
+                      alignment: AlignmentDirectional(0, 0.05),
+                      child: TextFormField(
+                        controller: textController,
+                        autofocus: true,
+                        obscureText: false,
+                        decoration: InputDecoration(
+                          hintText: '[ Alarm Tag... ]',
+                          hintStyle: FlutterFlowTheme.of(context).bodyText2,
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0x00000000),
+                              width: 1,
+                            ),
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(4.0),
+                              topRight: Radius.circular(4.0),
+                            ),
                           ),
-                          borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(4.0),
-                            topRight: Radius.circular(4.0),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0x00000000),
+                              width: 1,
+                            ),
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(4.0),
+                              topRight: Radius.circular(4.0),
+                            ),
                           ),
                         ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color(0x00000000),
-                            width: 1,
-                          ),
-                          borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(4.0),
-                            topRight: Radius.circular(4.0),
-                          ),
-                        ),
+                        style: FlutterFlowTheme.of(context).bodyText1,
                       ),
-                      style: FlutterFlowTheme.of(context).bodyText1,
                     ),
                   ),
                 ],
+              ),
+              Container(
+                width: 100,
+                height: 100,
+                decoration: BoxDecoration(
+                  color: Color(0xFFFAFAD2),
+                ),
               ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 20),
@@ -234,15 +232,17 @@ class _AlarmAddWidgetState extends State<AlarmAddWidget> {
                       },
                       text: 'Confirm',
                       options: FFButtonOptions(
-                        width: 240,
-                        height: 80,
-                        color: Color(0xFFFAFAD2),
-                        textStyle:
-                            FlutterFlowTheme.of(context).subtitle2.override(
-                                  fontFamily: 'Poppins',
-                                  color: FlutterFlowTheme.of(context).black600,
-                                  fontSize: 30,
-                                ),
+                        width: 180,
+                        height: 40,
+                        color: FlutterFlowTheme.of(context).primaryColor,
+                        textStyle: FlutterFlowTheme.of(context)
+                            .subtitle2
+                            .override(
+                              fontFamily: 'Poppins',
+                              color:
+                                  FlutterFlowTheme.of(context).primaryBtnText,
+                              fontSize: 15,
+                            ),
                         borderSide: BorderSide(
                           color: Colors.transparent,
                           width: 1,

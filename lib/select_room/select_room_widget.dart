@@ -31,7 +31,7 @@ class _SelectRoomWidgetState extends State<SelectRoomWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.of(context).primaryColor,
+        backgroundColor: Color(0xFFFAFAD2),
         automaticallyImplyLeading: false,
         leading: FlutterFlowIconButton(
           borderColor: Colors.transparent,
@@ -58,8 +58,8 @@ class _SelectRoomWidgetState extends State<SelectRoomWidget> {
           'Prayer Room',
           style: FlutterFlowTheme.of(context).title2.override(
                 fontFamily: 'Poppins',
-                color: Colors.white,
-                fontSize: 22,
+                color: Colors.black,
+                fontSize: 17,
               ),
         ),
         actions: [],
@@ -137,10 +137,10 @@ class _SelectRoomWidgetState extends State<SelectRoomWidget> {
                             textStyle:
                                 FlutterFlowTheme.of(context).subtitle2.override(
                                       fontFamily: 'Poppins',
-                                      color: Colors.white,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBtnText,
                                     ),
                             borderSide: BorderSide(
-                              color: Colors.transparent,
                               width: 1,
                             ),
                             borderRadius: BorderRadius.circular(8),

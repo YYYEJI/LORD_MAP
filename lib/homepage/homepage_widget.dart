@@ -8,7 +8,7 @@ import '../prayer/prayer_widget.dart';
 import '../select_map/select_map_widget.dart';
 import '../select_room/select_room_widget.dart';
 import '../setting/setting_widget.dart';
-import '../timer/timer_widget.dart';
+import '../timer_copy/timer_copy_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -296,7 +296,7 @@ class _HomepageWidgetState extends State<HomepageWidget> {
                         await Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => TimerWidget(),
+                            builder: (context) => TimerCopyWidget(),
                           ),
                         );
                       },
@@ -336,6 +336,16 @@ class _HomepageWidgetState extends State<HomepageWidget> {
                     ),
                   ),
                 ],
+              ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                child: Container(
+                  width: 300,
+                  height: 180,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                  ),
+                ),
               ),
             ],
           ),

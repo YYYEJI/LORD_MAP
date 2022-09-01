@@ -112,7 +112,8 @@ class _SignInWidgetState extends State<SignInWidget> {
                                       .subtitle2
                                       .override(
                                         fontFamily: 'Poppins',
-                                        color: Colors.white,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryBtnText,
                                       ),
                                   borderSide: BorderSide(
                                     color: Colors.transparent,

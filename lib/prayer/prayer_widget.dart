@@ -8,8 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../prayer_get/prayer_get_widget.dart';
-
 class PrayerWidget extends StatefulWidget {
   const PrayerWidget({Key? key}) : super(key: key);
 
@@ -122,7 +120,12 @@ class _PrayerWidgetState extends State<PrayerWidget> {
                                 EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                             child: Text(
                               'Send',
-                              style: FlutterFlowTheme.of(context).subtitle2,
+                              style: FlutterFlowTheme.of(context)
+                                  .subtitle2
+                                  .override(
+                                    fontFamily: 'Poppins',
+                                    color: Colors.black,
+                                  ),
                             ),
                           ),
                         ],
@@ -139,16 +142,9 @@ class _PrayerWidgetState extends State<PrayerWidget> {
                       onTap: () async {
                         logFirebaseEvent('PRAYER_PAGE_Column_mps2osu8_ON_TAP');
                         logFirebaseEvent('Column_Navigate-To');
-                        //_PrayerGetWidgetState n = _PrayerGetWidgetState();
-                        //n.someonesPrayerTitle = "";
-
                         await Navigator.push(
-                          //여기
-
-
                           context,
                           MaterialPageRoute(
-                            //여기
                             builder: (context) => PrayerGetWidget(),
                           ),
                         );
@@ -167,7 +163,12 @@ class _PrayerWidgetState extends State<PrayerWidget> {
                                 EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                             child: Text(
                               'Get',
-                              style: FlutterFlowTheme.of(context).subtitle2,
+                              style: FlutterFlowTheme.of(context)
+                                  .subtitle2
+                                  .override(
+                                    fontFamily: 'Poppins',
+                                    color: Colors.black,
+                                  ),
                             ),
                           ),
                         ],

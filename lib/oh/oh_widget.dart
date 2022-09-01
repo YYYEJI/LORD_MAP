@@ -29,7 +29,7 @@ class _OhWidgetState extends State<OhWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.of(context).primaryColor,
+        backgroundColor: Color(0xFFFAFAD2),
         automaticallyImplyLeading: false,
         leading: FlutterFlowIconButton(
           borderColor: Colors.transparent,
@@ -56,8 +56,8 @@ class _OhWidgetState extends State<OhWidget> {
           '현동홀 4층',
           style: FlutterFlowTheme.of(context).title2.override(
                 fontFamily: 'Poppins',
-                color: Colors.white,
-                fontSize: 22,
+                color: Colors.black,
+                fontSize: 20,
               ),
         ),
         actions: [],
