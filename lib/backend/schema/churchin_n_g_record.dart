@@ -17,13 +17,17 @@ abstract class ChurchinNGRecord
 
   String? get address;
 
+  @BuiltValueField(wireName: 'Church_Image')
+  String? get churchImage;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
 
   static void _initializeBuilder(ChurchinNGRecordBuilder builder) => builder
     ..name = ''
-    ..address = '';
+    ..address = ''
+    ..churchImage = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('ChurchinNG');
@@ -50,6 +54,7 @@ Map<String, dynamic> createChurchinNGRecordData({
   String? name,
   LatLng? location,
   String? address,
+  String? churchImage,
 }) {
   final firestoreData = serializers.toFirestore(
     ChurchinNGRecord.serializer,
@@ -57,7 +62,8 @@ Map<String, dynamic> createChurchinNGRecordData({
       (c) => c
         ..name = name
         ..location = location
-        ..address = address,
+        ..address = address
+        ..churchImage = churchImage,
     ),
   );
 

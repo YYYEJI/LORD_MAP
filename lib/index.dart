@@ -30,5 +30,4 @@ export 'hdh/hdh_widget.dart' show HdhWidget;
 export 'setting/setting_widget.dart' show SettingWidget;
 export 'practice/practice_widget.dart' show PracticeWidget;
 export 'practice1/practice1_widget.dart' show Practice1Widget;
-export 'timer_copy/timer_copy_widget.dart' show TimerCopyWidget;
 export 'bible_today/bible_today_widget.dart' show BibleTodayWidget;

@@ -1,4 +1,5 @@
 import '../alarm/alarm_widget.dart';
+import '../bible_today/bible_today_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -91,6 +92,26 @@ class _MovePageWidgetState extends State<MovePageWidget> {
                           );
                         },
                       ),
+                      Align(
+                        alignment: AlignmentDirectional(-0.55, 0.13),
+                        child: InkWell(
+                          onTap: () async {
+                            logFirebaseEvent(
+                                'MOVE_PAGE_PAGE_Text_xu0ksosh_ON_TAP');
+                            logFirebaseEvent('Text_Navigate-To');
+                            await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => BibleTodayWidget(),
+                              ),
+                            );
+                          },
+                          child: Text(
+                            '오늘의 말씀',
+                            style: FlutterFlowTheme.of(context).bodyText1,
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -115,26 +136,7 @@ class _MovePageWidgetState extends State<MovePageWidget> {
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(-0.66, -0.14),
-                child: InkWell(
-                  onTap: () async {
-                    logFirebaseEvent('MOVE_PAGE_PAGE_Text_djpe8f4f_ON_TAP');
-                    logFirebaseEvent('Text_Navigate-To');
-                    await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => TimerWidget(),
-                      ),
-                    );
-                  },
-                  child: Text(
-                    '타이머',
-                    style: FlutterFlowTheme.of(context).bodyText1,
-                  ),
-                ),
-              ),
-              Align(
-                alignment: AlignmentDirectional(-0.66, -0.24),
+                alignment: AlignmentDirectional(-0.7, -0.24),
                 child: InkWell(
                   onTap: () async {
                     logFirebaseEvent('MOVE_PAGE_PAGE_Text_uhhg1gvu_ON_TAP');
@@ -153,7 +155,26 @@ class _MovePageWidgetState extends State<MovePageWidget> {
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(-0.69, -0.57),
+                alignment: AlignmentDirectional(-0.7, -0.11),
+                child: InkWell(
+                  onTap: () async {
+                    logFirebaseEvent('MOVE_PAGE_PAGE_Text_djpe8f4f_ON_TAP');
+                    logFirebaseEvent('Text_Navigate-To');
+                    await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => TimerWidget(),
+                      ),
+                    );
+                  },
+                  child: Text(
+                    '타이머',
+                    style: FlutterFlowTheme.of(context).bodyText1,
+                  ),
+                ),
+              ),
+              Align(
+                alignment: AlignmentDirectional(-0.7, -0.57),
                 child: InkWell(
                   onTap: () async {
                     logFirebaseEvent('MOVE_PAGE_PAGE_Text_r16ymivk_ON_TAP');
@@ -179,6 +200,25 @@ class _MovePageWidgetState extends State<MovePageWidget> {
                 ),
               ),
               Align(
+                alignment: AlignmentDirectional(-0.68, 0.01),
+                child: InkWell(
+                  onTap: () async {
+                    logFirebaseEvent('MOVE_PAGE_PAGE_Text_h2x9uyo2_ON_TAP');
+                    logFirebaseEvent('Text_Navigate-To');
+                    await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SelectRoomWidget(),
+                      ),
+                    );
+                  },
+                  child: Text(
+                    '기도실 예약',
+                    style: FlutterFlowTheme.of(context).bodyText1,
+                  ),
+                ),
+              ),
+              Align(
                 alignment: AlignmentDirectional(-0.26, -0.47),
                 child: InkWell(
                   onTap: () async {
@@ -198,7 +238,7 @@ class _MovePageWidgetState extends State<MovePageWidget> {
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(-0.71, -0.69),
+                alignment: AlignmentDirectional(-0.7, -0.69),
                 child: InkWell(
                   onTap: () async {
                     logFirebaseEvent('MOVE_PAGE_PAGE_Text_x2u4hkn5_ON_TAP');
@@ -212,25 +252,6 @@ class _MovePageWidgetState extends State<MovePageWidget> {
                   },
                   child: Text(
                     '지도',
-                    style: FlutterFlowTheme.of(context).bodyText1,
-                  ),
-                ),
-              ),
-              Align(
-                alignment: AlignmentDirectional(-0.64, -0.04),
-                child: InkWell(
-                  onTap: () async {
-                    logFirebaseEvent('MOVE_PAGE_PAGE_Text_h2x9uyo2_ON_TAP');
-                    logFirebaseEvent('Text_Navigate-To');
-                    await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => SelectRoomWidget(),
-                      ),
-                    );
-                  },
-                  child: Text(
-                    '기도실 예약',
                     style: FlutterFlowTheme.of(context).bodyText1,
                   ),
                 ),
