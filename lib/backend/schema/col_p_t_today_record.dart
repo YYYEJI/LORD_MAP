@@ -14,12 +14,18 @@ abstract class ColPTTodayRecord
   @BuiltValueField(wireName: 'col_pt')
   String? get colPt;
 
+  BuiltList<String>? get praytitle;
+
+  BuiltList<DocumentReference>? get testtest;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
 
-  static void _initializeBuilder(ColPTTodayRecordBuilder builder) =>
-      builder..colPt = '';
+  static void _initializeBuilder(ColPTTodayRecordBuilder builder) => builder
+    ..colPt = ''
+    ..praytitle = ListBuilder()
+    ..testtest = ListBuilder();
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('col_PT_Today');
@@ -48,7 +54,10 @@ Map<String, dynamic> createColPTTodayRecordData({
   final firestoreData = serializers.toFirestore(
     ColPTTodayRecord.serializer,
     ColPTTodayRecord(
-      (c) => c..colPt = colPt,
+      (c) => c
+        ..colPt = colPt
+        ..praytitle = null
+        ..testtest = null,
     ),
   );
 

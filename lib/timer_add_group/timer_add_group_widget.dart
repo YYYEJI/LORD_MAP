@@ -66,7 +66,7 @@ class _TimerAddGroupWidgetState extends State<TimerAddGroupWidget> {
         centerTitle: true,
         elevation: 4,
       ),
-      backgroundColor: FlutterFlowTheme.of(context).primaryBtnText,
+      backgroundColor: Color(0xFFFAFAD2),
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),

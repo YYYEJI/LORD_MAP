@@ -29,12 +29,12 @@ class _MappageDormWidgetState extends State<MappageDormWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.of(context).primaryColor,
+        backgroundColor: Color(0xFFFAFAD2),
         automaticallyImplyLeading: false,
         leading: FlutterFlowIconButton(
           borderColor: Colors.transparent,
           borderRadius: 30,
-          borderWidth: 1,
+          borderWidth: 2,
           buttonSize: 60,
           icon: Icon(
             Icons.clear,
@@ -56,14 +56,14 @@ class _MappageDormWidgetState extends State<MappageDormWidget> {
           },
         ),
         title: Align(
-          alignment: AlignmentDirectional(-0.5, 0),
+          alignment: AlignmentDirectional(-0.25, 0),
           child: Text(
             '생활관 기도실 위치',
             textAlign: TextAlign.center,
             style: FlutterFlowTheme.of(context).title2.override(
                   fontFamily: 'Poppins',
-                  color: Colors.white,
-                  fontSize: 22,
+                  color: Colors.black,
+                  fontSize: 17,
                 ),
           ),
         ),

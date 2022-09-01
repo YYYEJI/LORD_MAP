@@ -53,13 +53,16 @@ class _SettingWidgetState extends State<SettingWidget> {
             );
           },
         ),
-        title: Text(
-          'Setting',
-          style: FlutterFlowTheme.of(context).title2.override(
-                fontFamily: 'Poppins',
-                color: FlutterFlowTheme.of(context).black600,
-                fontSize: 22,
-              ),
+        title: Align(
+          alignment: AlignmentDirectional(-0.25, 0),
+          child: Text(
+            'Setting',
+            style: FlutterFlowTheme.of(context).title2.override(
+                  fontFamily: 'Poppins',
+                  color: FlutterFlowTheme.of(context).black600,
+                  fontSize: 22,
+                ),
+          ),
         ),
         actions: [],
         centerTitle: false,

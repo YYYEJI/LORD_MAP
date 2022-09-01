@@ -30,7 +30,7 @@ class _MappageLecturWidgetState extends State<MappageLecturWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.of(context).primaryColor,
+        backgroundColor: Color(0xFFFAFAD2),
         automaticallyImplyLeading: false,
         leading: FlutterFlowIconButton(
           borderColor: Colors.transparent,
@@ -57,14 +57,14 @@ class _MappageLecturWidgetState extends State<MappageLecturWidget> {
           },
         ),
         title: Align(
-          alignment: AlignmentDirectional(-0.5, 0),
+          alignment: AlignmentDirectional(-0.35, 0),
           child: Text(
             '강의동 기도실 위치',
             textAlign: TextAlign.center,
             style: FlutterFlowTheme.of(context).title2.override(
                   fontFamily: 'Poppins',
-                  color: Colors.white,
-                  fontSize: 22,
+                  color: Colors.black,
+                  fontSize: 17,
                 ),
           ),
         ),

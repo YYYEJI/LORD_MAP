@@ -28,6 +28,24 @@ class _$ColPTTodayRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.praytitle;
+    if (value != null) {
+      result
+        ..add('praytitle')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
+    value = object.testtest;
+    if (value != null) {
+      result
+        ..add('testtest')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(BuiltList, const [
+              const FullType(
+                  DocumentReference, const [const FullType.nullable(Object)])
+            ])));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -55,6 +73,19 @@ class _$ColPTTodayRecordSerializer
           result.colPt = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'praytitle':
+          result.praytitle.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'testtest':
+          result.testtest.replace(serializers.deserialize(value,
+              specifiedType: const FullType(BuiltList, const [
+                const FullType(
+                    DocumentReference, const [const FullType.nullable(Object)])
+              ]))! as BuiltList<Object?>);
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -72,13 +103,18 @@ class _$ColPTTodayRecord extends ColPTTodayRecord {
   @override
   final String? colPt;
   @override
+  final BuiltList<String>? praytitle;
+  @override
+  final BuiltList<DocumentReference<Object?>>? testtest;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$ColPTTodayRecord(
           [void Function(ColPTTodayRecordBuilder)? updates]) =>
       (new ColPTTodayRecordBuilder()..update(updates))._build();
 
-  _$ColPTTodayRecord._({this.colPt, this.ffRef}) : super._();
+  _$ColPTTodayRecord._({this.colPt, this.praytitle, this.testtest, this.ffRef})
+      : super._();
 
   @override
   ColPTTodayRecord rebuild(void Function(ColPTTodayRecordBuilder) updates) =>
@@ -93,18 +129,24 @@ class _$ColPTTodayRecord extends ColPTTodayRecord {
     if (identical(other, this)) return true;
     return other is ColPTTodayRecord &&
         colPt == other.colPt &&
+        praytitle == other.praytitle &&
+        testtest == other.testtest &&
         ffRef == other.ffRef;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc(0, colPt.hashCode), ffRef.hashCode));
+    return $jf($jc(
+        $jc($jc($jc(0, colPt.hashCode), praytitle.hashCode), testtest.hashCode),
+        ffRef.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'ColPTTodayRecord')
           ..add('colPt', colPt)
+          ..add('praytitle', praytitle)
+          ..add('testtest', testtest)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -118,6 +160,18 @@ class ColPTTodayRecordBuilder
   String? get colPt => _$this._colPt;
   set colPt(String? colPt) => _$this._colPt = colPt;
 
+  ListBuilder<String>? _praytitle;
+  ListBuilder<String> get praytitle =>
+      _$this._praytitle ??= new ListBuilder<String>();
+  set praytitle(ListBuilder<String>? praytitle) =>
+      _$this._praytitle = praytitle;
+
+  ListBuilder<DocumentReference<Object?>>? _testtest;
+  ListBuilder<DocumentReference<Object?>> get testtest =>
+      _$this._testtest ??= new ListBuilder<DocumentReference<Object?>>();
+  set testtest(ListBuilder<DocumentReference<Object?>>? testtest) =>
+      _$this._testtest = testtest;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -130,6 +184,8 @@ class ColPTTodayRecordBuilder
     final $v = _$v;
     if ($v != null) {
       _colPt = $v.colPt;
+      _praytitle = $v.praytitle?.toBuilder();
+      _testtest = $v.testtest?.toBuilder();
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -151,8 +207,27 @@ class ColPTTodayRecordBuilder
   ColPTTodayRecord build() => _build();
 
   _$ColPTTodayRecord _build() {
-    final _$result =
-        _$v ?? new _$ColPTTodayRecord._(colPt: colPt, ffRef: ffRef);
+    _$ColPTTodayRecord _$result;
+    try {
+      _$result = _$v ??
+          new _$ColPTTodayRecord._(
+              colPt: colPt,
+              praytitle: _praytitle?.build(),
+              testtest: _testtest?.build(),
+              ffRef: ffRef);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'praytitle';
+        _praytitle?.build();
+        _$failedField = 'testtest';
+        _testtest?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'ColPTTodayRecord', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

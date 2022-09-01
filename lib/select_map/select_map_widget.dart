@@ -33,7 +33,7 @@ class _SelectMapWidgetState extends State<SelectMapWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.of(context).primaryColor,
+        backgroundColor: Color(0xFFFAFAD2),
         automaticallyImplyLeading: false,
         leading: FlutterFlowIconButton(
           borderColor: Colors.transparent,
@@ -60,8 +60,8 @@ class _SelectMapWidgetState extends State<SelectMapWidget> {
           'Church',
           style: FlutterFlowTheme.of(context).title2.override(
                 fontFamily: 'Poppins',
-                color: Colors.white,
-                fontSize: 22,
+                color: Colors.black,
+                fontSize: 17,
               ),
         ),
         actions: [],

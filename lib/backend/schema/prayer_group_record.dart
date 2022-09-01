@@ -14,15 +14,12 @@ abstract class PrayerGroupRecord
   @BuiltValueField(wireName: 'group_name')
   String? get groupName;
 
-  BuiltList<String>? get users;
-
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
 
-  static void _initializeBuilder(PrayerGroupRecordBuilder builder) => builder
-    ..groupName = ''
-    ..users = ListBuilder();
+  static void _initializeBuilder(PrayerGroupRecordBuilder builder) =>
+      builder..groupName = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('prayer_group');
@@ -51,9 +48,7 @@ Map<String, dynamic> createPrayerGroupRecordData({
   final firestoreData = serializers.toFirestore(
     PrayerGroupRecord.serializer,
     PrayerGroupRecord(
-      (p) => p
-        ..groupName = groupName
-        ..users = null,
+      (p) => p..groupName = groupName,
     ),
   );
 

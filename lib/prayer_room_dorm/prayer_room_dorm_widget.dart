@@ -296,8 +296,9 @@ class _PrayerRoomDormWidgetState extends State<PrayerRoomDormWidget>
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.of(context).primaryColor,
-        automaticallyImplyLeading: false,
+        backgroundColor: Color(0xFFFAFAD2),
+        iconTheme: IconThemeData(color: FlutterFlowTheme.of(context).black600),
+        automaticallyImplyLeading: true,
         leading: FlutterFlowIconButton(
           borderColor: Colors.transparent,
           borderRadius: 30,
@@ -305,7 +306,7 @@ class _PrayerRoomDormWidgetState extends State<PrayerRoomDormWidget>
           buttonSize: 60,
           icon: Icon(
             Icons.arrow_back_rounded,
-            color: Colors.black,
+            color: FlutterFlowTheme.of(context).primaryText,
             size: 30,
           ),
           onPressed: () async {
@@ -321,15 +322,14 @@ class _PrayerRoomDormWidgetState extends State<PrayerRoomDormWidget>
         ),
         title: Text(
           '생활관 기도실',
-          style: FlutterFlowTheme.of(context).title2.override(
+          style: FlutterFlowTheme.of(context).bodyText1.override(
                 fontFamily: 'Poppins',
-                color: Colors.white,
-                fontSize: 22,
+                fontSize: 17,
               ),
         ),
         actions: [],
         centerTitle: true,
-        elevation: 2,
+        elevation: 4,
       ),
       backgroundColor: Color(0xFFFAFAD2),
       body: SafeArea(

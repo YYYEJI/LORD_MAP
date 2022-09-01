@@ -67,13 +67,16 @@ class _MappNGWidgetState extends State<MappNGWidget> {
                 Navigator.pop(context);
               },
             ),
-            title: Text(
-              '남구 교회',
-              style: FlutterFlowTheme.of(context).title2.override(
-                    fontFamily: 'Poppins',
-                    color: FlutterFlowTheme.of(context).black600,
-                    fontSize: 22,
-                  ),
+            title: Align(
+              alignment: AlignmentDirectional(-0.2, 0),
+              child: Text(
+                '남구 교회',
+                style: FlutterFlowTheme.of(context).title2.override(
+                      fontFamily: 'Poppins',
+                      color: FlutterFlowTheme.of(context).black600,
+                      fontSize: 20,
+                    ),
+              ),
             ),
             actions: [],
             centerTitle: false,

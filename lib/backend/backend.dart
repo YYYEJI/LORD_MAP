@@ -12,6 +12,7 @@ import 'schema/alarm_record.dart';
 import 'schema/bible_record.dart';
 import 'schema/prayer_group_record.dart';
 import 'schema/col_p_t_today_record.dart';
+import 'schema/userin_p_g_record.dart';
 import 'schema/serializers.dart';
 
 export 'dart:async' show StreamSubscription;
@@ -26,6 +27,7 @@ export 'schema/alarm_record.dart';
 export 'schema/bible_record.dart';
 export 'schema/prayer_group_record.dart';
 export 'schema/col_p_t_today_record.dart';
+export 'schema/userin_p_g_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Stream<List<UsersRecord>> queryUsersRecord({
@@ -315,6 +317,51 @@ Future<FFFirestorePage<ColPTTodayRecord>> queryColPTTodayRecordPage({
     queryCollectionPage(
       ColPTTodayRecord.collection,
       ColPTTodayRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
+
+/// Functions to query UserinPGRecords (as a Stream and as a Future).
+Stream<List<UserinPGRecord>> queryUserinPGRecord({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      UserinPGRecord.collection(parent),
+      UserinPGRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<UserinPGRecord>> queryUserinPGRecordOnce({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      UserinPGRecord.collection(parent),
+      UserinPGRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<UserinPGRecord>> queryUserinPGRecordPage({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  DocumentSnapshot? nextPageMarker,
+  required int pageSize,
+  required bool isStream,
+}) =>
+    queryCollectionPage(
+      UserinPGRecord.collection(parent),
+      UserinPGRecord.serializer,
       queryBuilder: queryBuilder,
       nextPageMarker: nextPageMarker,
       pageSize: pageSize,
