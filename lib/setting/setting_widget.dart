@@ -9,8 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../backend/cloud_functions/cloud_functions.dart';
-
 class SettingWidget extends StatefulWidget {
   const SettingWidget({Key? key}) : super(key: key);
 
@@ -98,19 +96,8 @@ class _SettingWidgetState extends State<SettingWidget> {
                       color: FlutterFlowTheme.of(context).primaryText,
                       size: 30,
                     ),
-                    onPressed: () async {
-                      print('notification button pressed ...');
-
-                      RandGetter n = RandGetter();
-                      //for(int i = 0; i < 10; i++) n.createdata( i.toString(), "this is test word ^0^");
-                      //n.getRandom();
-                      var plz = await n.getRandomBible();
-                      print(plz);
-                      print("-----------------------------------");
-                      String nnn = await n.getRandomPrayTitle();
-                      print(nnn);
-
-
+                    onPressed: () {
+                      print('IconButton pressed ...');
                     },
                   ),
                 ],
