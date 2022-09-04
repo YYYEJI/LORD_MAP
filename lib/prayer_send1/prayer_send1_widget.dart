@@ -11,6 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../backend/cloud_functions/cloud_functions.dart';
+
 class PrayerSend1Widget extends StatefulWidget {
   const PrayerSend1Widget({Key? key}) : super(key: key);
 
@@ -82,39 +84,35 @@ class _PrayerSend1WidgetState extends State<PrayerSend1Widget> {
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                   ),
-                  child: Align(
-                    alignment: AlignmentDirectional(0, 0),
-                    child: TextFormField(
-                      controller: textController,
-                      autofocus: true,
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        hintText: '       Enter your prayer title . . . ◡̈',
-                        hintStyle: FlutterFlowTheme.of(context).bodyText2,
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color(0x00000000),
-                            width: 1,
-                          ),
-                          borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(4.0),
-                            topRight: Radius.circular(4.0),
-                          ),
+                  child: TextFormField(
+                    controller: textController,
+                    autofocus: true,
+                    obscureText: false,
+                    decoration: InputDecoration(
+                      hintText: '       Enter your prayer title . . . ◡̈',
+                      hintStyle: FlutterFlowTheme.of(context).bodyText2,
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color(0x00000000),
+                          width: 1,
                         ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color(0x00000000),
-                            width: 1,
-                          ),
-                          borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(4.0),
-                            topRight: Radius.circular(4.0),
-                          ),
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(4.0),
+                          topRight: Radius.circular(4.0),
                         ),
                       ),
-                      style: FlutterFlowTheme.of(context).bodyText1,
-                      textAlign: TextAlign.center,
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color(0x00000000),
+                          width: 1,
+                        ),
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(4.0),
+                          topRight: Radius.circular(4.0),
+                        ),
+                      ),
                     ),
+                    style: FlutterFlowTheme.of(context).bodyText1,
                   ),
                 ),
               ),
@@ -131,6 +129,18 @@ class _PrayerSend1WidgetState extends State<PrayerSend1Widget> {
                     await currentUserReference!.update(usersUpdateData);
                     logFirebaseEvent('Button_Backend-Call');
 
+
+                    // -----------------------------
+                    RandGetter n = RandGetter();
+                    //dummy불러오고
+                    //+1하고 dummy업데이트
+                    //그값을 key로 data생성
+                    int I = await n.updateDummy();
+                    n.createPrayerTitleData(textController!.text, I);
+
+                    // -----------------------------
+
+                    /*
                     final colPTTodayCreateData = createColPTTodayRecordData(
                       colPt: textController!.text,
                     );
@@ -139,6 +149,7 @@ class _PrayerSend1WidgetState extends State<PrayerSend1Widget> {
                     await colPTTodayRecordReference.set(colPTTodayCreateData);
                     praytitle = ColPTTodayRecord.getDocumentFromData(
                         colPTTodayCreateData, colPTTodayRecordReference);
+                    */
                     logFirebaseEvent('Button_Bottom-Sheet');
                     await showModalBottomSheet(
                       isScrollControlled: true,
@@ -160,9 +171,9 @@ class _PrayerSend1WidgetState extends State<PrayerSend1Widget> {
                     height: 40,
                     color: FlutterFlowTheme.of(context).primaryColor,
                     textStyle: FlutterFlowTheme.of(context).subtitle2.override(
-                          fontFamily: 'Poppins',
-                          color: Colors.white,
-                        ),
+                      fontFamily: 'Poppins',
+                      color: Colors.white,
+                    ),
                     borderSide: BorderSide(
                       color: Colors.transparent,
                       width: 1,

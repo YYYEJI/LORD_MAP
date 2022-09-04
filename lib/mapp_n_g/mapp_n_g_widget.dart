@@ -72,10 +72,10 @@ class _MappNGWidgetState extends State<MappNGWidget> {
               child: Text(
                 '남구 교회',
                 style: FlutterFlowTheme.of(context).title2.override(
-                      fontFamily: 'Poppins',
-                      color: FlutterFlowTheme.of(context).black600,
-                      fontSize: 20,
-                    ),
+                  fontFamily: 'Poppins',
+                  color: FlutterFlowTheme.of(context).black600,
+                  fontSize: 20,
+                ),
               ),
             ),
             actions: [],
@@ -117,21 +117,21 @@ class _MappNGWidgetState extends State<MappNGWidget> {
                                   );
                                 }
                                 List<ChurchinNGRecord>
-                                    googleMapChurchinNGRecordList =
-                                    snapshot.data!;
+                                googleMapChurchinNGRecordList =
+                                snapshot.data!;
                                 return FlutterFlowGoogleMap(
                                   controller: googleMapsController,
                                   onCameraIdle: (latLng) =>
-                                      googleMapsCenter = latLng,
+                                  googleMapsCenter = latLng,
                                   initialLocation: googleMapsCenter ??=
                                       LatLng(36.0287, 129.3402),
                                   markers: mappNGChurchinNGRecordList
                                       .map(
                                         (mappNGChurchinNGRecord) =>
-                                            FlutterFlowMarker(
+                                        FlutterFlowMarker(
                                           mappNGChurchinNGRecord.reference.path,
                                           mappNGChurchinNGRecord.location!,
-                                          () async {
+                                              () async {
                                             logFirebaseEvent(
                                                 'MAPP_N_G_GoogleMap_o52g074p_ON_MARKER_TA');
                                             logFirebaseEvent(
@@ -139,23 +139,23 @@ class _MappNGWidgetState extends State<MappNGWidget> {
                                             await showModalBottomSheet(
                                               isScrollControlled: true,
                                               backgroundColor:
-                                                  Colors.transparent,
+                                              Colors.transparent,
                                               context: context,
                                               builder: (context) {
                                                 return Padding(
                                                   padding:
-                                                      MediaQuery.of(context)
-                                                          .viewInsets,
+                                                  MediaQuery.of(context)
+                                                      .viewInsets,
                                                   child: NGinfoWidget(
-                                                    churchNG:
-                                                        mappNGChurchinNGRecord,
+                                                    ngparameter:
+                                                    mappNGChurchinNGRecord,
                                                   ),
                                                 );
                                               },
                                             );
                                           },
                                         ),
-                                      )
+                                  )
                                       .toList(),
                                   markerColor: GoogleMarkerColor.violet,
                                   mapType: MapType.normal,

@@ -7,7 +7,7 @@ part of 'churchin_b_g_record.dart';
 // **************************************************************************
 
 Serializer<ChurchinBGRecord> _$churchinBGRecordSerializer =
-    new _$ChurchinBGRecordSerializer();
+new _$ChurchinBGRecordSerializer();
 
 class _$ChurchinBGRecordSerializer
     implements StructuredSerializer<ChurchinBGRecord> {
@@ -42,10 +42,10 @@ class _$ChurchinBGRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.churchImage;
+    value = object.phone;
     if (value != null) {
       result
-        ..add('Church_Image')
+        ..add('Phone')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -84,8 +84,8 @@ class _$ChurchinBGRecordSerializer
           result.address = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'Church_Image':
-          result.churchImage = serializers.deserialize(value,
+        case 'Phone':
+          result.phone = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
         case 'Document__Reference__Field':
@@ -109,16 +109,16 @@ class _$ChurchinBGRecord extends ChurchinBGRecord {
   @override
   final String? address;
   @override
-  final String? churchImage;
+  final String? phone;
   @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$ChurchinBGRecord(
-          [void Function(ChurchinBGRecordBuilder)? updates]) =>
+      [void Function(ChurchinBGRecordBuilder)? updates]) =>
       (new ChurchinBGRecordBuilder()..update(updates))._build();
 
   _$ChurchinBGRecord._(
-      {this.name, this.location, this.address, this.churchImage, this.ffRef})
+      {this.name, this.location, this.address, this.phone, this.ffRef})
       : super._();
 
   @override
@@ -136,7 +136,7 @@ class _$ChurchinBGRecord extends ChurchinBGRecord {
         name == other.name &&
         location == other.location &&
         address == other.address &&
-        churchImage == other.churchImage &&
+        phone == other.phone &&
         ffRef == other.ffRef;
   }
 
@@ -146,18 +146,18 @@ class _$ChurchinBGRecord extends ChurchinBGRecord {
         $jc(
             $jc($jc($jc(0, name.hashCode), location.hashCode),
                 address.hashCode),
-            churchImage.hashCode),
+            phone.hashCode),
         ffRef.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'ChurchinBGRecord')
-          ..add('name', name)
-          ..add('location', location)
-          ..add('address', address)
-          ..add('churchImage', churchImage)
-          ..add('ffRef', ffRef))
+      ..add('name', name)
+      ..add('location', location)
+      ..add('address', address)
+      ..add('phone', phone)
+      ..add('ffRef', ffRef))
         .toString();
   }
 }
@@ -178,9 +178,9 @@ class ChurchinBGRecordBuilder
   String? get address => _$this._address;
   set address(String? address) => _$this._address = address;
 
-  String? _churchImage;
-  String? get churchImage => _$this._churchImage;
-  set churchImage(String? churchImage) => _$this._churchImage = churchImage;
+  String? _phone;
+  String? get phone => _$this._phone;
+  set phone(String? phone) => _$this._phone = phone;
 
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
@@ -196,7 +196,7 @@ class ChurchinBGRecordBuilder
       _name = $v.name;
       _location = $v.location;
       _address = $v.address;
-      _churchImage = $v.churchImage;
+      _phone = $v.phone;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -223,7 +223,7 @@ class ChurchinBGRecordBuilder
             name: name,
             location: location,
             address: address,
-            churchImage: churchImage,
+            phone: phone,
             ffRef: ffRef);
     replace(_$result);
     return _$result;

@@ -90,51 +90,74 @@ class _MappBGWidgetState extends State<MappBGWidget> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Expanded(
-                    child: FlutterFlowGoogleMap(
-                      controller: googleMapsController,
-                      onCameraIdle: (latLng) => googleMapsCenter = latLng,
-                      initialLocation: googleMapsCenter ??=
-                          LatLng(36.084, 129.3919),
-                      markers: mappBGChurchinBGRecordList
-                          .map(
-                            (mappBGChurchinBGRecord) => FlutterFlowMarker(
-                              mappBGChurchinBGRecord.reference.path,
-                              mappBGChurchinBGRecord.location!,
-                              () async {
-                                logFirebaseEvent(
-                                    'MAPP_B_G_GoogleMap_tthfe3tu_ON_MARKER_TA');
-                                logFirebaseEvent('GoogleMap_Bottom-Sheet');
-                                await showModalBottomSheet(
-                                  isScrollControlled: true,
-                                  backgroundColor: Colors.transparent,
-                                  context: context,
-                                  builder: (context) {
-                                    return Padding(
-                                      padding:
+                    child: StreamBuilder<List<ChurchinBGRecord>>(
+                      stream: queryChurchinBGRecord(),
+                      builder: (context, snapshot) {
+                        // Customize what your widget looks like when it's loading.
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: SizedBox(
+                              width: 50,
+                              height: 50,
+                              child: SpinKitRipple(
+                                color: Color(0xFFCBCBCB),
+                                size: 50,
+                              ),
+                            ),
+                          );
+                        }
+                        List<ChurchinBGRecord> googleMapChurchinBGRecordList =
+                        snapshot.data!;
+                        return FlutterFlowGoogleMap(
+                          controller: googleMapsController,
+                          onCameraIdle: (latLng) => googleMapsCenter = latLng,
+                          initialLocation: googleMapsCenter ??=
+                              LatLng(36.084, 129.3919),
+                          markers: googleMapChurchinBGRecordList
+                              .map(
+                                (googleMapChurchinBGRecord) =>
+                                FlutterFlowMarker(
+                                  googleMapChurchinBGRecord.reference.path,
+                                  googleMapChurchinBGRecord.location!,
+                                      () async {
+                                    logFirebaseEvent(
+                                        'MAPP_B_G_GoogleMap_tthfe3tu_ON_MARKER_TA');
+                                    logFirebaseEvent('GoogleMap_Bottom-Sheet');
+                                    await showModalBottomSheet(
+                                      isScrollControlled: true,
+                                      backgroundColor: Colors.transparent,
+                                      context: context,
+                                      builder: (context) {
+                                        return Padding(
+                                          padding:
                                           MediaQuery.of(context).viewInsets,
-                                      child: BGinfoWidget(
-                                        churchBG: mappBGChurchinBGRecord,
-                                      ),
+                                          child: BGinfoWidget(
+                                            churchInfoBG:
+                                            googleMapChurchinBGRecord,
+                                          ),
+                                        );
+                                      },
                                     );
                                   },
-                                );
-                              },
-                            ),
+                                ),
                           )
-                          .toList(),
-                      markerColor: GoogleMarkerColor.azure,
-                      mapType: MapType.normal,
-                      style: GoogleMapStyle.standard,
-                      initialZoom: 14,
-                      allowInteraction: true,
-                      allowZoom: true,
-                      showZoomControls: true,
-                      showLocation: true,
-                      showCompass: false,
-                      showMapToolbar: false,
-                      showTraffic: false,
-                      centerMapOnMarkerTap: true,
+                              .toList(),
+                          markerColor: GoogleMarkerColor.azure,
+                          mapType: MapType.normal,
+                          style: GoogleMapStyle.standard,
+                          initialZoom: 14,
+                          allowInteraction: true,
+                          allowZoom: true,
+                          showZoomControls: true,
+                          showLocation: true,
+                          showCompass: false,
+                          showMapToolbar: false,
+                          showTraffic: false,
+                          centerMapOnMarkerTap: true,
+                        );
+                      },
                     ),
+
                   ),
                 ],
               ),
