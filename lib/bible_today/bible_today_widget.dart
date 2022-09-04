@@ -9,6 +9,8 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../backend/cloud_functions/cloud_functions.dart';
+
 
 class BibleTodayWidget extends StatefulWidget {
   const BibleTodayWidget({Key? key}) : super(key: key);
@@ -18,6 +20,9 @@ class BibleTodayWidget extends StatefulWidget {
 }
 
 class _BibleTodayWidgetState extends State<BibleTodayWidget> {
+
+  String bibleToday = "[버튼을 클릭해서 오늘의 말씀 받기]";
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -155,7 +160,8 @@ class _BibleTodayWidgetState extends State<BibleTodayWidget> {
                                                         .first
                                                     : null;
                                             return AutoSizeText(
-                                              'Hello World',
+
+                                              bibleToday,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyText1,
@@ -173,8 +179,15 @@ class _BibleTodayWidgetState extends State<BibleTodayWidget> {
                       ),
                     ),
                     FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
+                      onPressed: () async {
+                        RandGetter n = RandGetter();
+                        String foo = await n.getRandomBible();
+                        //받아와서 리프레쉬하고
+                        setState(() {
+                          bibleToday = foo;
+                        });
+
+                        print('got new bible ...');
                       },
                       text: '오늘의 말씀 받기',
                       options: FFButtonOptions(

@@ -7,7 +7,7 @@ part of 'churchin_n_g_record.dart';
 // **************************************************************************
 
 Serializer<ChurchinNGRecord> _$churchinNGRecordSerializer =
-    new _$ChurchinNGRecordSerializer();
+new _$ChurchinNGRecordSerializer();
 
 class _$ChurchinNGRecordSerializer
     implements StructuredSerializer<ChurchinNGRecord> {
@@ -114,7 +114,7 @@ class _$ChurchinNGRecord extends ChurchinNGRecord {
   final DocumentReference<Object?>? ffRef;
 
   factory _$ChurchinNGRecord(
-          [void Function(ChurchinNGRecordBuilder)? updates]) =>
+      [void Function(ChurchinNGRecordBuilder)? updates]) =>
       (new ChurchinNGRecordBuilder()..update(updates))._build();
 
   _$ChurchinNGRecord._(
@@ -153,11 +153,11 @@ class _$ChurchinNGRecord extends ChurchinNGRecord {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'ChurchinNGRecord')
-          ..add('name', name)
-          ..add('location', location)
-          ..add('address', address)
-          ..add('phone', phone)
-          ..add('ffRef', ffRef))
+      ..add('name', name)
+      ..add('location', location)
+      ..add('address', address)
+      ..add('phone', phone)
+      ..add('ffRef', ffRef))
         .toString();
   }
 }

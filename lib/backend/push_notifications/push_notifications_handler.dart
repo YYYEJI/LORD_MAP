@@ -87,9 +87,9 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'Formoreget': (data) async => FormoregetWidget(),
   'PrayerSend1': (data) async => PrayerSend1Widget(),
   'PrayerGet': (data) async => PrayerGetWidget(),
-  'Timer': (data) async => TimerWidget(
+  /*'Timer': (data) async => TimerWidget(
         prayerGroup: getParameter(data, 'prayerGroup'),
-      ),
+      ),*/
   'Find_prayer_group': (data) async => FindPrayerGroupWidget(),
   'Timer_addGroup': (data) async => TimerAddGroupWidget(),
   'AlarmAdd': (data) async => AlarmAddWidget(),

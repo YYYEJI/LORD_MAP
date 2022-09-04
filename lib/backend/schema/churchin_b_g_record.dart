@@ -42,10 +42,10 @@ abstract class ChurchinBGRecord
 
   ChurchinBGRecord._();
   factory ChurchinBGRecord([void Function(ChurchinBGRecordBuilder) updates]) =
-      _$ChurchinBGRecord;
+  _$ChurchinBGRecord;
 
   static ChurchinBGRecord getDocumentFromData(
-          Map<String, dynamic> data, DocumentReference reference) =>
+      Map<String, dynamic> data, DocumentReference reference) =>
       serializers.deserializeWith(serializer,
           {...mapFromFirestore(data), kDocumentReferenceField: reference})!;
 }
@@ -59,7 +59,7 @@ Map<String, dynamic> createChurchinBGRecordData({
   final firestoreData = serializers.toFirestore(
     ChurchinBGRecord.serializer,
     ChurchinBGRecord(
-      (c) => c
+          (c) => c
         ..name = name
         ..location = location
         ..address = address
